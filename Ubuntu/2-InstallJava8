@@ -1,0 +1,24 @@
+
+# in Virtual box select the new VM
+# from Machine menu -> Clone
+# Name new machine UbuntuJava
+# Do a full clone.
+#
+# Start the newly cloned VM from Virtual Box
+
+# install Java
+sudo apt update
+sudo apt install openjdk-8-jdk openjdk-8-jre
+
+# should say 1.8.0_232
+java -version
+
+# add the following 2 lines to your .bash_profile file
+# (should require you to make a new one)
+#   export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+#   export PATH=$JAVA_HOME/bin:$PATH
+#
+# add the following line to the bottom of the .bashrc
+# file in the ~ directory
+#   source ~/.bash_profile
+

@@ -1,0 +1,15 @@
+
+# in Virtual box select the new VM
+# from Machine menu -> Clone
+# Name new machine UbuntuJava
+# Do a full clone.
+#
+# Start the newly cloned VM from Virtual Box
+sudo apt update
+sudo apt install software-properties-common
+
+# install python 3.7
+sudo apt install python3.7
+
+# should return 3.7.5
+python3.7 --version

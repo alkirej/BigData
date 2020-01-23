@@ -1,0 +1,57 @@
+1 - Download and Install VirtualBox on your local machine.
+        - download from->  https://www.virtualbox.org/
+ 
+2 - Start and open Virtual Box on your local machine
+        - Click the New icon (blue sunnish looking icon):
+        - Fill in the dialog that pops up
+            My Choices:
+                Name:               Ubuntu
+                Machine Folder:     leave at default
+                Type:               Linux
+                Version:            Ubuntu (64-bit)
+        - Click Next
+        - Set Memory Size on this Dialog
+            My Choice:              2048 MB
+        - Click Next
+        - Select Hard Disk
+            My Choice:              Default
+        - Click Create
+        - Select Hard Disk File Type
+            My Choice:              Default
+        - Click Next
+        - Create Virtual Hard Disk
+            My Choice:              Default (dynamically allocated)
+        - Click Next
+        - File Location and size:
+            My Choice:              Default (10GB)
+        - Click Create
+        
+3 - Start New VM and Install Ubuntu
+        - Select your new machine on the left side of screen
+        - Click Start (green arrow point left on icon menu)
+        - Select Startup Disk:
+            ubuntu-18.04.3-desktop-amd64.iso (1.94GB)
+        - Wait 1-2 minutes
+        - On Welcome screen, select your language (English)
+            - click Install Ubuntu
+        - Select your language
+            - My Choice:        English (US)
+            - Click Continue
+        - On updates and other software
+            - Choose Normal Installation
+            - Choose Download updates while installing Ubuntu
+            - Click  Continue
+        - Installation Type
+            - Erase disk and install Ubuntu
+            - Click Install Now
+            - Click Continue in the popup dialog to confirm
+        - Where are you ( Choose: New York or where you are ).
+            - Click Continue
+        - Complete the next dialog
+            - Your Name:     jeff
+            - Computer Name: Ubuntu
+            - username:      jeff
+            - password:      jeff
+            - choose         Log in automatically
+        - Wait for: 5 minuts
+            - reboot computer when asked.
