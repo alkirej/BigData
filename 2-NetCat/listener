@@ -1,0 +1,4 @@
+source ~/BigData/2-NetCat/port
+echo start listener ...
+nc -l $PORT_NUM > ~/output/netcat.output
+echo output stored at ~/output/netcat.output

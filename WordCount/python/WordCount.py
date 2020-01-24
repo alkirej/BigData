@@ -54,5 +54,9 @@ for currentWord in wordList:
         resultMap[cleanWord] = 1;
 
 # display the results on the screen
+formatString = "{},{}"
+print (formatString.format( "word", "count" ) )
+
 for currentWord in resultMap.keys():
-    print( currentWord, resultMap[currentWord] )
+    if ( len(currentWord) >0 ):
+        print (formatString.format( currentWord, resultMap[currentWord] ) )

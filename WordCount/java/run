@@ -1,1 +1,3 @@
+echo executing ...
 java WordCount ~/BigData/WordCount/shakespeare-hamlet.txt > ~/output/wordcount_java.csv
+echo output can be found in ~/output/wordcount_java.csv
