@@ -1,0 +1,44 @@
+# 
+
+# create a group for hadoop users
+sudo addgroup hadoop_
+
+# create a hadoop user 
+sudo adduser --ingroup hadoop_ hadoop
+
+# allow hadoop to sudo
+sudo adduser hadoop sudo
+
+# switch user (su) to hadoop user
+su - hadoop
+
+# generate an ssh key for hadoop user
+ssh-keygen
+
+# copy the ssh id to localhost and test
+ssh-copy-id localhost
+ssh localhost
+
+# return to your original user and download hadoop
+# go to https://apache.mirrirs.pair.com/hadoop/core
+# navigate to the hadoop-2.8.5 directory
+# click on the hadoop-2.8.5.tar.gz file to download the tar file
+
+# cd to the location of the .tar.gz file
+# move the tar file to the /opt directory
+sudo mv hadoop-2.8.5.tar.gz /opt
+
+# change the ownership of the file to the hadoop us
+sudo chown hadoop hadoop-2.8.5.tar.gz
+
+# untar the file as the hadoop user
+su - hadoop
+
+# check to ensure we are the hadoop user
+whoami
+
+# change to the /opt directory (location of the tar)
+cd /opt
+
+# extract the tar file (save output in case of trouble)
+sudo tar xvf hadoop-2.8.5.tar.gz > ~/output.hadoop

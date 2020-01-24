@@ -1,0 +1,128 @@
+# update your ~/.bashrc file by adding the following lines (note: jeff and not hadoop)
+# export HADOOP_HOME=/opt/hadoop
+# export PATH=$HADOOP_HOME/bin:$PATH
+# export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+
+# make sure the JAVA_HOME environment variable is setup in .bash_profile as well
+
+# login as hadoop
+su - hadoop
+
+# copy the .bash_profile from jeff account to hadoop
+cp /home/jeff/.bash_profile .
+. .bash_profile
+
+# update the hadoop environment variable file
+cd $HADOOP_HOME/etc/hadoop
+
+# edit the hadoop-env.sh text file with your favorite text editor
+vi hadoop-env.sh
+
+# edit the JAVA_HOME=${JAVA_HOME} line.
+#     change it to JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+
+# edit the core-site.xml file with your favorite text editor
+vi core-site.xml
+
+# add the following text between the <configuration>
+# and </configuration> tags
+<property>
+    <name>
+        hadoop.tmp.dir
+    </name>
+    <value>
+        /opt/hadoop/tmp
+    </value>
+    <description>
+        Parent directory for other temporary directories.
+    </description>
+</property>
+<property>
+    <name>
+        fs.defaultFS
+    </name>
+    <value>
+        hdfs://localhost:50700
+    </value>
+    <description>
+        The name of the default file system.
+    </description>
+</property>
+
+# create that temporary file AS THE hadoop USER!
+cd /opt/hadoop
+mkdir tmp
+
+# MAP REDUCE CONFIGURATION
+
+# change directories (Note: should still be hadoop user)
+cd /etc/profile.d
+
+# create (if necessary) and edit hadoop.sh in /etc/profile.d
+vi hadoop.sh
+
+# add the following line to thek file
+export HADOOP_HOME=/opt/hadoop
+
+# make the file executable
+sudo chmod +x /etc/profile.d/hadoop.sh
+
+# exit your shell and log in again.
+
+# verify the hadoop path
+echo $HADOOP_HOME
+
+# copy the mapred-site template into the "production" environment
+cp $HADOOP_HOME/etc/hadoop/mapred-site.xml.template $HADOOP_HOME/etc/hadoop/mapred-site.xml
+
+# add a property to the the mapred-site.xml file
+cd $HADOOP_HOME/etc/hadoop/
+vi mapred-site.xml
+
+# add the following property between the <configuration> tags
+<property>
+  <name>mapreduce.jobtracker.address</name>
+  <value>localhost:50700</value>
+  <description>
+      MapReduce job tracker runs at this host and port.
+  </description>
+</property>
+
+# add 2 properties to the $HADOOP_HOME/etc/hadoop/hdfs-site.xml file
+cd $HADOOP_HOME/etc/hadoop
+vi hdfs-site.xml
+
+# add these lines
+<property>
+  <name>dfs.replication</name>
+  <value>1</value>
+  <description>
+    Default block replication.
+  </description>
+</property>
+<property>
+  <name>dfs.datanode.data.dir</name>
+  <value>/opt/hadoop/hdfs</value>
+</property>
+
+# make the hdfs directory
+sudo mkdir /opt/hadoop/hdfs
+
+# create /dfs/name/current directory
+sudo mkdir -p /dfs/name/current
+
+# format the namenode disk
+hdfs namenode -format
+
+# start dfs
+$HADOOP_HOME/sbin/start-dfs.sh
+
+# ensure the namenodes are configured correctly
+hdfs getconf -namenodes
+
+# start yarn
+$HADOOP_HOME/sbin/start-yarn.sh
+
+# stop dfs and yarn in order to ensure installation is ok.
+$HADOOP_HOME/sbin/stop-dfs.sh
+$HADOOP_HOME/sbin/stop-yarn.sh
