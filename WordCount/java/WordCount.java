@@ -3,6 +3,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import java.nio.file.Paths;
+import java.nio.file.Files;
+
 public class WordCount
 {
 
@@ -103,18 +106,8 @@ public class WordCount
 
       try
       {
-          FileReader    fileReader   = new FileReader( arg[0] );
-          StringBuilder fileContents = new StringBuilder();
+         String completeText = new String( Files.readAllBytes(Paths.get(arg[0])));
 
-          int nextChar = fileReader.read();
-
-          while ( nextChar >= 0 )
-          {
-              nextChar = fileReader.read();
-              fileContents.append( (char) nextChar );
-          }
-
-          String completeText = fileContents.toString();
           Map<String,Integer> wordCounts = generateWordCounts( completeText );
 
           wordCounts.forEach( (k,v) -> System.out.println( k + "-" + v ) );
