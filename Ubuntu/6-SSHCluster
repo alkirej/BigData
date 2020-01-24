@@ -1,0 +1,67 @@
+# Close previous machine
+# Go into settings of the cloned machine
+# Set the Network -> Attached To: <Bridged Adapter>
+# Click on the advanced arrow and set the Mac Address to a different value
+
+# Open terminal and install openssh-server
+sudo apt-get update
+sudo apt-get install openssh-server
+
+# Start ssh server
+sudo service ssh stop
+sudo service ssh start
+
+# open terminal and generate ssh key
+ssh-keygen
+
+# ssh localhost should now work (but request a password)
+ssh localhost
+
+# copy the public key to the authorized_keys
+ssh-copy-id localhost
+
+# ssh localhost should now work without password
+ssh localhost
+
+# download Atom
+wget -q https://packagecloud.io/AtomEditor/atom/gpgkey -O- | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main"
+sudo apt install atom
+
+# duplicate the machine 2 times so 3 vm are available in total
+# start original machine (parent)
+# start a second machine (child 1)
+
+# execute ip addr | grep inet  ... on both machines and make not of the ip addresses
+# if the ip addresses are the same, close one of the machines and update its
+# mac address in virtual box (Settings->Network->Advanced) to be unique
+# and restart the machine and check its ip addr
+
+# remove the ssh key from the first machine
+cd .ssh
+rm id_rsa
+rm id_rsa.pub
+
+# on the new machine generate a new key and copy it to the local and parent machine
+ssh-keygen
+ssh-copyid localhost
+ssh-copyid <ip address of parent machine>
+
+# test connectivity from parent machine to child1
+ssh localhost
+ssh <ip address of child1 machine>
+
+# start child2 machine from virtualbox
+# repeat child1 process on child2
+cd .ssh
+rm id_rsa
+rm id_rsa.pub
+
+# on the new machine generate a new key and copy it to the local and parent machine
+ssh-keygen
+ssh-copyid localhost
+ssh-copyid <ip address of parent machine>
+ssh-copyid <ip address of chile1 machine>
+
+# test connectivity from parent machine to child1
+ssh <ip address of child1 machine>
