@@ -1,1 +1,1 @@
-java WordCount ~/BigData/WordCount/shakespeare-hamlet.txt
+java WordCount ~/BigData/WordCount/shakespeare-hamlet.txt > ~/output/wordcount_java.csv

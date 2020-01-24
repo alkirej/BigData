@@ -110,7 +110,8 @@ public class WordCount
 
           Map<String,Integer> wordCounts = generateWordCounts( completeText );
 
-          wordCounts.forEach( (k,v) -> System.out.println( k + "-" + v ) );
+          System.out.println( "word,count" );
+          wordCounts.forEach( (k,v) -> System.out.println( k + "," + v ) );
 
       } catch (IOException ioe )
       {
