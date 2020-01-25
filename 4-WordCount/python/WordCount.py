@@ -32,7 +32,7 @@ def cleanString( uncleanedWord ):
 
 # Start of main function
 # Open the file in read only mode
-textFile = open( "/home/jeff/BigData/WordCount/shakespeare-hamlet.txt", "r" )
+textFile = open( "/home/jeff/BigData/4-WordCount/shakespeare-hamlet.txt", "r" )
 
 # read the file and close it.
 contents = textFile.read()
