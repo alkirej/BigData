@@ -1,0 +1,37 @@
+github is a distributed/decentralized rcs/vcs (revision/version control system)
+
+git workflow:
+  1- edit your (working) copy of a file from the repository
+  2- (add) the file to the staging area with git add <filename>
+  3- (commit) the changes to the local repository with git commit
+  4- (push) the changes to the github repository with git push
+  
+git vocab:
+  blob     - binary large object 
+  tree     - directory structure
+  commit   - links to previous version of the file
+  branch   - standard rcs branch - single codeline within a project
+  tag      - immutable branch (such as a production release)
+  clone    - check out the working copy and mirror complete repository
+  pull     - copies changes from remote repository to the local one
+  push     - move commits from local repository to a remote one
+  head     - "points" to the latest commit in a branch (aka: the latest commit or most up to date)
+  revision - a version of the source code (represented by commits)
+  url      - represents the location of a git repository (stored  in the config file)
+  
+Install git client (Debian Linus)
+  sudo apt-get install git-core
+  git --version
+  
+  # customize the git environment
+  git config --global user.name "Jeff Alkire"
+  git config --global user.email "jeff@alkire.net"
+  
+  # you can use this to avoid default merge commits
+  git config --global branch.autosetuprebase always
+  
+  # use these to enable color highlighting in the git console
+  git config --global color.ui true
+  git config --global color.status auto
+  git config --global color.branch auto
+  
