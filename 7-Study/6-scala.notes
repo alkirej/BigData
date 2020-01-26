@@ -463,7 +463,159 @@ STRINGS:
         Same as Java
 
 ARRAYS:
-     Store fixed-size sequential collection of elements of the same type.
-     Declaration examples:
+    Store fixed-size sequential collection of elements of the same type.
+    Declaration examples:
         var z:Array[String] = new Array[String](3)
         var z = new Array[String](3)
+    Using array examples:
+        z(0) = "Zara"; z(1) = "Nuha"; z(4/2) = "Ayan"
+        var z = Array("Zara", "Nuha", "Ayan")
+    Declaring multi-dimensional array:
+        var myMatrix = ofDim[Int](3,3)
+    Concatenate array example:
+        var myList1 = Array(1.9, 2.9, 3.4, 3.5)
+        var myList2 = Array(8.9, 7.9, 0.4, 1.5)
+
+        var myList3 =  concat( myList1, myList2)
+
+        // Print all the array elements
+        for ( x <- myList3 ) {
+         println( x )
+        }
+    Create arrays with a numeric range:
+        var myList1 = range(10, 20, 2)   // 10, 12, 14, 16, 18
+        var myList2 = range(10, 20)      // 10, 11, 12, 13, 14, 15, 16, 17, 18, 19
+    Array._ package includes may Array functions like concat, copy, and many others
+
+COLLECTIONS:  
+    Scala has strict & lazy collections
+        Lazy collections have elements that may not consume mem until accessed
+        Collections may be mutable or immutable (changable or not changable members)
+            Immutable collections may contain mutable members.
+    Common Scala Collections:
+        LIST:     linked list
+        SET:      unique items only
+        MAP:      key/value pairs
+        TUPLE:    lists of different types (record)
+        OPTION:   container of 0 or 1 element
+        ITERATOR: NOT A COLLECTION, but a way to access the collection memberwise.
+
+TRAITS:
+    Encapsulates a method and field definitions
+    Traits may be partially implemented
+    Traits may NOT HAVE CONSTRUCTOR PARAMETERS
+    Similar to Java ABSTRACT CLASSES or INTERFACE
+    Example:
+        trait Equal {
+           def isEqual(x: Any): Boolean
+           def isNotEqual(x: Any): Boolean = !isEqual(x)
+        }
+
+PATTERN MATCHING:
+    Powerful and often used
+    Make use of CASE classes:
+        Case classes are (1) immutable by default and
+                (2) decomposable through pattern matching
+                (3) does not use new to instantiate
+                (4) all parameters are public and immutable by default
+                
+    Example:
+        object Demo {
+           def main(args: Array[String]) {
+              val alice = new Person("Alice", 25)
+              val bob = new Person("Bob", 32)
+              val charlie = new Person("Charlie", 32)
+           
+              for (person <- List(alice, bob, charlie)) {
+                 person match {
+                    case Person("Alice", 25) => println("Hi Alice!")
+                    case Person("Bob", 32) => println("Hi Bob!")
+                    case Person(name, age) => println(
+                       "Age: " + age + " year, name: " + name + "?")
+                 }
+              }
+           }
+           case class Person(name: String, age: Int)
+        }
+
+REGULAR EXPRESSIONS:
+    Example code:
+        import scala.util.matching.Regex
+
+        object Demo {
+           def main(args: Array[String]) {
+              val pattern = new Regex("(S|s)cala")
+              val str = "Scala is scalable and cool"
+              
+              println((pattern findAllIn str).mkString(","))
+           }
+        }
+
+    The r method for string return RichText and can convert that
+            to a Regex
+    Example 2:
+        val pattern = "Scala".r
+        
+    REGEX CHEATSHEET: https://www.rexegg.com/regex-quickstart.html
+
+EXCEPTION HANDLING:
+    Thrown similar to Java
+    Caught with try ... catch block
+    Includes finally block if needed
+
+    Has NO CHECKED EXCEPTIONS    
+    
+SOME, NONE, OPTION CLASSES:
+    None   = empty
+    Some   = not empty
+    Option = can contain a Some or None object
+
+APPLY METHOD:
+    Any object that has an apply method can be called with the .apply omitted.
+    Example:
+        class Array{
+          def get(index:Int) = { ...some code to get from the array... }  
+          def apply(index:Int) = get(index)
+        }
+
+        val a = new Array(whatever)
+
+        Then the following calls are essentially equivalent:
+            a.apply(7)
+            a(7)
+
+EXTRACTORS:
+    
+    Example:
+        object Demo {
+           def main(args: Array[String]) {
+              println ("Apply method : " + apply("Zara", "gmail.com"));
+              println ("Unapply method : " + unapply("Zara@gmail.com"));
+              println ("Unapply method : " + unapply("Zara Ali"));
+           }
+           
+           // The injection method (optional)
+           def apply(user: String, domain: String) = {
+              user +"@"+ domain
+           }
+
+           // The extraction method (mandatory)
+           def unapply(str: String): Option[(String, String)] = {
+              val parts = str split "@"
+              
+              if (parts.length == 2){
+                 Some(parts(0), parts(1)) 
+              } else {
+                 None
+              }
+           }
+        }
+
+        Output:
+            Apply method : Zara@gmail.com
+            Unapply method : Some((Zara,gmail.com))
+            Unapply method : None
+            
+FILE I/O:
+    Scala can use Java's java.io.File and other classes ( including Console )
+    
