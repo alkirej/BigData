@@ -69,12 +69,49 @@
     git clone git@github.com:alkirej/BigData
   NOTE: git status -s --> (-s = silent flag) creates a easier to read status report
   NOTE: git log --> lists commits starting with the most recent and moving backwards through time
+        git log -3 --> list last 3 commits
   e-add a file to the repo
     git add <filename>
 7-Editing a file
   a-edit file in text editor
-  b-git add <filename>
-  c-git commit
-  d-
+  b-git add <filename>  --> tells github we are editing this file
+  c-git commit --> done with changes
+  d-git log    --> show the commit log (and id for each commit)
+  e-git show <commit id>  --> shows edits to the file (diff)
+8-"Stash" changes until I can work on them again
+  git stash --> will stash your changes
+  git stash list --> will show you what you have stashed away
+  git stash pop  --> will restore your most previous stash
   
-    
+  Stashing allows current changes to be stored away while you work on 
+  a different branch of the code.
+9-Move / Rename file
+  git mv <filename> <newfilename or location>
+  move a file to a new location or rename it
+  (similar to unix mv command)
+10-Delete file from github
+  git rm <filename>
+  deletes a file (once committed) from the repo
+11-Revert to previous version after commit
+  git checkout <filename>
+12-Revert to to HEAD (latest) version of file
+  git checkout HEAD -- <filename>
+13-Move the HEAD location
+  git reset ...
+14-Tag a version as immutable (production version)
+  git tag -a '<release>' -m '<message>' HEAD
+  HEAD can be replaced with a commit id
+  
+  git tag  --> shows previously tags
+  git tag -d '<release>' --> delete the specified tag
+15-Patches
+  git has a git format-patch ... command that allows patches to be made
+  git apply ... will apply the patch
+16-Branches
+  git branch --> displays current branch
+  git branch <new branch name> --> creates a new branch (but does not make it active)
+  git checkout <branch name> --> switches to a new branch
+  git checkout -b <new branch name> --> create and switch to a new branch
+  git branch -D <branch name> --> delete a branch (MOVE TO ANOTHER BRFANCH FIRST)
+  git branch -m <old branch name> <new branch name> --> rename a branch
+  git merge ... will merge 2 branches together
