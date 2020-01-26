@@ -1,1 +1,1 @@
-javac  WordCount.java
+javac -d $CLASSPATH WordCount.java
