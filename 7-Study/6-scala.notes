@@ -1,0 +1,469 @@
+FOLLOW UP WITH:
+    SCALA TEST INFRASTRUCTURE
+
+
+NOTES FOR SCALA TUTORIAL
+
+Scala smoothly integrates the features of object-oriented and functional languages. This tutorial explains the basics of Scala in a simple and reader-friendly way.
+
+Scala is Object-Oriented AND Functional
+  Classes are extended by subclassing and a flexible mixin-based composition mechanism as a clean replacement for multiple inheritance.
+  Scala provides a lightweight syntax for defining anonymous functions, it supports higher-order functions, it allows functions to be nested, and supports curryinng.
+
+Scala is statically typed
+Scala runs on the JVM (Java Virtual Machine)
+Scala can execute Java code!
+Scala makes immutable code easier allowing concurrency/parallellism to be easily implemented
+
+Scala Environment Setup
+* See 1-Ubuntu folder for a document on this
+
+Scala Terms
+  object  - state & behavior
+  class   - template describint the behaviors and states related to the class
+  methods - behavior
+  fields  - instance variables
+  closure - function whose return value depends on the value of 1+ variables declared outside the function
+  traits  - encapsulates method and fields
+
+Scala can be run in interactive or script mode
+  interactive mode:  from terminal, type "scala"
+    scala code can be typed and executed immediately
+  script mode:  scalac <name>.scala --> compile
+                scala <name>        --> execute
+                
+Scala syntax notes:
+  Scala IS CASE-SENSITIVE
+  The FIRST LETTER OF ALL CLASSES SHOULD BE UPPER CASE and use camel notation
+  METHOD NAMES START WITH A LOWER CASE LETTER and camel notation
+  Program file should exactly match the object name (including case) with a .scala extension
+  starting method is  def main(args: Array[String])
+  Typical naming standards for identiviers (start with a letter, letters & numbers only, _ are allowed)
+  
+Scala syntax
+  ; is OPTIONAL
+  Legal operator identifiers are   ( +  ++  :::  <?>  :> )
+  Mixed identifiers have an identifier name followed by an _ folloed by an operator (like + or =)
+  Literals are enclosed in "back ticks" (`)
+  Scala keywords:
+    abstract    case        catch       class       def
+    do          else        extends     false       final
+    finally     for         forSome     if          implicit
+    import      lazy        match       new         Null
+    object      override    package     private     protected
+    return      sealed      super       this        throw 
+    trait       Try         true        type        val
+    Var         while       with        yield
+    -   :   =   =>  <-  <   <%  >   #   @
+    
+Comments:
+    /* */ for multiline
+    //    for single line
+
+Scala is a line-oriented language
+    statements can be ended by ; or newlines.
+    
+Scala uses packages
+    package com.liftcode.stuff  (first non comment line in source code)
+    import packages to allow references with import command
+        import scala.collection.mutable.HashMap
+    multiple import syntax
+        import scala.collection.immutable.{TreeMap, TreeSet}
+        import scala.collection._ --> import all items in this package
+              
+Scala Data Types
+    Byte    -  8 bit signed  (-128 to 127)
+    Short   - 16 bit signed  (-32k to 32k)
+    Int     - 32 bit signed  ( -2B to  2B) B = Billion
+    Long    - 64 bit signed  ( -9Q to  9Q) Q = Quintillion
+    Float   - 32 bit float
+    Double  - 64 bit double precision float
+    Char    - 16 bit unsigned Unicode char
+    String  - sequence of Chars
+    Boolean - true or false
+    Unit    - no value
+    Null    - null or empty reference
+    Nothing - a subtype of everyother type; includes no values
+    Any     - supertype of any type; any object is of type Any
+    AnyRef  - supertype of any reference type
+
+Literals
+    Numerals - normally int, longs can be noted by adding L or l to the end
+    Floating - floating point literals are type double unless followed by an f or F (then they are of type float)
+    Boolean literals: true and false
+    'x is shorthand for scala.Symbol("x")
+    Sample character literals:  'a'  '\u0041' (unicode) '\n' \'t' (single quote)
+    Sample String literals: "Hello,\nWorld!"  "I have a \" character."
+    """ is for multi line strings. start and stop the  literal with 3 "s
+    All references can have the value scala.Null
+    
+Escape Sequences
+    \b  backspace
+    \t  tab
+    \n  newline (formfeed FF)
+    \f  FF (formfeed)
+    \r  carriage return CR
+    \" "
+    \' '
+    \\ \
+    
+Variable Syntax
+    (1) (2)  (3) (4)  (5) (6)
+    val myVar : String = "Foo"
+        (1) val or var  val = immutable   var = mutable (changable)
+        (2) variable name
+        (3) : = punctuation
+        (4) data type
+        (5) = = punctuation
+        (6) initial value
+        
+     No initial value? Leave of the = <value>
+     var myVar :Int;
+     val myVal :String;
+    
+     Have a value? The type is unnecessary
+     var myVar = 10  (type will be int by default)
+     val myVal = "Hello"
+     
+Multiple assignments
+    Tuples can be assigned to val variables
+    syntax:  val (myVar1, myVar2) = Pair(40, "Foo")
+             val (myVar: Int, myVar2: String) = Pair(40, "Foo")
+        
+Variable Scope:
+    Scala has 3 scopes
+        1-Fields --> belong to an object
+                     accessible from all member methods
+        2-Method Parameters --> accessible only in the method
+        3-Local Variables --> only accessible from the method created in
+                              created objects can "escape" the method if returned
+
+Sample Simple Class:
+    import java.io._
+
+    class Point(val xc: Int, val yc: Int) {
+       var x: Int = xc
+       var y: Int = yc
+       
+       def move(dx: Int, dy: Int) {
+          x = x + dx
+          y = y + dy
+          println ("Point x location : " + x);
+          println ("Point y location : " + y);
+       }
+    }
+
+    object Demo {
+       def main(args: Array[String]) {
+          val pt = new Point(10, 20);
+
+          // Move to a new location
+          pt.move(10, 10);
+       }
+    }
+
+Compile and Run
+    scalac <filename>.scala --> compile class
+    scala  <filename>       --> execute class
+    
+Implicit classes
+    still a little confusing, but they look exciting!
+    example:
+        object Run {
+           implicit class IntTimes(x: Int) {
+              def times [A](f: =>A): Unit = {
+                 def loop(current: Int): Unit =
+                 
+                 if(current > 0){
+                    f
+                    loop(current - 1)
+                 }
+                 loop(x)
+              }
+           }
+        }
+    which allows this example code:
+        import Run._
+
+        object Demo {
+           def main(args: Array[String]) {
+              4 times println("hello")
+           }
+        }
+
+Singleton objects:
+    Scala keyword class is for creating classes
+    Scala keyword object creates singleton objects
+        PRETTY COOL!
+
+Access Modifiers:
+    private, protected, public  -->  same as Java
+    private[<scope>] and protected[<scope>] allow privacy up to the specified scope (classname or packagename or object name or this)
+    
+Arithmetic Operators:
+    + - * / %           SAME AS JAVA
+
+Relational Operators:
+    == != > < >= <=     SAME AS JAVA
+
+Logical Operators:
+    && || !             SAME AS JAVA
+    
+Bitwise Operators:
+    & | ^ (and or xor)  SAME AS JAVA
+    ~   ones complement (unary)
+    <<  binary left shift
+    >>  binary right shift    (preserves sign bit)
+    >>> shift right zero fill 
+    
+Assignment Operators:
+    = += -= *= /= %= <<= >>= &= ^= |=  SAME AS JAVA
+    
+Operator Precedence: SAME AS JAVA
+
+If else:
+    syntax: if (<boolean>) {
+                // commands here
+            }
+            if (<boolean>) {
+                // do something here
+            } else {
+                // more stuff
+            }
+            
+    if { ... } else if { ... } else if { ... } works
+    
+    Nesting is legal
+    
+LOOPS:
+    break and continue NOT SUPPORTED IN SCALA
+        but since 2.8, loop.break can be used to terminate a loop and continue
+        immediately following the }
+    while  and  do-while  similar to Java
+    for has new syntax:
+        for ( var x <- Range ) {
+            // ... statements ...
+        }  // end for
+
+    Scala supports yield
+    FOR COMPREHENSIONS = for loops in Scala
+    examples:
+        for ( a <= 1 to 10 ) { ... }     1 - 10
+        for( a <- 1 until 10 ) { ... }   1 - 10
+        for( a <- 1 to 10 if a%2==0 ) { ... }  2, 4, 6, 8, 10 (FILTER)
+        for( i <- <LIST> ) { ... }       iterate over a list
+        list.foreach( print )            execute command for each item in list
+        for(i<-1 to 10 by 2){ ... }      1, 3, 5, 7, 9
+        
+FUNCTIONS:
+    Implicitly abstract unless you include = and a body
+    Syntax:
+        def functionName ([list of parameters]) : [return type] = {
+           function body
+           return [expr]
+        }
+        
+        object add {
+           def addInt( a:Int, b:Int ) : Int = {
+              var sum:Int = 0
+              sum = a + b
+              return sum
+           }
+        }
+        
+    Scala's default parameter passing is BY VALUE!
+    CALL BY NAME:  (To use call by name, use the => operator)
+        Call by name parameters are evaluated only upon their
+                use within the function while pass by value 
+                parameters are evaluated before the call to
+                the function (to avoid potential multiple 
+                executions of the code)
+        Example:
+            def delayed( t: => Long ) = {      
+
+    NAMED ARGUMENTS:
+        To change the order parameters are supplied, you can specify the
+                parameter name in the function call.
+        Example:
+            object Demo {
+               def main(args: Array[String]) {
+                  printInt(b = 5, a = 7);
+               }
+               
+               def printInt( a:Int, b:Int ) = {
+                  println("Value of a : " + a );
+                  println("Value of b : " + b );
+               }
+            }           
+            
+    VARIABLE NUMBER OF PARAMETERS TO A FUNCTION:
+        Scala allows accepting a variable number of arguments (of the same type)
+                by appending a * to the final parameter in the function definition.
+        Example:
+            object Demo {
+               def main(args: Array[String]) {
+                  printStrings("Hello", "Scala", "Python");
+               }
+               
+               def printStrings( args:String* ) = {
+                  var i : Int = 0;
+                  
+                  for( arg <- args ){
+                     println("Arg value[" + i + "] = " + arg );
+                     i = i + 1;
+                  }
+               }
+            }
+            
+    RECURSION:
+        As a functional programming language, Scala code often uses a lot
+                of recursion.
+    
+    DEFAULT PARAMETER VALUES:
+        Scala allows for default values to be given to parameters in function
+                definitions. This allows those parameters to be omitted when
+                calling said function.
+        Example:
+            object Demo {
+               def main(args: Array[String]) {
+                  println( "Returned Value : " + addInt() );
+               }
+               
+               def addInt( a:Int = 5, b:Int = 7 ) : Int = {
+                  var sum:Int = 0
+                  sum = a + b
+
+                  return sum
+               }
+            }
+    HIGHER ORDER FUNCTIONS:
+        Functions can be accepted as parameters and invoked within another
+                function. HOF also refers to a function that returns a function.
+        Example:
+            object Demo {
+               def main(args: Array[String]) {
+                  println( apply( layout, 10) )
+               }
+
+               def apply(f: Int => String, v: Int) = f(v)
+
+               def layout[A](x: A) = "[" + x.toString() + "]"
+            }
+        Result:
+            [10]
+            
+    NESTED FUNCTIONS:
+        Scala allows functions to be defined within other functions
+        Nexted functions are called local functions (they are local to the parent fn)
+        Example:
+            def factorial(i: Int): Int = {
+               def fact(i: Int, accumulator: Int): Int = {
+                  if (i <= 1)
+                     accumulator
+                  else
+                     fact(i - 1, i * accumulator)
+               }
+               fact(i, 1)
+            }
+
+    ANONYMOUS FUNCTIONS:  (aka: lambda expressions)
+        Scala allows lambda expressions
+        Example:
+            var inc = (x:Int) => x+1
+            var x = inc(7)-1
+            var mul = (x: Int, y: Int) => x*y
+            println(mul(3, 4))
+            var userDir = () => { System.getProperty("user.dir") }
+            println( userDir )
+         
+    PARTIALLY APPLIED FUNCTIONS:
+        Simplify code by binding one or more parameters to a function call
+                enabling multiple calls to the sampe function with the same
+                value in some of the parameters.
+        Example:
+            import java.util.Date
+
+            object Demo {
+               def main(args: Array[String]) {
+                  val date = new Date
+                  val logWithDateBound = log(date, _ : String)
+
+                  logWithDateBound("message1" )
+                  Thread.sleep(1000)
+                  
+                  logWithDateBound("message2" )
+                  Thread.sleep(1000)
+                  
+                  logWithDateBound("message3" )
+               }
+
+               def log(date: Date, message: String) = {
+                  println(date + "----" + message)
+               }
+            }
+
+    CURRYING FUNCTIONS:
+        Functions can be curried.
+        
+        Example:
+            object Demo {
+               def main(args: Array[String]) {
+                  val str1:String = "Hello, "
+                  val str2:String = "Scala!"
+                  
+                  println( "str1 + str2 = " +  strcat(str1)(str2) )
+               }
+
+               def strcat(s1: String)(s2: String) = {
+                  s1 + s2
+               }
+            }
+
+STRINGS:
+    Declare strings like this:
+        var greeting = "Hello world!";
+        or var greeting:String = "Hello world!";
+      
+    STRING INTERPOLATORS:
+        1) the s interpolator
+            allows use of a string variable within a string
+            Example 1:
+                val name = “James”
+                println(s “Hello, $name”) //output: Hello, James
+            Example 2:
+                println(s “1 + 1 = ${1 + 1}”) //output: 1 + 1 = 2
+        2) the f interpolator
+            implements formating string (similar to printf in c)
+            Example:
+                val height = 1.9d
+                val name = "James"
+                println(f"$name%s is $height%2.2f meters tall") //James is 1.90 meters tall
+        3) the raw interpolator
+            similar to the s interpolator except literals are not escaped (\ doesn't work)
+            Example (raw interpolator):
+                object Demo {
+                  def main(args: Array[String]) {
+                    println(raw"Result = \n a \n b")
+                  }
+                }
+            Result:
+                Result = \n a \n b
+            
+            Same Example (s interpolator):
+                object Demo {
+                   def main(args: Array[String]) {
+                      println(s"Result = \n a \n b")
+                   }
+                }
+            Result:
+                Result =
+                a
+                b
+    STRING CLASS METHODS:
+        Same as Java
+
+ARRAYS:
+     Store fixed-size sequential collection of elements of the same type.
+     Declaration examples:
+        var z:Array[String] = new Array[String](3)
+        var z = new Array[String](3)
