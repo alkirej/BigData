@@ -1,12 +1,12 @@
-github is a distributed/decentralized rcs/vcs (revision/version control system)
+1. github is a distributed/decentralized rcs/vcs (revision/version control system)
 
-git workflow:
+2. git workflow:
   1- edit your (working) copy of a file from the repository
   2- (add) the file to the staging area with git add <filename>
   3- (commit) the changes to the local repository with git commit
   4- (push) the changes to the github repository with git push
   
-git vocab:
+3. git vocab:
   blob     - binary large object 
   tree     - directory structure
   commit   - links to previous version of the file
@@ -19,7 +19,7 @@ git vocab:
   revision - a version of the source code (represented by commits)
   url      - represents the location of a git repository (stored  in the config file)
   
-Install git client (Debian Linus)
+4. Install git client (Debian Linus)
   sudo apt-get install git-core
   git --version
   
@@ -35,3 +35,46 @@ Install git client (Debian Linus)
   git config --global color.status auto
   git config --global color.branch auto
   
+  # set the default editor
+  git config --global core.editor vi
+  
+  # set a default merge tool
+  git config --global merge.tool vimdiff
+  
+  # list config settings
+  git config --list
+  
+5. git life cycle
+  a-clone git repo as a working copy
+  b-modify working copy by adding/deleting/modifying files
+  c-take other developer's changes (if needed)
+  d-review your changes (BEFORE COMMITTING THEM)
+  e-commit your changes and push them to the repository
+  f-find another bug, correct last commit and push changes
+
+6-How to create a remote git repo
+  a-create new user:
+    #add unix group
+    groupadd dev
+    #add unix user
+    useradd -G dev -d /home/gituser -m -s /bin/bash gituser
+    # supply a password to the user
+  b-create bare repo
+    mkdir project.git
+    cd project.git
+    git --bare init
+    passwd gituser
+  c-generate public/private key pair and upload to github.com
+  d-clone a copy of the repository to your local machine (copy)
+    git clone git@github.com:alkirej/BigData
+  NOTE: git status -s --> (-s = silent flag) creates a easier to read status report
+  NOTE: git log --> lists commits starting with the most recent and moving backwards through time
+  e-add a file to the repo
+    git add <filename>
+7-Editing a file
+  a-edit file in text editor
+  b-git add <filename>
+  c-git commit
+  d-
+  
+    
