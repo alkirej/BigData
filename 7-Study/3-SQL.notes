@@ -1,0 +1,233 @@
+NOTES FROM SQL
+    Notes expected to be lighter due to familarity.
+    
+SQL
+    Allows access to dat in RDBMS systems
+    Allows user to describe data
+    Allows embedding queries in code
+    
+QUERY ARCHITECTURE
+    SQL QUERY -> Query Lang Processer -> DBMS Engine -> Pysical DB
+    Query Processer <- Parser & Optimizer
+    DBMS Engine <- File Manager & Transaction Manager
+    
+DDL - DATA DEFINITION LANGUAGE
+    CREATE   - create table
+    ALTER    - modify table structure
+    DROP     - delete table
+    TRUNCATE - delete all records in a table
+    
+DML - DATA MANIPULATION LANGUAGE
+    SELECT - retreive records (tuples)
+    INSERT - create a new record (add)
+    UPDATE - modify the contents of a tuple
+    DELETE - remove a record
+    
+DCL - DATA CONTROL LANGUAGE
+    GRANT  - give a privilege to a user
+    REVOKE - remove a privilege from a user
+    
+TABLE - rows and columns
+    rows    = records - are tuples (jeff's record for example)
+    columns = fields in the table (names for all people for example)
+    NULL    = empty
+    
+CONSTRAINTS
+    rulls enforced on data columns
+    NOT NULL     - no empty data allowed
+    DEFAULT      - gives the default value of a field
+    UNIQUE       - all values in this field must be unique
+    PRIMARY KEY  - uniquely identifies any record in this table
+    FOREIGH KEY  - references another table
+    CHECK        - ensures data satisfies given condition
+    INDEX        - allows faster access to data
+    
+DATA INTEGRITY
+    ENTITY INTEGRITY       - no duplicate rows in a table
+    DOMAIN INTEGRITY       - forces entries to be valid (certain data type, range, format, etc.)
+    REFERENTIAL INTEGRITY  - cannot delete rows in use by other records elsewhere in the db.
+    USER-DEFINED INTEGRITY - enforces specific business rules not defined above
+    
+POPULAR RDBMS SYSTEMS
+    MYSQL
+    MS SQL
+    ORACLE
+    MS ACCESS
+    ... many others ...
+    
+SYNTAX 
+    SELECT
+        SELECT column1, column2....columnN  FROM   table_name;
+        SELECT DISTINCT column1, column2....columnN FROM   table_name;
+        SELECT column1, column2....columnN FROM   table_name WHERE  CONDITION;
+        SELECT column1, column2....columnN FROM   table_name WHERE  CONDITION-1 {AND|OR} CONDITION-2;
+        SELECT column1, column2....columnN FROM   table_name WHERE  column_name IN (val-1, val-2,...val-N);
+        SELECT column1, column2....columnN FROM   table_name WHERE  column_name BETWEEN val-1 AND val-2;
+        SELECT column1, column2....columnN FROM   table_name WHERE  column_name LIKE { PATTERN };
+        SELECT SUM(column_name) FROM   table_name WHERE  CONDITION GROUP BY column_name;
+        SELECT COUNT(column_name) FROM   table_name WHERE  CONDITION;
+    
+    CREATE TABLE
+        CREATE TABLE table_name(
+            column1 datatype,
+            column2 datatype,
+            column3 datatype,
+            .....
+            columnN datatype,
+            PRIMARY KEY( one or more columns )
+        );
+        
+    DROP TABLE 
+        DROP TABLE table_name;
+        
+    CREATE INDEX
+        CREATE UNIQUE INDEX index_name ON table_name ( column1, column2,...columnN);
+    
+    DROP INDEX
+        ALTER TABLE table_name DROP INDEX index_name;
+        
+    DESC  -- get info about a table
+        DESC tablename;
+    
+    TRUNCATE -- delete all tuples from a table
+        TRUNCATE tablename;
+        
+    ALTER TABLE
+        ALTER TABLE table_name {ADD|DROP|MODIFY} column_name {data_type};
+        ALTER TABLE table_name RENAME TO new_table_name;
+        
+    INSERT INTO
+        INSERT INTO table_name( column1, column2....columnN) VALUES ( value1, value2....valueN);
+    
+    UPDATE
+        UPDATE table_name SET column1 = value1, column2 = value2....columnN=valueN [ WHERE  CONDITION ];
+        
+    DELETE FROM
+        DELETE FROM table_name WHERE  {CONDITION};
+        
+    CREATE / DROP / USE DATABASE
+        CREATE DATABASE database_name;
+        DROP DATABASE database_name;
+        USE database_name;
+        
+    COMMIT / ROLLBACK
+        COMMIT;
+        ROLLBACK;
+
+    TOP
+        SELECT TOP number|percent column_name(s) fROM table_name WHERE [condition]
+        
+    LIKE CLAUSE - simple pattern matching
+        uses wildcards: % for any number of chars and _ for any single char
+        SELECT FROM table_name WHERE column LIKE '_XXXX%'
+        
+    TOP - first x items
+        SELECT TOP 3 * FROM CUSTOMERS;
+        
+    ORDER BY
+        SELECT column-list FROM table_name [WHERE condition] [ORDER BY column1, column2, .. columnN] [ASC | DESC];
+        SELECT * FROM CUSTOMERS ORDER BY NAME, SALARY;
+        
+    GROUP BY
+        SELECT column1, column2 FROM table_name WHERE [ conditions ] GROUP BY column1, column2 ORDER BY column1, column2
+        SELECT NAME, SUM(SALARY) FROM CUSTOMERS GROUP BY NAME;
+        
+    DISTINCT - unique
+        SELECT DISTINCT column1, column2,.....columnN FROM table_name WHERE [condition]
+        
+
+DATA TYPES:
+    EXACT NUMERIC
+        bigint       -9 Quintillion to    9 Quintillion
+        int          -2 Billion     to    2 Billion
+        smallint    -32 Thousand    to   32 Thousand
+        tinyint       0             to  255
+        bit           0             to    1
+        decimal     -10^38 + 1      to   10^38-1
+        numeric     -10^38 + 1      to   10^38-1
+        money        -9 Quadrillion to    9 Quadrillion  (with 4 decimal places)
+        smallmoney -200 Thousand    to  200 Thousand     (with 4 decimal places)
+        
+    APPROXIMATE NUMERIC
+        float   -1.79E+308 to 1.79E+308
+        real     -3.4E+38  to  3.4E+38
+        
+    DATA & TIME
+        datetime        Jan  1, 1753 to Dec 31, 9999 (3.33 millisec accuracy)
+        smalldatetime   Jan  1, 1900 to Jun 06, 2079 (   1 minute   accuracy)
+        date            Stores a date
+        time            Stores a time
+        
+    CHARACTER STRINGS
+        char            up to 8,000 chars (fixed len non Unicode chars)
+        varchar         up to 8,000 chars (variable len non Unicode chars)
+        text            var len non-Unicode chars up to 2.1 Billion chars
+        
+    UNICODE CHARACTER STRINGS
+        nchar           up to 4,000 chars (fixed len Unicode chars)
+        nvarchar        up to 4,000 chars (variable len Unicode chars)
+        ntext           var len Unicode chars up to 1 Billion chars
+        
+    BINARY
+        binary          up to 8,000 bytes of fixed len data
+        varbinary       up to 8,000 bytes of variable len data
+        image           up to 2.1 Billion bytes of variable len data
+        
+    MISC DATA TYPES
+        sql_variant
+        timestamp
+        uniqueidentifier - Globally unique ID (GUID)
+        cursor
+        table
+        
+OPERATORS:
+    ARITHMETIC
+        + - * / %
+    COMPARISON
+        = != <> > < >= <= !< !>
+    LOGICAL
+        ALL     - do all items in the list match the condition
+        AND     - binary and
+        ANY     - does any item in the list match the condition
+        BETWEEN - in between 2 values
+        EXISTS  - search for a row with a given condition
+        IN      - contained in a list
+        LIKE    - allows wildcards
+        NOT     - unary not (NOT EXISTS, NOT IN, etc)
+        OR      - binary null
+        IS NULL - contains no value (IS NOT NULL)
+        UNIQUE  - prevent duplicates
+    
+JOINS:
+    INNER     - key exists in both tables 
+    Outer Joins:
+        LEFT  - returns all rows from left  table and matches from right when they exist
+        RIGHT - returns all rows from right table and matches from left  when they exist
+        FULL  - returns all rows from both tables along with matches from the other table
+    SELF      - join a table with itself
+    CARTESIAN - cartesian product of two tables (each row matches each row in the other table)  
+    
+UNION - concatenate two separate queries
+    Syntax:
+        SELECT column1 [, column2 ] FROM table1 [, table2 ] [WHERE condition] 
+        UNION SELECT column1 [, column2 ] FROM table1 [, table2 ] [WHERE condition]
+    Rule: Both queries must have the same # of columns with same data types in the same order
+    
+ALIAS SYNTAX - give tables shorter names and allow self joining
+    SELECT C.ID, C.NAME, C.AGE, O.AMOUNT FROM CUSTOMERS AS C, ORDERS AS O WHERE  C.ID = O.CUSTOMER_ID;
+    
+ALTER TABLE:
+    Add a column:
+        ALTER TABLE table_name ADD column_name datatype;
+    Remove/drop a column
+        ALTER TABLE table_name DROP COLUMN column_name;
+    Modify a column
+        ALTER TABLE table_name MODIFY COLUMN column_name datatype;
+        ALTER TABLE table_name ADD CONSTRAINT MyUniqueConstraint UNIQUE(column1, column2...);
+        ALTER TABLE table_name ADD CONSTRAINT MyUniqueConstraint CHECK (CONDITION);
+        ALTER TABLE table_name ADD CONSTRAINT MyPrimaryKey PRIMARY KEY (column1, column2...);
+        ALTER TABLE table_name DROP CONSTRAINT MyUniqueConstraint;
+        ALTER TABLE table_name DROP INDEX MyUniqueConstraint;
+        ALTER TABLE table_name DROP CONSTRAINT MyPrimaryKey; (Or in MyAQL: ALTER TABLE table_name DROP PRIMARY KEY;)
+        
+        
