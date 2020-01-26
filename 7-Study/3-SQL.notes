@@ -230,4 +230,74 @@ ALTER TABLE:
         ALTER TABLE table_name DROP INDEX MyUniqueConstraint;
         ALTER TABLE table_name DROP CONSTRAINT MyPrimaryKey; (Or in MyAQL: ALTER TABLE table_name DROP PRIMARY KEY;)
         
+VIEWS:  
+    Look, feel, and act like a table, but are really a query.
+    Syntax:
+        CREATE VIEW view_name AS SELECT column1, column2..... FROM table_name WHERE [condition];
+        DROP VIEW view_name
+    There is a WITH CHECK OPTION
+
+HAVING CLAUSE: where clause after results have been aggregated (GROUPed)
+    SELECT column1, column2 FROM table1, table2 WHERE [ conditions ] GROUP BY column1, column2 HAVING [ conditions ] ORDER BY column1, column2
+    SELECT ID, NAME, AGE, ADDRESS, SALARY FROM CUSTOMERS GROUP BY age HAVING COUNT(age) >= 2;
+
+TRANSACTIONS:
+    Provide:
+        Atomicity    all changes are saved, or none
+        Consistency  ensures the db state is updated completely and successfully
+        Isolation    transactions can be independent of each other
+        Durability   ensures committed transactions persist in case of system failure
+    Control:
+        COMMIT          - save changes to the db state
+        ROLLBACK        - revert to db state before transaction began
+        SAVEPOINT       - creates points within the groups of transactions in which to ROLLBACK
+        SET TRANSACTION - give a transaction a name 
         
+DATE / TIME FUNCTIONS:
+    Each RDBMS has a different set of DATE/TIME function names
+    
+TEMPORARY TABLES:
+    Stored in memory and used to increase performance
+    Example:
+        CREATE TEMPORARY TABLE SALESSUMMARY ( 
+            product_name     VARCHAR(50)   NOT NULL,
+            total_sales      DECIMAL(12,2) NOT NULL DEFAULT 0.00.
+            avg_unit_price   DECIMAL(7,2)  NOT NULL DEFAULT 0.00.
+            total_units_sold INT UNSIGNED  NOT NULL DEFAULT 0
+        );
+        INSERT INTO SALESSUMMARY ( product_name, total_sales, avg_unit_price, total_units_sold)
+        VALUES ('cucumber', 100.25, 90, 2);
+
+SUBQUERIES: 
+    SELECT column_name [, column_name ] FROM   table1 [, table2 ]
+    WHERE  column_name OPERATOR
+       ( SELECT column_name [, column_name ] FROM table1 [, table2 ] [WHERE] )
+       
+    INSERT INTO table_name [ (column1 [, column2 ]) ]
+        SELECT [ *|column1 [, column2 ]
+        FROM table1[, table2 ] [ WHERE VALUE OPERATOR ]
+        
+    UPDATE table SET column_name = new_value [ WHERE OPERATOR [ VALUE ]
+        ( SELECT COLUMN_NAME FROM TABLE_NAME [ WHERE ] );
+        
+    DELETE FROM CUSTOMERS WHERE AGE IN 
+        ( SELECT AGE FROM CUSTOMERS_BKP WHERE AGE >= 27 );
+        
+SEQUENCES:
+    AUTO_INCEMENT -> unique monatomically increasing integers.
+    Example:
+        CREATE TABLE INSECT (
+            id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+            PRIMARY KEY (id),
+            name VARCHAR(30) NOT NULL, # type of insect
+            date DATE NOT NULL, # date collected
+            origin VARCHAR(30) NOT NULL # where collected
+        );
+        
+    RENUMBER AUTO_INCREMENT ID IN A TABLE:
+        ALTER TABLE INSECT DROP id;
+        ALTER TABLE insect ADD id INT UNSIGNED NOT NULL AUTO_INCREMENT FIRST,
+                           ADD PRIMARY KEY (id);
+
+    START AUTO_INCREMENT AT A SPECIFIC VALUE:
+        id INT UNSIGNED NOT NULL AUTO_INCREMENT = 100,
