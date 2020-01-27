@@ -1,3 +1,3 @@
 echo Excuting ...
-scala WordCount > ~/output/wordcount_scala.csv
+scala WordCount.scala > ~/output/wordcount_scala.csv
 echo Output written to ~/output/wordcount_scala.csv
