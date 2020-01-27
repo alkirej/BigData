@@ -1,0 +1,63 @@
+CRON NOTES
+
+CRONTAB = CRON TABLE
+    COMMAND LINE    
+        crontab [-u user] file
+        crontab [-u user] {-l | -r | -e }
+        
+    -l  list   = display the current crontab entries
+    -r  remove = remove the current crontab
+    -e  edit   = edit the current crontab using $VISUAL or $EDITOR
+
+CRONTAB(le) FILE FORMAT
+    * * * * * = 5 columns (6th column = command to run)
+    col 1 = minute          (0-59)
+    col 2 = hour            (0-23)
+    col 3 = day of month    (1-31)
+    col 4 = month           (1-12)
+    col 5 = day of week     (0-7)  sun, mon, tue, etc.
+    
+    BLANK LINE          = ignored
+    LEADING WHITE SPACE = ignored
+    
+    MULTIPLE VALUES IN A FIELD:
+        * = all possible values for this field
+        , = specifies a list of values such as 1,3,4,7,8
+        - = sepcifies a range of values 1-6 (equivalent to 1,2,3,4,5,6)
+        / = ONLY IN SOME CRONs */3 = 1st, 4th, 7th, etc. possible value
+                */3 in hour = 0,3,6,9, ...
+        names can be used for date and day fields (well, the first three letters
+                such as mon, tue, jan, jun)
+        
+    SPECIAL STRINGS TO REPLACE FIRST 5 COLUMNS IN A CRON JOB:
+        @reboot     run at startup
+        @yearly     run once a year   "0 0 1 1 *"
+        @annually   see @yearly
+        @monthly    run once a month  "0 0 1 * *"
+        @weekly     run once a week   "0 0 * * 0"
+        @daily      run once a day    "0 0 * * *"
+        @midnight   see @daily
+        @hourly     run once an hour  " 0 * * * * *"
+        
+    COMMAND TO BE EXECUTED:
+        if the command is complex, put in a shell script and place shell
+        script into the crontab
+        
+    USERS:
+        /etc/cron.allow     if it exists, then the user must be in this file in
+                            order to use cron
+        /etc/cron.deny      is cron.allow does not exist, but cron.allow does,
+                            then the user must NOT be listed in this file to
+                            use cron.
+                            
+RELATED COMMANDS:
+    cron
+    nice
+    builtin
+    chroot
+    exec
+    nohup
+    .source
+    su
+    watch
+    
