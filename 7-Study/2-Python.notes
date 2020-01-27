@@ -1,0 +1,215 @@
+NOTES FROM PYTHON TUTORIAL:
+
+Python:
+    -is interpreted
+    -is interactive
+    -is object-oriented
+    -is a beginner's language
+    -supports structured programming
+    -supports functional programming
+    -can be used for scripting or compiled
+    -has automatic garbage collection
+    
+Why Python:
+    -easy to learn
+    -easy to read
+    -easy to maintain
+    -broad standard library
+    -has an interactive mode
+    -portable (wide variety of platforms)
+    -extendable (can add low level modules)
+    -provides interfaces to all common commercial databases
+    -supports GUI applications
+    -it is more scalable than shell scripts
+
+STANDARD DATA TYPES: 
+    Numbers       ( int, float, complex ) int is a long in most languages
+    String        
+    List
+    Tuple
+    Dictionary
+    
+STRINGS:
+    COMPLETE STRING:              print( str )
+    GET A SINGLE CHARACTER:       print( str[2] )
+    GET A SUBSTRING:              print( str[2:5] )
+    GET SUBSTRING TO END:         print( str[4:] )
+    GET SUBSTRING FROM BEGINNING: print( str[:6] )
+    MULTIPLE COPIES:              print( str * 2 )
+    CONCATENATION:                print( str + "TEST" )
+    
+LISTS:
+    COMPLETE LIST:                print( list )
+    GET A SINGLE LIST ELEMENT:    print( list[2] )
+    GET A SUBSET:                 print( list[2:5] )
+    GET SUBSET TO END OF LIST:    print( list[4:] )
+    MULTIPLE COPIES:              print( list * 2 )
+    CONCATENATION:                print( list + "TEST" )
+    
+TUPLES:
+    Tuples are similar to lists except:
+        1-use parenthesis () not square brackets []
+        2-tuple members cannot be edited
+
+DICTIONARY:
+    Hash-table of key-value pairs
+    Enclosed by {}
+    Values assigned with [] --> example: dict['one'] = "one"
+    
+DATA TYPE CONVERSION:
+    int( x[, base] )     -- convert to x with using given base if item is a string
+    float(x)             -- convert to a float
+    complex(real [,imag])-- creates a complex number
+    str(x)               -- convert object x to string
+    repr(x)              -- (represent) convert object x to a string
+    eval(str)            -- evaluate string and return an object
+    tuple(s)             -- convert s to a tuple
+    list(s)              -- convert s to a list
+    set(s)               -- convert s to a set
+    dict(d)              -- convert d to a dictionary
+    frozenset(s)         -- convert s to a frozen set
+    chr(x)               -- convert integer to a character
+    unichr(x)            -- convert integer to a unicode char
+    ord(x)               -- convert single character to integer value
+    hex(x)               -- convert integer to hexidecimal string
+    oct(x)               -- convert integer to octal string
+    
+OPERATORS:
+    ARITHMETIC:
+        + - * / % 
+        ** = Exponent
+        // = Floor Division
+    COMPARISON (RELATIONAL):
+        == != > < >= <=
+    ASSIGNMENT:
+        = += -= *= /= %= **= //=
+    BITWISE:
+        & | ^ ~ << >>
+    LOGICAL:
+        AND OR NOT
+    MEMBERSHIP:
+        in  not in
+    IDENTITY:
+        is  is not
+        
+PRECEDENCE
+    **
+    ~ + -
+    * / % //
+    + -
+    >> <<
+    &
+    ^ |
+    <= < > >=
+    <> == !=
+    = %= /= //= -= += *= **=
+    is  is not
+    in  not in
+    not  or  and
+
+DECISION MAKING:
+    IF
+    IF ... ELSE
+    NESTED IF
+    
+    Example:
+        var = 100
+        if ( var  == 100 ) : print ("Value of expression is 100")
+        print ("Good bye!")
+        
+LOOPS:
+    WHILEcount = 0
+        while (count < 9):
+           print ('The count is:', count)
+           count = count + 1
+
+        print ("Good bye!")
+    FOR
+        for var in list(range(5)):
+            print (var)
+    NESTED
+        import sys
+        for i in range(1,11):
+           for j in range(1,11):
+              k = i*j
+              print (k, end=' ')
+           print()
+LOOP CONTROL STATEMENTS:
+    BREAK:  (Exit loop now) this code will result in P y t
+        for letter in 'Python':     # First Example
+           if letter == 'h':
+              break
+           print ('Current Letter :', letter)
+    CONTINUE: (This time through loop is over)  this code result P y t o n
+        for letter in 'Python':     # First Example
+           if letter == 'h':
+              continue
+           print ('Current Letter :', letter)
+    PASS
+        It is used when a statement is required syntactically but you do not
+        want any command or code to execute. The pass statement is a null 
+        operation; nothing happens when it executes. The pass statement is 
+        also useful in places where your code will eventually go, but has 
+        not been written yet i.e. in stubs.
+        
+        Example:
+            for letter in 'Python': 
+               if letter == 'h':
+                  pass
+                  print ('This is pass block')
+               print ('Current Letter :', letter)
+            print ( 'Done.')
+            
+ITERATOR:
+    Iterator is an object which allows a programmer to traverse through all the 
+    elements of a collection, regardless of its specific implementation. In 
+    Python, an iterator object implements two methods, iter() and next().
+    
+    Example:
+        list = [1,2,3,4]
+        it = iter(list)  # this builds an iterator object
+        print (next(it)) # prints next available element in iterator
+        # Iterator object can be traversed using regular for statement
+        
+        !usr/bin/python3
+        for x in it:
+           print (x, end=" ")
+        # or using next() function
+        while True:
+           try:
+              print (next(it))
+           except StopIteration:
+              sys.exit() #you have to import sys module for this
+GENERATOR:
+    A generator is a function that produces or yields a sequence of values using 
+    yield method.
+    
+    When a generator function is called, it returns a generator object without 
+    even beginning execution of the function. When the next() method is called 
+    for the first time, the function starts executing until it reaches the yield 
+    statement, which returns the yielded value. The yield keeps track i.e. 
+    remembers the last execution and the second next() call continues from 
+    previous value.
+
+    Example:
+        #!usr/bin/python3
+
+        import sys
+        def fibonacci(n): #generator function
+           a, b, counter = 0, 1, 0
+           while True:
+              if (counter > n): 
+                 return
+              yield a
+              a, b = b, a + b
+              counter += 1
+        f = fibonacci(5) #f is iterator object
+
+        while True:
+           try:
+              print (next(f), end=" ")
+           except StopIteration:
+              sys.exit()
+
+NUMBERS:
+    Numbers are immutable
