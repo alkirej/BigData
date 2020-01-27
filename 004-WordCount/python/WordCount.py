@@ -32,7 +32,7 @@ def cleanString( uncleanedWord ):
 
 # Start of main function
 # Open the file in read only mode
-textFile = open( "/home/jeff/BigData/4-WordCount/shakespeare-hamlet.txt", "r" )
+textFile = open( "/home/jeff/BigData/004-WordCount/shakespeare-hamlet.txt", "r" )
 
 # read the file and close it.
 contents = textFile.read()
@@ -55,8 +55,14 @@ for currentWord in wordList:
 
 # display the results on the screen
 formatString = "{},{}"
-print (formatString.format( "word", "count" ) )
+outputFile = open( "/home/jeff/output/wordcount_python.csv", "w+" )
+
+outputFile.write( formatString.format("word","count") )
+outputFile.write( "\n" )
 
 for currentWord in resultMap.keys():
     if ( len(currentWord) >0 ):
-        print (formatString.format( currentWord, resultMap[currentWord] ) )
+        outputFile.write( formatString.format(currentWord,resultMap[currentWord]) )
+        outputFile.write( "\n" )
+        
+outputFile.close
