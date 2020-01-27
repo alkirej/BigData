@@ -1,0 +1,19 @@
+SSH NOTES:
+
+SSH COMMAND
+    ssh {user}@{host}
+        {user} = account you want to access computer as 
+        {host} = computer you want to access
+
+BASIC SSH COMMANDS
+    ls      cd      mkdir   touch   rm      cat     pwd
+    cp      mv      grep    find    vi      nano    history
+    clear   tar     wget    du
+    
+    wget - download files from Internet
+    du   - get file size
+    
+ENCRYPTION:
+    Symmetric:      shared key (shared secret key)
+    Asymmetrical:   2 separate keys for encryption (public key encryption)  public-private key pair
+    Hashing:
