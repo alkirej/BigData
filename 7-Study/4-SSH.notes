@@ -17,3 +17,20 @@ ENCRYPTION:
     Symmetric:      shared key (shared secret key)
     Asymmetrical:   2 separate keys for encryption (public key encryption)  public-private key pair
     Hashing:
+    
+OPENSSH COMMANDS:
+    ssh             basic login client
+    sshd            daemon permitting login
+    ssh-agent       authentication agent - can store ssh keys
+    ssh-add         tool to add keys to the agent (stores them in authorized_keys file)
+    sftp            secure ftp 
+    scp             file copy program
+    ssh-keygen      key generation tool
+    sftp-server     sftp server (started automatically by sshd)
+    ssh-keyscan     utility for gathering public host keys from a number of hosts
+    ssh-keysign     helper program for host-based authentication
+
+OPENSSH FILES:    
+    ssh_config      ~/.ssh/config = user's config files
+                    /etc/ssh/ssh_config = system-wide configuration file
+    sshd_config     /etc/ssh/sshd_config = 
