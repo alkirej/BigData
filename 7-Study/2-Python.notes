@@ -213,3 +213,490 @@ GENERATOR:
 
 NUMBERS:
     Numbers are immutable
+
+ESCAPE CHARS:
+    \a          bell or alert
+    \b          backsace
+    \cx         ctrl-x
+    \C-x        ctrl-x
+    \e          escape
+    \f          FF
+    \m-\C-x     Meta-Control-x
+    \n          Newline
+    \nnn        Octal Notation
+    \r          carriage return
+    \s          space
+    \t          tab
+    \v          vertical tab
+    \x          character x
+    \xnn        hexadecimal notation
+    
+STRING SPECIAL OPERATORS:
+    +       concatenation
+    *       repetition
+    []      slice (characters from given index)
+    [:]     range slice
+    in      returns true if a char exists in the given string
+    not in  returns true if the char is NOT in the given string
+    r/R     raw string - suppress actual meaning of escape chars
+    %       formating
+    
+STRING FORMATTING SYMBOLS:
+    %c    character
+    %s    string
+    %i    signed decimal integer
+    %d    signed decimal integer
+    %u    unsigned decimal integer
+    %o    octal integer
+    %x    hexadecimal integer (lowercase letters)
+    %X    hexadecimal integer (UPPERCASE letters)
+    %e    exponential notation (with lowercase e)
+    %E    exponential notation (with uppercase E)
+    %f    floating point number
+    %g    shorter of %f and %e
+    %G    shorter of %f and %E
+    *     specifies width or precision
+    -     left justified
+    +     display the sign
+    <sp>  leave a blank space before a positive number
+    #     add the octal leading 0 or hex 0x/0X
+    %     %% gives you a literal %
+    (var) mapping variable (dictionary arguments)
+    m.n.  m=total width and n=# of digits after the decimal
+    """   converts excape chars to printed form.
+    '''
+    
+LISTS
+    Create a list:
+        list1 = ['physics', 'chemistry', 1997, 2000 ]
+    Accessing list:
+        list1[0]
+    Updating list:
+        list[2] = 2001
+        list.append( 'Mr. Powell' )
+    Delete item from list
+        del list[2]
+        list.remove( !!! )
+    OPERATIONS:
+        len( <list> )       # items in the list
+        +                   concatenate 2 lists
+        *                   repeat ['Hi'] * 4 = [ 'Hi', 'Hi', 'Hi', 'Hi' ]
+        in                  membership: 3 in [ 1, 2, 3 ]  = True
+        for                 iteration:  for x in [1,2,3]: print (x, end='')
+INDEXING
+    L = ['C++','Java','Python']
+    L[2]    'Python'  (0 based index)
+    L[-2]   'Java'    (2 from the right)
+    L[1:]   ['Java','Python'] sublist
+    
+BUILT IN LIST FUNCTIONS/METHODS
+    len(list)           Total list length
+    max(list)           Gets maximum value in list
+    min(list)           Gets the min value in the list
+    list(seq)           Convert a tuble into a list
+    
+    list.append(o)      Add o after the end of the list
+    list.count(o)       Count # of time o occurs in the list
+    list.extend(seq)    append seq to list
+    list.index(o)       Gets the index of the first occurance of o in the list
+    list.pop(index)     Removes the item at index from the list and returns it
+    list.remove(o)      Remove object o from list
+    list.reverse()      Reverses objects of the list (in place)
+    list.sort(func)     Sorts the objects using func for comparisons (if supplied)
+    
+TUPLES
+    Sequence of IMMUTABLE Python objects (Tuples and lists are both sequences)
+        CREATE:             tup = ( 'physics', 'chemistry', 1997, 2000 )
+        EMPTY TUPLE:        ()
+        SINGLE VALUE TUPLE: (50,)   # note the , is required
+        ACCESS:             tup[0]  or tup[1:3]
+        UPDATING:           YOU CANNOT DO THIS!!!   
+        REMOVE:             YOU CANNOT DO THIS EITHER!!!
+    
+    OPERATIONS
+        len( <tuple> )  +  *  in   for   :::  See LISTS for more info
+        
+    BUILT-IN FUNCTIONS
+        cmp(tuple1,tuple2)      compares elements of both tuples
+        len(tuple)              returns total length of tuple
+        max(tuple)              return item with maximum value from the tuple
+        min(tuple)
+        tuple(seq)              convert list into a tuple
+    
+DICTIONARIES
+    Name - Value pairs
+        CREATE:         dict = {'Name':'Zara', 'Age:',7, 'Class':'First' }
+        ACCESS:         dict['Name']    # Note - returns error if key is not in dict
+        UPDATE:         dict['Age'] = 8
+        DELETE:         del dict['Name']
+                        dict.clear()    # removes all entries
+                        del dict        # delete entire dictionary
+      
+    BUILD IN FUNCTIONS
+        len( dict )             total length of dictionary (item count)
+        str( dict )             returns string representation of entire dict
+        type( var )             returns type of passed variable
+        
+        dict.clear()                remove all dictionary elements
+        dict.copy()                 return shallow copy of dictionary
+        dict.fromkeys(seq[,values]) create a new dict with the keys from seq with the optionally supplied values
+        dict.get(key, default=None) get the value for key using the default if none is found
+        dict.has_key(key)           is the given key found in the dict?
+        dict.items()                get a list of all items in the dict (as tuple pairs)
+        dict.keys()                 get a list of all keys in the dict
+        dict.setdefault(key, default=None)  same as get, but will set the key to the default value if it doesn't exist
+        dict.update(dict2)          add the dict2 key-value pairs to dict
+        dict.values()               return a list of dicts value
+     
+DATE & TIME
+    TICKS       floating point result of the number of seconds since 01/01/1970 at 12am
+    TIME TUPLE  9 numbers 
+                0 = 4 digit year   (2016)
+                1 = Month             1 to 12
+                2 = Day               1 to 31
+                3 = Hour              0 to 23
+                4 = Minute            0 to 59
+                5 = Second            0 to 61   (60 and 61 are leap seconds)
+                6 = Day of Week       0 to 6    (0 is Monday)
+                7 = Day of Year       1 to 366  (Julian day)
+                8 = Daylight Savings -1, 0, or 1 (-1 means library determines DST)
+    COOL EXAMPLE:
+        CODE:
+            #!/usr/bin/python3
+            import calendar
+
+            cal = calendar.month(2016, 2)
+            print ("Here is the calendar:")
+            print (cal)
+        
+        RESULT:
+            Here is the calendar:
+               February 2016
+            Mo Tu We Th Fr Sa Su
+             1  2  3  4  5  6  7
+             8  9 10 11 12 13 14
+            15 16 17 18 19 20 21
+            22 23 24 25 26 27 28
+            29
+
+FUNCTIONS
+    DEFINING A FUNCTIONS:
+        def functionname( parameters ):
+           "function_docstring"
+           function_suite
+           return [expression]
+           
+PASS BY REFERENCE VS VALUE:
+    ALL PARAMETERS IN PYTHON ARE PASS BY REFERENCE
+    
+FUNCTION ARGUMENTS:
+    REQUIRED
+        Params passed to functions in positional order
+        Example:  printme( "My string" )
+    KEYWORD
+        Params passed to functions by name
+        Example:  printme( str = "My string" )
+    DEFAULT
+        Params given a default value in function definition making them optional in function call
+        Example: def printinfo( name, age = 35 ):
+    VARIABLE-LENGTH
+        An * is placed before the variable name and becomes a (potentially empty) tuple with each supplied value.
+        Example: def printinfo( arg1, *vartuple ):
+        
+ANONYMOUS FUNCTIONS:  (use lambda keyword)
+    Example: sum = lambda arg1, arg2: arg1 + arg2
+    
+RETURN STATEMENT:
+    Exits function optionally passing back an expression to the caller
+    
+MODULES:
+    import module1[, module2 [, ... moduleN]]
+    from mod/packagename import name1[, name2[, nameN]]
+        imports the given attributes from a module
+    from mod/packagename import *
+        imports the entire module and should be used sparingly.
+    NOTE: a Python PACKAGE is a collection of Python MODULES
+            
+PYTHONPATH:
+    environment var with a list of directories
+    dir(<module>)    returns a list of all the modules, variables and functions within the module.
+    reload(<module>) reexecute the top level code in the module
+
+FILES AND I/O:
+    PRINT TO SCREEN:    print ("Python is really a great language,", "isn't it?")
+    KEYBOARD INPUT:     x = input("something:")
+    OPEN FILE:          file object = open(file_name [, access_mode][, buffering])
+                            access_modes
+                                r   read only
+                                rb  read only - binary format
+                                r+  read & write - file pointer = beginning of file
+                                rb+ read & write binary format - file point at file beginning
+                                w   write only (overwrites existing file if needed)
+                                wb  write only - binary format (overwrites existing file if needed) (create new file if needed)
+                                w+  read & write (overwrites file if exists) (creates new one if needed)
+                                wb+ read & write binary format(overwrites file if exists) (creates new one if needed)
+                                a   open file in append mode file pointer at end of file (create new file if needed)
+                                ab  open file in append mode binary format file pointer at end of file (create new file if needed)
+                                a+  open file for appending and reading file pointer = end of file. new file created if necessary
+                                ab+ open file for appending and reading binary mode file pointer = end of file. new file created if necessary
+    CLOSE FILE:         fileObject.close()
+    METHODS:            read()  write()    mkdir()  rmdir()  chdir()   getcwd()
+    
+EXCEPTION HANDLING:
+    EXCEPTION:          Base class for all exceptions
+    STOPITERATION:      Raised when the next() method returns nothing
+    SYSTEMEXIT:         Raised by sys.exit() function
+    STANDARDERROR:      Base class for all errors except STOPITERATION and SYSTEMEXIT
+    ARITHMETICERROR:    Errors during numeric calculations
+    OVERFLOWERROR:      Calculation exceeds maximum limit
+    FLOATINGPOINTERROR: Floating point calc fails
+    ZERODIVISIONERROR:  Divide by 0
+    ASSERTIONERROR:     Assert statement failed
+    ATTRIBUTEERROR:     attribute reference or assignment failed
+    EOFERROR:           No more input from file
+    IMPORTERROR:        Import statement failed
+    KEYBOARDINTERRUPT:  User interepted excecution (Ctrl+C)
+    LOOKUPERROR:        Base class for all lookup errors
+    INDEXERROR:         Index not found in sequence
+    KEYERROR:           Given key not found in dictg
+    NAMEERROR:          Identifier not found in local/global namespace
+    UNBOUNDLOCALERROR:  No value assigned to local variable
+    ENVIRONMENTERROR:   Base error for errors occuring outside of Python
+    IOERROR:            Input/Output
+    OSERROR:            OS related errors
+    SYNTAXERROR:        Syntax error found in code
+    INDENTATIONERROR:   indentation in code is wrong
+    SYSTEMERROR:        Internal interpreter error
+    SYSTEMEXIT:         Python interpreter is exited
+    TYPEERROR:          Incorrect argument types
+    VALUEERROR:         Invalid argument value
+    RUNTIMEERROR:       Error not in any category
+    NOTIMPLEMENTEDERROR:    Code not written yet
+    
+ASSERTIONS:
+    Example:
+        def KelvinToFahrenheit(Temperature):
+           assert (Temperature >= 0),"Colder than absolute zero!"
+           return ((Temperature-273)*1.8)+32
+
+EXCEPTION HANDLING:
+    try:
+    except IOError as exception:  (exception can not be accessed to print error)
+    else:
+    finally:
+    
+    Note:  you can have an except or a finally, but not both.
+    Example:
+        try:
+           fh = open("testfile", "w")
+           try:
+              fh.write("This is my test file for exception handling!!")
+
+RAISING EXCEPTIONS:
+    raise Exception(arguments)
+    
+REGULAR EXPRESIONS:
+    a, X, 9, <      ordinary chars just match themselves
+    .               matches ANY SINGLE char (except \n)
+    \w              matches a word character (a-zA-z0-9_)
+    \W              matches non word characters
+    \b              boundary between word and non-word
+    \s              match single whitespace char (space, newline, return, tab)
+    \S              match non whitespace char
+    \t              tab
+    \n              new line
+    \r              return (carriage return)
+    \d              decimal (0-9)
+    ^               start of string
+    $               end of string
+    \               inhibit "specialness" of character
+           finally:
+              print ("Going to close the file")
+              fh.close()
+        except IOError:
+           print ("Error: can\'t find file or read data")
+           
+DATABASES:
+    Supported dbs included (but not limited to):
+        GadFly          mSQL            MySQL           PostgresSQL
+        SQL Server 2k   Informix        Interbase       Oracle
+        Sybase          SQLite
+    
+    PyMySQL module/package supports db connectivity.
+    
+    Installing pymysql
+        sudo apt-get install python3-pymysql
+        
+    Sample Code:
+        #!/usr/bin/python3
+
+        import pymysql
+
+        # Open database connection
+        db = pymysql.connect("localhost","testuser","test123","TESTDB" )
+
+        # prepare a cursor object using cursor() method
+        cursor = db.cursor()
+        
+    READ EXAMPLE CODE:
+        #!/usr/bin/python3
+
+        import pymysql
+
+        # Open database connection
+        db = pymysql.connect("localhost","testuser","test123","TESTDB" )
+
+        # prepare a cursor object using cursor() method
+        cursor = db.cursor()
+
+        # Prepare SQL query to INSERT a record into the database.
+        sql = "SELECT * FROM EMPLOYEE \
+              WHERE INCOME > '%d'" % (1000)
+        try:
+           # Execute the SQL command
+           cursor.execute(sql)
+           # Fetch all the rows in a list of lists.
+           results = cursor.fetchall()
+           for row in results:
+              fname = row[0]
+              lname = row[1]
+              age = row[2]
+              sex = row[3]
+              income = row[4]
+              # Now print fetched result
+              print ("fname = %s,lname = %s,age = %d,sex = %s,income = %d" % \
+                 (fname, lname, age, sex, income ))
+        except:
+           print ("Error: unable to fetch data")
+
+        # disconnect from server
+        db.close()
+
+
+        # execute SQL query using execute() method.
+        cursor.execute("SELECT VERSION()")
+
+        # Fetch a single row using fetchone() method.
+        data = cursor.fetchone()
+        print ("Database version : %s " % data)
+
+        # disconnect from server
+        db.close()
+
+        DYNAMIC (PRECOMPILED) INSERT EXAMPLE:
+            #!/usr/bin/python3
+
+            import pymysql
+
+            # Open database connection
+            db = pymysql.connect("localhost","testuser","test123","TESTDB" )
+
+            # prepare a cursor object using cursor() method
+            cursor = db.cursor()
+
+            # Prepare SQL query to INSERT a record into the database.
+            sql = "INSERT INTO EMPLOYEE(FIRST_NAME, \
+               LAST_NAME, AGE, SEX, INCOME) \
+               VALUES ('%s', '%s', '%d', '%c', '%d' )" % \
+               ('Mac', 'Mohan', 20, 'M', 2000)
+            try:
+               # Execute the SQL command
+               cursor.execute(sql)
+               # Commit your changes in the database
+               db.commit()
+            except:
+               # Rollback in case there is any error
+               db.rollback()
+
+            # disconnect from server
+            db.close()
+
+NETWORKING:
+    USE THE SOCKETS MODULE
+        Simple Server:
+            #!/usr/bin/python3           # This is server.py file
+            import socket                                         
+
+            # create a socket object
+            serversocket = socket.socket(
+            	        socket.AF_INET, socket.SOCK_STREAM) 
+
+            # get local machine name
+            host = socket.gethostname()                           
+
+            port = 9999                                           
+
+            # bind to the port
+            serversocket.bind((host, port))                                  
+
+            # queue up to 5 requests
+            serversocket.listen(5)                                           
+
+            while True:
+               # establish a connection
+               clientsocket,addr = serversocket.accept()      
+
+               print("Got a connection from %s" % str(addr))
+                
+               msg = 'Thank you for connecting'+ "\r\n"
+               clientsocket.send(msg.encode('ascii'))
+               clientsocket.close()
+
+        Simple Client:   
+            #!/usr/bin/python3           # This is client.py file
+
+            import socket
+
+            # create a socket object
+            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
+
+            # get local machine name
+            host = socket.gethostname()                           
+
+            port = 9999
+
+            # connection to hostname on the port.
+            s.connect((host, port))                               
+
+            # Receive no more than 1024 bytes
+            msg = s.recv(1024)                                     
+
+            s.close()
+            print (msg.decode('ascii'))
+
+E-MAIL:
+    USE THE SMTPLIB MODULE
+        Send a simple e-mail
+            #!/usr/bin/python3
+
+            import smtplib
+
+            sender = 'from@fromdomain.com'
+            receivers = ['to@todomain.com']
+
+            message = """From: From Person <from@fromdomain.com>
+            To: To Person <to@todomain.com>
+            Subject: SMTP e-mail test
+
+            This is a test e-mail message.
+            """
+
+            try:
+               smtpObj = smtplib.SMTP('localhost')
+               smtpObj.sendmail(sender, receivers, message)         
+               print "Successfully sent email"
+            except SMTPException:
+               print "Error: unable to send email"
+   
+MULTITHREADING:
+    USE _THREAD OR THREADING MODULES FOR EXPLICIT MULTI-THREADING
+    
+XML PROCESSING:
+    USE THE XML.SAX PACKAGE
+    
+GUI PROGRAMMING:
+    SOME PYTHON GUI INTERFACES:
+        Tkinter     shipped with Python
+        wxPython    tutorial: https://www.tutorialspoint.com/wxpython/index.htm
+        PyQt        popular & cross platform. tutorial: https://www.tutorialspoint.com/pyqt/index.htm
+        JPython     provides seamless access to Java GUI libraries
