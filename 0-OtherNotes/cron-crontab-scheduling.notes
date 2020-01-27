@@ -60,4 +60,6 @@ RELATED COMMANDS:
     .source
     su
     watch
-    
+
+crontab -e and add the following line to the top of the file    
+    @hourly /home/jeff/BigData/4-WordCount/scala/run 2>&1 > /home/jeff/output/scala/scalacron.output
