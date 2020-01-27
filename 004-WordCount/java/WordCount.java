@@ -110,9 +110,11 @@ public class WordCount
 
           Map<String,Integer> wordCounts = generateWordCounts( completeText );
 
-          System.out.println( "word,count" );
-          wordCounts.forEach( (k,v) -> System.out.println( k + "," + v ) );
+          StringBuilder sb = new StringBuilder();
+          sb.append( "word,count\n" );
+          wordCounts.forEach( (k,v) -> sb.append( k + "," + v + "\n" ) );
 
+          Files.write( Paths.get("/home/jeff/output/wordcount_java.csv"), sb.toString().getBytes() );
       } catch (IOException ioe )
       {
           System.out.println( "File Error:" );
