@@ -1,0 +1,8 @@
+SBT (Simple Build Tool) TUTORIAL NOTES:
+
+SBT may be used to build any project on the JVM
+
+SBT COMMANDS
+    sbt compile     // compile code
+    sbt test        // test code
+    sbt             // 
