@@ -22,7 +22,7 @@ echo "
 export FLUME_HOME=/opt/flume
 export FLUME_CONF_DIR=\$FLUME_HOME/conf
 export FLUME_CLASSPATH=\$FLUME_CONF_DIR
-export PATH=$PATH:\$FLUME_HOME/bin" >> ~/.bashrc
+export PATH=\$FLUME_HOME/bin:\$PATH" >> ~/.bashrc
 
 export FLUME_HOME=$INSTALL_DIR
 
