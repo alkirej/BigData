@@ -9,6 +9,11 @@ object qFourRemoveDup
                                           "wed", "thu", "fri",
                                           "sat"
                                          )
-    }
+        
+        val noDups: Set[String] = weekdays.toSet
+        
+        println (noDups)
+                                         
+    } // main   
 }
 
