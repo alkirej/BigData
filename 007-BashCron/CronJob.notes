@@ -1,0 +1,7 @@
+# Once you have your shell script running (See: assignment 004 WordCount - python run)
+# Then edit the cron table with the crontab -e(dit) command:
+crontab -e
+
+# add the following line to the front or end of the file
+# this will run the command on Jan 27 at 6,7, and 8pm at the top of the hour.
+0 18,19,20 27 1 * /home/jeff/BigData/4-WordCount/python/run 2>&1 >> /home/jeff/output/pythoncron.output
