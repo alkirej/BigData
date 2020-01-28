@@ -8,8 +8,14 @@ cd /home/hadoop
 
 echo "
 export HADOOP_HOME=/opt/hadoop
-export PATH=$HADOOP_HOME/bin:$PATH
-export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+export PATH=\$HADOOP_HOME/bin:\$HADOOP_HOME/sbin:$PATH
+export HADOOP_CONF_DIR=\$HADOOP_HOME/etc/hadoop
+export HADOOP_INSTALL=\$HADOOP_HOME
+export HADOOP_MAPRED_HOME=\$HADOOP_HOME
+export HADOOP_COMMON_HOME=\$HADOOP_HOME
+export HADOOP_HDFS_HOME=\$HADOOP_HOME
+export HADOOP_YARN_HOME=\$HADOOP_HOME
+export HADOOP_OPTS="-Djava.library.path=\$HADOOP_HOME/ect/conf"
 " >> .bashrc
 cd /opt
 
@@ -112,5 +118,4 @@ sudo chgrp hadoop /opt/hadoop/namenode
 
 sudo mkdir -p /dfs/name/current
 
-echo "Next: hdfs namenode -format"
 hdfs namenode -format
