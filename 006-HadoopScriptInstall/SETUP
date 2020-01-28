@@ -1,0 +1,27 @@
+BEFORE INSTALLING HADOOP WITH THIS SCRIPT, YOU
+MUST HAVE CREATED A HADOOP USER IN THE SUDO GROUP
+AND SETUP SSH.
+
+HERE IS SOMETHING TO GET YOU STARTED.
+
+#!/bin/bash
+# hadoop install script
+
+# create group for hadoop user
+sudo addgroup hadoop
+
+# create hadoop user
+sudo adduser --ingroup hadoop hadoop
+
+# allow hadoop to sudo
+sudo adduser hadoop sudo
+
+# switch user (su) to hadoop user
+su hadoop
+
+# generate an ssh key for hadoop user
+ssh-keygen
+
+# copy the ssh id to localhost and test
+ssh-copy-id localhost
+ssh localhost
