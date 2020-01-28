@@ -23,7 +23,7 @@ sudo wget http://archive.apache.org/dist/hadoop/core/hadoop-2.8.5/hadoop-2.8.5.t
 
 # untar the file and remove it
 sudo tar xvzf hadoop-2.8.5.tar.gz  > $LOG
-# !!! sudo rm hadoop-2.8.5.tar.gz
+sudo rm hadoop-2.8.5.tar.gz
 
 # link hadoop dir to the hadoop-verion
 sudo ln -s hadoop-2.8.5 hadoop
@@ -44,26 +44,14 @@ rm core-site.xml.orig
 
 echo "
 <property>
-    <name>
-        hadoop.tmp.dir
-    </name>
-    <value>
-        /opt/hadoop/tmp
-    </value>
-    <description>
-        Parent directory for other temporary directories.
-    </description>
+    <name>hadoop.tmp.dir</name>
+    <value>/opt/hadoop/tmp</value>
+    <description>Parent directory for other temporary directories.</description>
 </property>
 <property>
-    <name>
-        fs.defaultFS
-    </name>
-    <value>
-        hdfs://localhost:50700
-    </value>
-    <description>
-        The name of the default file system.
-    </description>
+    <name>fs.defaultFS</name>
+    <value>hdfs://localhost:50501</value>
+    <description>The name of the default file system.</description>
 </property>
 </configuration>" >> core-site.xml
 
@@ -72,10 +60,8 @@ sudo cat mapred-site.xml.template | sed -s "s/<\/configuration>//" > mapred-site
 sudo echo "
 <property>
   <name>reduce.jobtracker.address</name>
-  <value>localhost:50700</value>
-  <description>
-      MapReduce job tracker runs at this host and port.
-  </description>
+  <value>localhost:50502</value>
+  <description>MapReduce job tracker runs at this host and port.</description>
 </property>
 </configuration>
 " >> mapred-site.xml
@@ -99,9 +85,7 @@ rm hdfs-site.xml.orig
 echo "<property>
   <name>dfs.replication</name>
   <value>1</value>
-  <description>
-    Default block replication.
-  </description>
+  <description>Default block replication.</description>
 </property>
 <property>
   <name>dfs.namenode.name.dir</name>
@@ -112,12 +96,8 @@ echo "<property>
   <value>/opt/hadoop/hdfs</value>
 </property>
 <property>
-  <name>dfs.secondary.http.address</name>
-  <value>localhost:50070</value>
-</property>
-<property>
   <name>dfs.namenode.servicerpc-address</name>
-  <value>localhost:50070</value>
+  <value>localhost:50502</value>
 </property>
 </configuration>
 " >> hdfs-site.xml
@@ -132,6 +112,5 @@ sudo chgrp hadoop /opt/hadoop/namenode
 
 sudo mkdir -p /dfs/name/current
 
-echo "Next: hdfs namenodes -format"
-
+echo "Next: hdfs namenode -format"
 hdfs namenode -format
