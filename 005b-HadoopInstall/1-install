@@ -24,6 +24,10 @@ ssh localhost
 # navigate to the hadoop-2.8.5 directory
 # click on the hadoop-2.8.5.tar.gz file to download the tar file
 
+# download hadoop core
+sudo wget http://archive.apache.org/dist/hadoop/core/hadoop-2.8.5/hadoop-2.8.5.tar.gz
+
+
 # cd to the location of the .tar.gz file
 # move the tar file to the /opt directory
 sudo mv hadoop-2.8.5.tar.gz /opt
@@ -42,3 +46,5 @@ cd /opt
 
 # extract the tar file (save output in case of trouble)
 sudo tar xvf hadoop-2.8.5.tar.gz > ~/output.hadoop
+
+sudo ln -s hadoop-2.8.5-src hadoop
