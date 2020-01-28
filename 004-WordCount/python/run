@@ -1,4 +1,4 @@
 date
 echo executing ...
-python3.7 WordCount.py 
+python3.7 /home/jeff/BigData/004-WordCount/python/WordCount.py 
 echo output can be found in ~/output/wordcount_python.csv
