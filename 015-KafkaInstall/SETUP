@@ -1,0 +1,11 @@
+# Before installing kafka, a kafka user is required.
+# This script will create a kafka group and user
+sudo addgroup kafka
+
+sudo useradd kafka -m
+
+echo SETUP PASSWORD FOR KAFKA USER
+sudo passwd kafka
+
+sudo adduser kafka kafka
+sudo adduser kafka sudo
