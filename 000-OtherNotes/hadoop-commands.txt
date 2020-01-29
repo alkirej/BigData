@@ -1,0 +1,33 @@
+HADOOP COMMAND LIST
+    Overview 
+        hdfs [SHELL_OPTIONS] COMMAND [GENERIC_OPTIONS] [COMMAND_OPTIONS]
+            --config   condir   overwrites the default config dir. ${HADOOP/HOME}/conf is the default
+            --loglevel loglevel overwrites the log level. Valid levels: FATAL, ERROR, WARN, INFO, DEBUG
+
+        GENERIC_OPTIONS     are supported by multiple commands
+            -archives <csv ov archives>
+            -conf <config file>
+            -D <property>=<value>   use the given value for the specified property
+            -files <csv of files>   csv of files to be copied to the map reduce cluster (applies only to jobs)
+            -jt <local> or <resulrcemanager:port>   specify a resource manager for a job
+            -libjars <csv of jars>  include these in the classpath
+    
+    Hadoop Common Commands 
+        User Commands 
+            archive         create a hadoop archive (https://hadoop.apache.org/docs/r2.7.1/hadoop-archives/HadoopArchives.html)
+            checknative     checks the availability of the hadoop native code
+            classpath       get hadoop's classpath
+            credential      manage credentials, passwords, and secrets w/in credential providers
+            distcp          copy file/dir recursively
+            fs              DEPRECATED
+            jar             run a jar file
+            key             manage keys via the KeyProvider
+            trace           view and modify hadoop tracing settings
+            version         print the hadoop version
+            CLASSNAME       run the class named CLASSNAME
+            
+        Administration Commands
+            daemonlog       -getlevel host:port classname
+                            -setlevel host:port classname
+                            Get or set the log level for a log identified by the given classname
+    

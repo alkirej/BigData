@@ -1,0 +1,59 @@
+HDFS COMMAND LIST
+
+    Overview
+        ALL hadoop file system (hdfs) commands are invoked by running
+        the bin/hdfs script.
+        
+        hdfs [SHELL_OPTIONS] COMMAND [GENERIC_OPTIONS] [COMMAND_OPTIONS]
+            --config   condir   overwrites the default config dir. ${HADOOP/HOME}/conf is the default
+            --loglevel loglevel overwrites the log level. Valid levels: FATAL, ERROR, WARN, INFO, DEBUG
+
+            GENERIC_OPTIONS     are supported by multiple commands
+                -archives <csv ov archives>
+                -conf <config file>
+                -D <property>=<value>   use the given value for the specified property
+                -files <csv of files>   csv of files to be copied to the map reduce cluster (applies only to jobs)
+                -jt <local> or <resulrcemanager:port>   specify a resource manager for a job
+                -libjars <csv of jars>  include these in the classpath
+                
+            COMMAND_OPTIONS     are supported by a single command            
+        
+        EXAMPLE:    hdfs dfs -ls /
+                    hdfs classpath
+                    hdfs getconf -backupNodes
+                    
+    User Commands:
+        classpath       display the classpath needed to get the hadoop jar & required libraries
+        dfs             dfs [COMMAND [COMMAND_OPTIONS]] - complete command list found elsewhere
+        fetchdt         get delegation token from a namenode
+        fsck            file system check utility
+        getconf         get config info from the config directory (post-processing)
+        groups          get the groups a user is in
+        lsSnapshottableDir
+        jmxget          dump jmx info from a service
+        oev             hadoop offline edits viewer
+        oiv             hadoop offline image viewer
+        oiv_legacy      oiv for older hadoop versions
+        snapshotDiff    determine difference between hdfs snapshots
+        version         show hdfs version
+
+    Administration Commands 
+        balancer        runs a cluster
+        cacheadmin      cache administration  (https://hadoop.apache.org/docs/r2.7.1/hadoop-project-dist/hadoop-hdfs/CentralizedCacheManagement.html#cacheadmin_command-line_interface)
+        crypto          encryption zone creation/etc. (https://hadoop.apache.org/docs/r2.7.1/hadoop-project-dist/hadoop-hdfs/TransparentEncryption.html#crypto_command-line_interface)
+        datanode        run a hdfs datanode
+        dfsadmin        run admin client (many parameters)
+        haadmin         more admin (https://hadoop.apache.org/docs/r2.7.1/hadoop-project-dist/hadoop-hdfs/HDFSHighAvailabilityWithNFS.html#Administrative_commands)
+        journalnode     start a journal node
+        mover           data migration
+        namenode        run namenode
+        nfs3            start nsf3 gateway
+        portmap         start rpc portmap
+        secondarynamenode   start secondary namenode
+        storagepolicies     list storage policies
+        zkfc            starts zookeeper failover controller
+        
+    Debug Commands 
+        debug verify        verify hdfs metadata and block files
+        debug recoverLease  recover the lease on the path
+   

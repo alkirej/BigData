@@ -1,0 +1,60 @@
+HDFS DFS COMMAND LIST
+
+hadoop fs {args}
+    for a generic file system including local, hdfs, etc
+    
+hadoop dfs {args}
+    DEPRECATED
+
+hdfs dfs {args}
+    for hdfs systems only
+
+Overview 
+    appendToFile    read from one or more files and append it to an hdfs file (can accept stdin as well)
+    cat             copy source to stdout
+    checksum        get checksome
+    chgrp           change group owner of a file
+    chmod           change mode (perms) on a file/director
+    chown           change owner of a file
+    copyFromLocal   similar to put, but source is restricted to the local disk
+    copyToLocal     similar to get, but the destination must be the local disk
+    count           count the number of directory, files and bytes under the path
+    cp              copy file
+    createSnapshot  see snapshots (https://hadoop.apache.org/docs/r2.7.1/hadoop-project-dist/hadoop-hdfs/HdfsSnapshots.html)
+    deleteSnapshot  see snapshots (https://hadoop.apache.org/docs/r2.7.1/hadoop-project-dist/hadoop-hdfs/HdfsSnapshots.html)
+    df              disk free space
+    du              disk usage
+    dus             DEPRECATED: show file lengths
+    expunge         empty the trash. See HDFS architecture guide (https://hadoop.apache.org/docs/r2.7.1/hadoop-project-dist/hadoop-hdfs/HdfsDesign.html)
+    find            find files matching an expression
+    get             copy file to local file system
+    getfacl         display access control lists
+    getfattr        display extended attribute name-value pairs
+    getmerge        take a directory, concatenate all of its files and store it on hdfs as a file
+    help            get help (returns usage)
+    ls              list files (-d/-h/-R/-t/-S/-r/-u)
+    lsr             ls -r (recursively list files)
+    mkdir           create a directory
+    moveFromLocal   put a file to hdfs and delete the original
+    moveToLocal     NOT YET IMPLEMENTED
+    mv              move or rename a file or files
+    put             place a file into hdfs
+    renameSnapshot  see snapshots (https://hadoop.apache.org/docs/r2.7.1/hadoop-project-dist/hadoop-hdfs/HdfsSnapshots.html)
+    rm              delete file(s)
+    rmdir           delete a directory
+    rmr             recursively delete directories
+    setfacl         set ACL (Access Control Lists) of file and dirs
+    setfattr        set extended attribute of a file (name-value pair)
+    setrep          change the replication (# of copies) for a file. (For dirs recursively change the replication factory of all files within the dir and subdirs)
+    stat            print stats about the file/dir
+    tail            display the last kb of the file to stdout
+    test            hdfs dfs -test -[defsz] URI(path)
+                        -d - return 0 if path is a directory
+                        -e - return 0 if path exists
+                        -f - return 0 if path is a file
+                        -s - return 0 if path is not empty
+                        -z - return 0 if is len 0
+    text            take a source file and output the file in test format (for zip or TextRecordInputStream)
+    touchz          create a file of 0 length
+    truncate        truncate matchine files to the specified length
+    usage           hdfs dfs -usage <command>
