@@ -11,7 +11,6 @@ git config --global user.email "jeff@alkire.net"
 # create a directory for the github repository
 cd ~
 mkdir BigData
-cd BigData
 
 # initialize the repository
 git init
