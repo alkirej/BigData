@@ -43,4 +43,3 @@ hdfs_sys = HDFileSystem( host=hdfs_host, port=hdfs_port )
 
 with hdfs_sys.open( hdfs_path, 'wb' ) as output_file:
     output_file.write(contents)
-
