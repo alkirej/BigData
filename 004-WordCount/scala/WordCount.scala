@@ -1,5 +1,6 @@
 object WordCount {
     val textFile = scala.io.Source.fromFile( "/home/jeff/BigData/004-WordCount/shakespeare-hamlet.txt")
+
     val contents = try
                        textFile.mkString
                    finally
