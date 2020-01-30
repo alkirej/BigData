@@ -1,5 +1,7 @@
 # Ensure we are have the latest repository information
 sudo apt update
+# Enable ssh and sftp if they are still blocked
+sudo ufw allow 22
 
 # Install GitHub (if necessary)
 sudo apt-get install git-core
