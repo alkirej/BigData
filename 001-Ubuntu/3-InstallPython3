@@ -12,6 +12,7 @@ sudo apt install software-properties-common
 sudo apt install python3.7
 
 # create a link to the python3.7 for ease of use
+cd /usr/bin
 sudo ln -s python3.7 python
 
 # should return 3.7.5
