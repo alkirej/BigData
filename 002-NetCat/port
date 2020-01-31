@@ -1,2 +1,2 @@
 export PORT_NUM=12345
-export PRODUCER_IP=172.168.21.233
+export PRODUCER_IP=localhost
