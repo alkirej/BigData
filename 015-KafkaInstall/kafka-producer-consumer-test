@@ -2,9 +2,13 @@ TO USE KAFKA CONSOLE PRODUCER AND CONSUMER, DO THE FOLLOWING:
 
 1) START KAFKA SERVERS if necessary
     su kafka (DO THIS EACH TIME YOU OPEN A CONSOLE)
-        /opt/kafka/bin/zookeeper-server-start.sh /opt/kafka/config/zookeeper.properties
-        /opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/server.properties
-  
+        /opt/kafka/bin/zookeeper-server-start.sh /home/jeff/BigData/015-KafkaInstall/zookeeper.properties
+        /opt/kafka/bin/kafka-server-start.sh /home/jeff/BigData/015-KafkaInstall/server.properties.1
+        /opt/kafka/bin/kafka-server-start.sh /home/jeff/BigData/015-KafkaInstall/server.properties.2
+        /opt/kafka/bin/kafka-server-start.sh /home/jeff/BigData/015-KafkaInstall/server.properties.3
+        /opt/kafka/bin/kafka-server-start.sh /home/jeff/BigData/015-KafkaInstall/server.properties.4
+        /opt/kafka/bin/kafka-server-start.sh /home/jeff/BigData/015-KafkaInstall/server.properties.5
+
     Note:   you will need separate consoles or to run the servers in the 
             background (by appending & to the end of the commands above)
 2) CREATE A NEW KAFKA TOPIC
@@ -12,7 +16,7 @@ TO USE KAFKA CONSOLE PRODUCER AND CONSUMER, DO THE FOLLOWING:
         /opt/kafka/bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic myFirstTopic
 
 3) START KAFKA CONSOLE PRODUCER
-        /opt/kafka/bin/kafka-console-producer.sh --broker-list localhost:9092 --topic myFirstTopic
+        /opt/kafka/bin/kafka-console-producer.sh --broker-list localhost:50001 --topic myFirstTopic
         
 4) START KAFKA CONSOLE CONSUMER
     Start another new terminal and execute:
@@ -21,3 +25,4 @@ TO USE KAFKA CONSOLE PRODUCER AND CONSUMER, DO THE FOLLOWING:
 5) RETURN TO PRODUCER CONSOLE AND
     Type your first message (followed by return):
         Howdy partner: this is my first kafka message!
+
