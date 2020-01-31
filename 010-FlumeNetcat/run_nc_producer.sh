@@ -1,2 +1,2 @@
-netcat localhost 54321
+netcat -N localhost 54321 < message
 
