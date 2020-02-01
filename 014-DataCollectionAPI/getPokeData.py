@@ -34,7 +34,7 @@ evol_output.close()
 #   SETUP
 from hdfs3 import HDFileSystem
 hdfs_host = "localhost"
-hdfs_port = 50502
+hdfs_port = 50700
 hdfs_path = "/user/pokemon-site.output"
 
 #   FILE MOVE

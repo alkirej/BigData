@@ -1,4 +1,4 @@
 #!/bin/bash
 echo Excuting ...
-scala ~/BigData/008-WordCountInScala/WordCount.scala
+scala /home/jeff/BigData/008-WordCountInScala/WordCount.scala
 echo Output written to ~/output/wordcount_scala.csv

@@ -1,2 +1,2 @@
-source ~/BigData/002-NetCat/port
-netcat -N $PRODUCER_IP $PORT_NUM < message
+source /home/jeff/BigData/002-NetCat/port
+netcat -N $PRODUCER_IP $PORT_NUM < /home/jeff/BigData/002-NetCat/message

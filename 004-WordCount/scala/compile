@@ -1,1 +1,1 @@
-scalac WordCount.scala
+scalac -d $CLASSPATH WordCount.scala
