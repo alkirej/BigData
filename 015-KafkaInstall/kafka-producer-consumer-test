@@ -20,7 +20,7 @@ TO USE KAFKA CONSOLE PRODUCER AND CONSUMER, DO THE FOLLOWING:
         
 4) START KAFKA CONSOLE CONSUMER
     Start another new terminal and execute:
-        /opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:2181 --topic myFirstTopic --from-beginning
+        /opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:50001 --topic myFirstTopic --from-beginning
 
 5) RETURN TO PRODUCER CONSOLE AND
     Type your first message (followed by return):

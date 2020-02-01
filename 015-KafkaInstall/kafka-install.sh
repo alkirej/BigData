@@ -28,4 +28,4 @@ export PATH=/opt/kafka/bin:$PATH
 " >> /home/kafka/.bash_profile
 
 export PATH=/opt/kafka/bin:$PATH
-kafka-server-start.sh /opt/kafka/config/server.properties
+#kafka-server-start.sh /opt/kafka/config/server.properties
