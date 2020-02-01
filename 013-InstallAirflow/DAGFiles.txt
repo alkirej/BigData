@@ -1,0 +1,46 @@
+AIRFLOW DAGS TEMPLATE
+
+1-IMPORTS
+    from airflow import DAG
+    from airflow.operators.bash_operator import BashOperator
+    from datetime import datetime, timedelta
+
+2-DEFAULT ARGS FOR THE DAG
+    # Following are defaults which can be overridden later on
+    default_args = {
+        'owner': 'jeff',
+        'depends_on_past': False,
+        'start_date': datetime(2020,1,30),
+        'email': ['jeffery.alkire@enhanceit.us'],
+        'email_on_failure': False,
+        'email_on_retry': False,
+        'retries': 1,
+        'retry_delay': timedelta(minutes=1),
+    }
+
+3-CREATE THE DAG
+    dag = DAG( 'project_dag',
+               default_args=default_args,
+               schedule_interval=timedelta(minutes=10)
+             )
+
+4-DAG TASKS
+    # operators (executors) for each task we must run named according to the BigData assignment numbers.
+    project_2a = BashOperator( task_id='project_2a',
+                               bash_command='/home/jeff/BigData/002-NetCat/listener ',
+                               dag=dag
+                             )
+
+    project_2b = BashOperator( task_id = 'project_2b',
+                               bash_command = '/home/jeff/BigData/002-NetCat/producer ',
+                               dag = dag
+                             )
+
+    project_3 = BashOperator( task_id='project_3',
+                              bash_command='/home/jeff/BigData/003-SkillsTest/run.sh ',
+                              dag=dag
+                            )
+
+5-SET TAG DEPENDENCIES
+    [project_2a, project_2b] >> project_3 >> project_4
+

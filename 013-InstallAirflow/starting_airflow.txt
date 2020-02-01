@@ -1,0 +1,11 @@
+# TO START AIRFLOW
+#    AIRFLOW HAS 2 PROCESSES (SERVICES/DAEMONS)
+#        the webserver &
+#        the scheduler
+
+# TO START THE WEB SERVER ON PORT 8080:
+airflow webserver -p 8080
+
+# START THE SCHEDULER
+airflow scheduler
+
