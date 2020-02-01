@@ -41,5 +41,5 @@ hdfs_path = "/user/pokemon-site.output"
 hdfs_sys = HDFileSystem( host=hdfs_host, port=hdfs_port )
 #hdfs_sys.put( local_path, hdfs_path )
 
-with hdfs_sys.open( hdfs_path, 'wb' ) as output_file:
+with hdfs_sys.open( hdfs_path, 'wb', 1 ) as output_file:
     output_file.write(contents)
