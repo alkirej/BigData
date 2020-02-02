@@ -6,3 +6,7 @@ pip install kafka-python
 # Note: The kafka api and some discussion about it is located at this url:
 #       https://kafka-python.readthedocs.io/en/master/
 #       https://kafka-python.readthedocs.io/en/master/apidoc/modules.html
+
+# the kafka producer also uses a name generating package called names
+
+pip install names
