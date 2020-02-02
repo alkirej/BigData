@@ -1,0 +1,25 @@
+To use this example, do the following
+
+1-start the zookeeper server:
+    open terminal
+    go to the task 15 directory (015-KafkaInstall)
+    run-zk.sh
+
+2-start brokers:
+    open terminal
+    for each broker:
+        open terminal
+        go to the task 15 directory (015-KafkaInstall)
+        run run-bk.sh
+
+3-start consumer:
+    open terminal
+    run-cons.sh
+    notice the names listed on the screen (if any messages are still alive)
+
+4-start producer:
+    open terminal
+    runp-prod.sh
+
+5-return to consumer terminal (step 3)
+    watch 10 names be printed by consumer as they are produced.
