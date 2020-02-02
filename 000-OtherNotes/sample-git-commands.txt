@@ -1,0 +1,149 @@
+*** GIT HELP ***
+
+usage: git [--version] [--help] [-C <path>] [-c <name>=<value>]
+           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
+           [-p | --paginate | --no-pager] [--no-replace-objects] [--bare]
+           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]
+           <command> [<args>]
+
+These are common Git commands used in various situations:
+
+start a working area (see also: git help tutorial)
+   clone      Clone a repository into a new directory
+   init       Create an empty Git repository or reinitialize an existing one
+
+work on the current change (see also: git help everyday)
+   add        Add file contents to the index
+   mv         Move or rename a file, a directory, or a symlink
+   reset      Reset current HEAD to the specified state
+   rm         Remove files from the working tree and from the index
+
+examine the history and state (see also: git help revisions)
+   bisect     Use binary search to find the commit that introduced a bug
+   grep       Print lines matching a pattern
+   log        Show commit logs
+   show       Show various types of objects
+   status     Show the working tree status
+
+grow, mark and tweak your common history
+   branch     List, create, or delete branches
+   checkout   Switch branches or restore working tree files
+   commit     Record changes to the repository
+   diff       Show changes between commits, commit and working tree, etc
+   merge      Join two or more development histories together
+   rebase     Reapply commits on top of another base tip
+   tag        Create, list, delete or verify a tag object signed with GPG
+
+collaborate (see also: git help workflows)
+   fetch      Download objects and refs from another repository
+   pull       Fetch from and integrate with another repository or a local branch
+   push       Update remote refs along with associated objects
+
+'git help -a' and 'git help -g' list available subcommands and some
+concept guides. See 'git help <command>' or 'git help <concept>'
+to read about a specific subcommand or concept.
+
+
+#############################################################
+###    SAMPLE GIT COMMANDS                                ###
+#############################################################
+git log --oneline --decorate
+    Display your commit log
+    Example:
+        $ git log --oneline --decorate
+        fcbebd3 (HEAD -> master) test
+        4282958 (origin/master, origin/HEAD) Complete task 15 wit new under
+        standing of ports and such
+        f4e3b5c add hdfs3 api and update python code to set replication fac
+        tor of 1
+        89c9761 create DAG for airflow for assignment 13
+        6ac48ef setup scripts for airflow scheduling
+        6e066a6 project 10 automation
+        28c8d69 use localhost instead of ip addr
+        06550ab automation detail updates.
+        38ddf91 fix port number it test
+        3664f2d complete kafka task by creating 3 brokers and testing
+        a4ab415 update run script
+
+git branch
+    Display all available local branches
+    Example:
+        $ git branch    
+            * alkirej
+              master    
+    
+git branch <branch-name>
+    Creates new branch
+    Results (note: nothing is returned)
+        $ git branch alkirej
+    
+git branch -d <branch-name>
+    Deletes a branch
+    Example:
+        git branch -d alkirej
+        Deleted branch alkirej (was fcbebd3).
+        
+git branch -r
+    Get all remote-tracking git branches  origin/HEAD -> origin/master
+    Example:
+        $ git branch -r
+            origin/clifordR
+            origin/master
+
+git branch -m dev development
+    Rename a branch:
+    Example:
+        $ git branch -m alkirej jeff
+            * jeff
+              master 
+  
+git checkout <branch-name>
+    Change active branches
+    Example:
+        $ git branch
+          alkirej
+        * master   
+    
+    *   $ git checkout alkirej
+        Switched to branch 'alkirej'
+        
+        $ git branch
+        * alkirej
+          master        
+          
+git status
+    Returns the status of your git situation
+    Example:
+        $ git status
+        On branch alkirej
+        nothing to commit, working tree clean
+        
+git checkout -b qa 
+    Create a new branch and immediately make it active
+    Results
+        $ git checkout -b test345
+        Switched to a new branch 'test345'
+        
+        $ git branch
+          alkirej
+          master
+        * test345
+        
+git add <file(s)>
+    Add file(s) to your staging area
+    Example:
+        $ git add *
+        $ 
+
+git commit -m "<message>"
+    Commit to changes in your staging area
+    Example:
+        $ git add contact.html
+        $ git status
+            On branch alkirej
+            Changes to be committed:
+              (use "git reset HEAD <file>..." to unstage)
+
+            	new file:   README
+            	new file:   sample-git-commands.txt
+
