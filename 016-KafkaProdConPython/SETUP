@@ -1,0 +1,8 @@
+# in order to execute the python code in this window, you will need
+# to setup the python kafka library as follows:
+
+pip install kafka-python
+
+# Note: The kafka api and some discussion about it is located at this url:
+#       https://kafka-python.readthedocs.io/en/master/
+#       https://kafka-python.readthedocs.io/en/master/apidoc/modules.html
