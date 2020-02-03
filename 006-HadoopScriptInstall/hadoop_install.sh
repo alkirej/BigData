@@ -17,36 +17,46 @@ export HADOOP_HDFS_HOME=\$HADOOP_HOME
 export HADOOP_YARN_HOME=\$HADOOP_HOME
 export HADOOP_OPTS="-Djava.library.path=\$HADOOP_HOME/ect/conf"
 " >> .bashrc
-cd /opt
 
 # where will we install hadoop?
 export HADOOP_HOME=/opt/hadoop
 export PATH=$HADOOP_HOME/bin:$PATH
 export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
 
+# change owner
+cd /
+sudo chmod 777 /opt
+cd /opt
+
 # download hadoop core
-sudo wget http://archive.apache.org/dist/hadoop/core/hadoop-2.8.5/hadoop-2.8.5.tar.gz
+wget http://archive.apache.org/dist/hadoop/core/hadoop-2.8.5/hadoop-2.8.5.tar.gz
 
 # untar the file and remove it
 sudo tar xvzf hadoop-2.8.5.tar.gz  > $LOG
-sudo rm hadoop-2.8.5.tar.gz
+sudo rm hadoop-2.8.5.tar.gz 
 
 # link hadoop dir to the hadoop-verion
-sudo ln -s hadoop-2.8.5 hadoop
+sudo chmod 755 hadoop-2.8.5
+sudo ln -s hadoop-2.8.5 hadoop 
+
+cd /opt 
+sudo chown hadoop hadoop-2.8.5 -R 
+sudo chmod 776 /opt/hadoop-2.8.5 -R 
 
 # configure the hadoop enviornment
-cd $HADOOP_HOME/etc/hadoop
-mv hadoop-env.sh hadoop-env.sh.orig
+cd $HADOOP_HOME/etc/hadoop 
+mv hadoop-env.sh hadoop-env.sh.orig 
 
 # change the ${JAVA_HOME} place holder to the correct location
 cat hadoop-env.sh.orig | sed -e "s/\${JAVA_HOME}/\/usr\/lib\/jvm\/java-8-openjdk-amd64/" > hadoop-env.sh
-rm hadoop-env.sh.orig
+rm hadoop-env.sh.orig 
 
 # add temp directory and file system environmental variable for hadooop
 # update core-site.xml
-cp core-site.xml core-site.xml.orig
+cd /opt/hadoop/etc/hadoop
+cp core-site.xml core-site.xml.orig 
 cat core-site.xml.orig | sed -s "s/<\/configuration>//" > core-site.xml
-rm core-site.xml.orig
+rm core-site.xml.orig 
 
 echo "
 <property>
@@ -72,20 +82,20 @@ sudo echo "
 </configuration>
 " >> mapred-site.xml
 
-cd /opt/hadoop
-mkdir tmp
+cd /opt/hadoop 
+mkdir tmp 
 
 # had a profile.d entry for hadoop
-cd /etc/profile.d
-sudo chmod 777 /etc/profile.d
+cd /etc/profile.d 
+sudo chmod 777 /etc/profile.d 
 sudo echo "export HADOOP_HOME=/opt/hadoop" > hadoop.sh
-sudo chmod +x /etc/profile.d/hadoop.sh
-sudo chmod 755 /etc/profile.d
+sudo chmod +x /etc/profile.d/hadoop.sh 
+sudo chmod 755 /etc/profile.d 
 
-cd /opt/hadoop/etc/hadoop
-cp hdfs-site.xml hdfs-site.xml.orig
+cd /opt/hadoop/etc/hadoop 
+cp hdfs-site.xml hdfs-site.xml.orig 
 sudo cat hdfs-site.xml.orig | sed -s "s/<\/configuration>//" > hdfs-site.xml
-rm hdfs-site.xml.orig
+rm hdfs-site.xml.orig 
 
 # hdfs-site.xml
 echo "<property>
@@ -108,14 +118,18 @@ echo "<property>
 </configuration>
 " >> hdfs-site.xml
 
-sudo mkdir /opt/hadoop/hdfs
-sudo chown hadoop /opt/hadoop/hdfs
-sudo chgrp hadoop /opt/hadoop/hdfs
+sudo mkdir /opt/hadoop/hdfs 
+sudo chown hadoop /opt/hadoop/hdfs 
+sudo chgrp hadoop /opt/hadoop/hdfs 
 
-sudo mkdir /opt/hadoop/namenode
-sudo chown hadoop /opt/hadoop/namenode
-sudo chgrp hadoop /opt/hadoop/namenode
+sudo mkdir /opt/hadoop/namenode 
+sudo chown hadoop /opt/hadoop/namenode 
+sudo chgrp hadoop /opt/hadoop/namenode 
 
-sudo mkdir -p /dfs/name/current
+sudo mkdir -p /dfs/name/current 
 
-hdfs namenode -format
+sudo echo "Y
+" > ReplyYes.txt
+
+hdfs namenode -format < ReplyYes.txt 
+sudo rm ReplyYes.txt
