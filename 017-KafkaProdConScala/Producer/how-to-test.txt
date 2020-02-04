@@ -1,0 +1,9 @@
+To test this project:
+
+On the hadoop server, start a console consumer to observe
+
+Be sure to be on the local machine
+    open IntelliJ
+    open the project for the Producer
+        (it is in D:\017-KafkaProdConScala\Producer)
+    run the 
