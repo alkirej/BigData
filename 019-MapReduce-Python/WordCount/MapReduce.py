@@ -4,11 +4,11 @@ import re
 #####################
 # CONSTANTS
 ####################
-# INPUT_FILE_NAME: str = "/home/jeff/BigData/004-WordCount/shakespeare-hamlet.txt"
-INPUT_FILE_NAME: str  = "C:\\Users\\jeff\\Documents\\shakespeare-hamlet.txt"
+INPUT_FILE_NAME: str = "/home/jeff/BigData/004-WordCount/shakespeare-hamlet.txt"
+# INPUT_FILE_NAME: str  = "C:\\Users\\jeff\\Documents\\shakespeare-hamlet.txt"
 
-# OUTPUT_FILE_NAME: str = "/home/jeff/BigData/output/wc_results_python.csv"
-OUTPUT_FILE_NAME: str = "C:\\Users\\jeff\\Documents\\wc_results_python.csv"
+OUTPUT_FILE_NAME: str = "/home/jeff/output/wc_results_python.csv"
+# OUTPUT_FILE_NAME: str = "C:\\Users\\jeff\\Documents\\wc_results_python.csv"
 
 CSV_HEADER_LINE: str = "word,count"
 
