@@ -1,9 +1,20 @@
 To test this project:
 
-On the hadoop server, start a console consumer to observe
+1-Producer
+    On the hadoop server, start a console consumer to observe
 
-Be sure to be on the local machine
-    open IntelliJ
-    open the project for the Producer
-        (it is in D:\017-KafkaProdConScala\Producer)
-    run the 
+    Be sure to be on the local machine
+        open IntelliJ
+        open the project for the Producer
+            (it is in D:\017-KafkaProdConScala\Producer)
+    run the SimpleProducer object from IntelliJ
+
+    On hadoop server - ensure the line of boring text appears
+    
+2-Consumer
+    Be sure to be on the local machine
+        open IntelliJ
+        open the project for the Consumer
+            (it is in D:\017-KafkaProdConScala\Consumer)
+    run the ScreenConsumer object from IntelliJ
+    ensure the results display on the console output
