@@ -4,9 +4,11 @@ from pyspark.rdd import RDD
 
 # CONSTANTS
 INPUT_FILE_NAME: str = "/home/jeff/BigData/004-WordCount/shakespeare-hamlet.txt"
+#INPUT_FILE_NAME: str = "/home/jeff/BigData/023-MultiSourceWordCount"
+
 OUTPUT_FILE_NAME: str = "/home/jeff/BigData/output/wc_results_scala.csv"
 CSV_GENERATION_CLASS: str = "com.databricks.spark.csv"
-OUTPUT_DIR_NAME: str = "hdfs://localhost:50700/output/wordcount_pyspark"
+OUTPUT_DIR_NAME: str = "hdfs://localhost:50700/output/wordcount_pyspark_bible"
 
 def read_and_clean(sc: SparkContext, fileName: str) -> RDD:
     return sc.textFile(INPUT_FILE_NAME) \
@@ -33,5 +35,6 @@ if __name__ == "__main__":
     results: RDD = lines.map(lambda w: (w, 1)).reduceByKey(lambda x,y: x+y).sortByKey()
 
     df: DataFrame = spark.createDataFrame(results)
-    df.write.format(CSV_GENERATION_CLASS).save(OUTPUT_DIR_NAME)
+#    df.coalesce(1).write.format(CSV_GENERATION_CLASS).save(OUTPUT_DIR_NAME)
 
+    results.take(100).foreach(println)
