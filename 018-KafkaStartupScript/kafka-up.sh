@@ -19,9 +19,8 @@ then
     exit 2
 fi
 
-if [ -r $KAFKA_HOME/config/server.properties ]
+if [ ! -r $KAFKA_HOME/config/server.properties ]
 then
-else
     echo 
     echo Unable to comply: $KAFKA_HOME/config/server.properties 
     echo does not exist or is unable to be read.
@@ -50,12 +49,20 @@ else
             sed -e "s/log.dirs=\/tmp\/kafka-logs/log.dirs=\/tmp\/kafka-logs-${i}/" | \
             sed -e "s/broker.id=0/kafka-logs-${i}/" \
                 > $KAFKA_HOME/config/server.properties.${i}
+        echo "
+broker.id=${i}
+listeners=PLAINTEXT://:5000${i}
+">> $KAFKA_HOME/config/server.properties.${i}
 
-    echo ... Starting Broker ${i} ....
-    kafka-server-start.sh -daemon $KAFKA_HOME/config/server.properties.${i}
+        echo ... Starting Broker ${i} ....
+        kafka-server-start.sh -daemon $KAFKA_HOME/config/server.properties.${i}
     done
 fi
 
 # create a sample topic
-#kafka-topics.sh --create --topic example --zookeeper localhost:2181 --partitions 1 --replication-factor 1
+kafka-topics.sh --create --topic example --zookeeper localhost:2181 --partitions 1 --replication-factor 1
+
+echo
+echo Done ...
+echo
 
