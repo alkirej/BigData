@@ -56,3 +56,4 @@ object ScreenConsumer {
         display_results( consumer )
     }
 }
+

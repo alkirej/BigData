@@ -8,3 +8,4 @@ object Constants {
     val GroupId: String             = "sample"
     val TopicName: String           = "Tornados"
 }
+
