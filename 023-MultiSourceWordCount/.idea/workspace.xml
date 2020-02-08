@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="49bd6224-8245-407d-bf66-5434969af844" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="SBT">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="023-MultiSourceWordCount" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Scala Object" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1XXUXIGHhNMC7tSsrkx1dQB4ljz" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+  </component>
+  <component name="RunManager" selected="Application.Main (1)">
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true">
+      <log_file alias="logfile" path="$PROJECT_DIR$/logs/log.file" show_all="true" />
+      <option name="MAIN_CLASS_NAME" value="net.alkire.wordcountMulti.Main" />
+      <module name="023-MultiSourceWordCount" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="net.alkire.wordcount_multi.Main" />
+      <module name="023-MultiSourceWordCount" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ain" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="net.alkire.wordcountMulti.ain" />
+      <module name="023-MultiSourceWordCount" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.ain" />
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.Main (1)" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main (1)" />
+        <item itemvalue="Application.ain" />
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SbtLocalSettings">
+    <option name="availableProjects">
+      <map>
+        <entry>
+          <key>
+            <ExternalProjectPojo>
+              <option name="name" value="023-MultiSourceWordCount" />
+              <option name="path" value="$PROJECT_DIR$" />
+            </ExternalProjectPojo>
+          </key>
+          <value>
+            <list>
+              <ExternalProjectPojo>
+                <option name="name" value="root-023-multisourcewordcount [file:/home/jeff/git/BigData/023-MultiSourceWordCount/]" />
+                <option name="path" value="$PROJECT_DIR$" />
+              </ExternalProjectPojo>
+              <ExternalProjectPojo>
+                <option name="name" value="023-MultiSourceWordCount-build" />
+                <option name="path" value="$PROJECT_DIR$/project" />
+              </ExternalProjectPojo>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="modificationStamps">
+      <map>
+        <entry key="$PROJECT_DIR$/build.sbt" value="936189301" />
+        <entry key="$PROJECT_DIR$/project/build.properties" value="1244562550" />
+      </map>
+    </option>
+    <option name="projectSyncType">
+      <map>
+        <entry key="$PROJECT_DIR$/../017-KafkaProdConScala" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$" value="RE_IMPORT" />
+      </map>
+    </option>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="49bd6224-8245-407d-bf66-5434969af844" name="Default Changelist" comment="" />
+      <created>1581191971248</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1581191971248</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="633" y="150" width="524" height="484" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1581194302627">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="633" y="150" width="524" height="484" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.27.1366.741@0.27.1366.741" timestamp="1581194302627" />
+    <state x="141" y="54" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1581201792475">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="141" y="54" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1366.741@0.27.1366.741" timestamp="1581201792475" />
+    <state x="466" y="154" width="424" height="484" key="FileChooserDialogImpl" timestamp="1581201772928">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="466" y="154" width="424" height="484" key="FileChooserDialogImpl/0.27.1366.741@0.27.1366.741" timestamp="1581201772928" />
+    <state width="1320" height="253" key="GridCell.Tab.0.bottom" timestamp="1581202552449">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state width="1320" height="253" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1581202552449" />
+    <state width="1320" height="253" key="GridCell.Tab.0.center" timestamp="1581202552448">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state width="1320" height="253" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1581202552448" />
+    <state width="1320" height="253" key="GridCell.Tab.0.left" timestamp="1581202552448">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state width="1320" height="253" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1581202552448" />
+    <state width="1320" height="253" key="GridCell.Tab.0.right" timestamp="1581202552449">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state width="1320" height="253" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1581202552449" />
+    <state x="339" y="224" key="com.intellij.ide.util.TipDialog" timestamp="1581194985881">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="339" y="224" key="com.intellij.ide.util.TipDialog/0.27.1366.741@0.27.1366.741" timestamp="1581194985881" />
+  </component>
+</project>

@@ -1,0 +1,3 @@
+[debug] "not up to date. inChanged = true, force = false
+[debug] Updating ProjectRef(uri("file:/home/jeff/git/BigData/023-MultiSourceWordCount/project/"), "root-023-multisourcewordcount-build")...
+[debug] Done updating ProjectRef(uri("file:/home/jeff/git/BigData/023-MultiSourceWordCount/project/"), "root-023-multisourcewordcount-build")
