@@ -4,9 +4,7 @@ import textract
 
 from pyspark import SparkContext, SQLContext
 from pyspark.rdd import RDD
-from pyspark.sql import DataFrame, Row
-from pyspark.sql.functions import col
-from pyspark.sql.types import IntegerType
+from pyspark.sql import SparkSession, DataFrame, Row, functions as F
 
 START_DIR = "/home/jeff/git/BigData/026-ProfilesPySpark/profiles/"
 STOP_WORDS_FILENAME: str = "terrier-stop.txt"
@@ -17,6 +15,7 @@ JOINED_OUTPUT_FILENAME:str = "Joined.out"
 WORD_COLUMN_NAME:  str    = "word"
 COUNT_COLUMN_NAME: str    = "count"
 WEIGHTED_COLUMN_NAME: str = "weight"
+FREQUENCY_COUNT_FN: str   = "freq_count"
 
 # FOUR PROFILES TO GATHER DATA ON
 THE_CHOSEN_FOUR:list = [ "JeffreyReiherProfile.doc",\
@@ -25,8 +24,13 @@ THE_CHOSEN_FOUR:list = [ "JeffreyReiherProfile.doc",\
                          "ChrisPeng-Profile.docx"\
                        ]
 
+TOOL_LIST: list =      [ "kafka",  "spark",   "emr",     "mr",        "mapreduce",
+                         "flume",  "aws",     "Hadoop",  "Spark",     "Data Bricks",
+                         "Hive",   "Presto",  "Airflow", "EC2",       "Amazon",
+                         "Python", "Pyspark", "Redshift" "Snowflake", "Googleads"
+                       ]
 SC: SparkContext = SparkContext()
-
+SPARK: SparkSession = SparkSession(SC)
 
 def read_all_profiles() -> str:
     """
@@ -43,15 +47,15 @@ def read_all_profiles() -> str:
                 text += str(textract.process(full_path).decode("utf-8") ).lower()
             except:
                 print("Exception on " + fname)
-    return text
+    return text.lower()
 
 def read_one_profile( fname: str ) -> str:
     # READ EACH OF THE PROFILE DOCUMENTS AND ADD TO TEXT VAR
     full_path = START_DIR + fname
-    return str(textract.process(full_path).decode("utf-8") )
+    return str(textract.process(full_path).decode("utf-8") ).lower()
 
 #def into_lines( text:str ) -> list:
-def into_unique_lines(text: list) -> RDD:
+def into_unique_lines(text: str) -> RDD:
     """
     Split a string into a list of strings by separating the supplied string at each carriage return
     :param text: The text to split
@@ -83,24 +87,14 @@ def compute_sum_of_values( rdd_in: RDD ) ->  int:
     for (i,j) in rdd_in:
         sum+=j
 
-    return sum
 
-def freq( value: int, total: int ) -> str:
-    """
-    Compute a frequence (%) and return a displayable string
-    :param value: the # of times this word was found
-    :param total: the total # of all words
-    :return: a pretty, displayable weight (%)
-    """
-    weight: float = 100 * value/total
-    str_val: str = str(weight)
-    return str_val[:7]+"%"
+    return sum
 
 def write_weighted_rdd( weighted_rdd: RDD, file_name: str ):
     sql_ctx: SQLContext = SQLContext(SC)
     df:DataFrame = sql_ctx.createDataFrame(weighted_rdd, [ WORD_COLUMN_NAME,COUNT_COLUMN_NAME,
                                                            WEIGHTED_COLUMN_NAME
-                                                         ]).orderBy( col(COUNT_COLUMN_NAME).desc() )
+                                                         ]).orderBy( F.col(COUNT_COLUMN_NAME).desc() )
 
     df.coalesce(1).write.format("com.databricks.spark.csv")\
                 .options(header="true")\
@@ -113,14 +107,15 @@ def clean_row( r: Row ) -> Row:
     r[9] = r[1] + r[3] + r[5] + r[7]
     return r
 
-def write_joined_df( df: DataFrame, file_name: str ):
-    df=df.fillna(0, subset= { df[1]: 0,
-                              df[3]: 0,
-                              df[5]: 0,
-                              df[7]: 0
-                            }
-                )
-    df=df.withColumn("total", df[1]+df[3]+df[5]+df[7])
+def write_joined_df( df: DataFrame, file_name: str ) -> DataFrame:
+    df=df.fillna(0, subset= [ "count_0", "count_1", "count_2", "count_3" ] )
+    df=df.withColumn("total", df[1] + df[3] + df[5] + df[7])
+
+    sum_df: DataFrame = df.groupBy().sum()
+    total_words:int = sum_df.collect()[0][4]
+
+    #freq_db_fn = F.udf(lambda cnt: freq_db(cnt, total_words) )
+    df=df.withColumn("total-weight", F.round(df[9]/total_words*100,3) )
 
     df.coalesce(1).write.format("com.databricks.spark.csv")\
                 .options(header="true")\
@@ -129,7 +124,19 @@ def write_joined_df( df: DataFrame, file_name: str ):
 def calculate_weights( rdd_in: RDD ) -> RDD:
     rdd_in = rdd_in.collect()
     total: int = compute_sum_of_values( rdd_in )
-    return SC.parallelize(rdd_in).map(lambda x: (x[0], x[1], freq(x[1],total)) )
+    return SC.parallelize(rdd_in).map(lambda x: (x[0], x[1], F.round(100*F.isnull(x[1],0)/total) ) )
+
+def total_weight_of_list( words: list, joined_weights: DataFrame ) -> DataFrame:
+    # WORD LIST TO DF
+    words_df = SPARK.createDataFrame(words).columns( WORD_COLUMN_NAME )
+
+    # INNER JOIN DFs
+    words_df.join( joined_weights, on=WORD_COLUMN_NAME, how="inner")
+
+    print( list( words_df.join ) )
+    # COMPUTE TOTAL COUNTS AND WEIGHTS FOR EACH "PROFILE"
+
+    return joined_weights
 
 def convert_to_words( lines: list ) -> RDD:
     words: RDD = into_words( u_lines )
@@ -142,8 +149,6 @@ if __name__ == '__main__':
 
     # CONVERT TEXT INTO A LIST OF UNIQUE LINES
     u_lines: RDD = into_unique_lines( text )
-    # u_lines.filter( lambda s: s.contains( "data" ) )
-    # print( u_lines.take(10) )
 
     # CONVERT TEXT INTO A LIST OF WORDS (WITH STOP WORDS REMOVED)
     word_rdd: RDD = convert_to_words( u_lines )
@@ -156,7 +161,7 @@ if __name__ == '__main__':
 
     # WRITE CSV TO DISK
     write_weighted_rdd( weighted_rdd, FULL_WEIGHTED_OUTPUT_FILENAME )
-    """
+"""
     join_df: DataFrame = None
 
     filenum:int = 0
@@ -181,7 +186,6 @@ if __name__ == '__main__':
 
         # sql_ctx: SQLContext = SQLContext(SC)
         sql_ctx: SQLContext = SQLContext(SC)
-        # df:DataFrame = sql_ctx.createDataFrame(weighted_rdd, [WORD_COLUMN_NAME,COUNT_COLUMN_NAME,"weight"]).orderBy( col(COUNT_COLUMN_NAME).desc() )
         new_df: DataFrame\
             = sql_ctx.createDataFrame( weighted_rdd,
                                        [ WORD_COLUMN_NAME,
@@ -197,5 +201,6 @@ if __name__ == '__main__':
 
         filenum += 1
 
-    write_joined_df( join_df, JOINED_OUTPUT_FILENAME )
-    print( join_df.collect() )
+    join_df: DataFrame = write_joined_df( join_df, JOINED_OUTPUT_FILENAME )
+
+    print( total_weight_of_list( TOOL_LIST, join_df ) )
