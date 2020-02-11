@@ -3,3 +3,5 @@ antiword/
 profiles/
 venv/
 .idea/
+*txt/
+**/_SUCCESS
