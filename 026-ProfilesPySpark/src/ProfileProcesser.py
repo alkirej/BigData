@@ -26,9 +26,9 @@ THE_CHOSEN_FOUR:list = [ "JeffreyReiherProfile.doc",\
                        ]
 
 TOOL_LIST: list =      [ "kafka",  "spark",   "emr",     "mr",        "mapreduce",
-                         "flume",  "aws",     "Hadoop",  "Spark",     "Data Bricks",
-                         "Hive",   "Presto",  "Airflow", "EC2",       "Amazon",
-                         "Python", "Pyspark", "Redshift" "Snowflake", "Googleads"
+                         "flume",  "aws",     "hadoop",  "spark",     "data bricks",
+                         "hive",   "presto",  "airflow", "ec2",       "amazon",
+                         "python", "pyspark", "redshift" "snowflake", "googleads"
                        ]
 SC: SparkContext = SparkContext()
 SPARK: SparkSession = SparkSession(SC)
