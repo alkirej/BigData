@@ -5,6 +5,7 @@ import textract
 from pyspark import SparkContext, SQLContext
 from pyspark.rdd import RDD
 from pyspark.sql import SparkSession, DataFrame, Row, functions as F
+from pyspark.sql.types import StringType, StructField, StructType
 
 START_DIR = "/home/jeff/git/BigData/026-ProfilesPySpark/profiles/"
 STOP_WORDS_FILENAME: str = "terrier-stop.txt"
@@ -31,6 +32,8 @@ TOOL_LIST: list =      [ "kafka",  "spark",   "emr",     "mr",        "mapreduce
                        ]
 SC: SparkContext = SparkContext()
 SPARK: SparkSession = SparkSession(SC)
+
+total_counts_for_the_four: list = []
 
 def read_all_profiles() -> str:
     """
@@ -108,7 +111,9 @@ def clean_row( r: Row ) -> Row:
     return r
 
 def write_joined_df( df: DataFrame, file_name: str ) -> DataFrame:
-    df=df.fillna(0, subset= [ "count_0", "count_1", "count_2", "count_3" ] )
+    #df=df.fillna(0, subset= [ "count_0",  "count_1",  "count_2",  "count_3"  ] )
+    #df=df.fillna(0, subset= [ "weight_0", "weight_1", "weight_2", "weight_3" ] )
+    df=df.fillna( 0 )
     df=df.withColumn("total", df[1] + df[3] + df[5] + df[7])
 
     sum_df: DataFrame = df.groupBy().sum()
@@ -120,35 +125,47 @@ def write_joined_df( df: DataFrame, file_name: str ) -> DataFrame:
     df.coalesce(1).write.format("com.databricks.spark.csv")\
                 .options(header="true")\
                 .save("file:///home/jeff/git/BigData/026-ProfilesPySpark/results/" + file_name )
+    return df
 
 def calculate_weights( rdd_in: RDD ) -> RDD:
     rdd_in = rdd_in.collect()
     total: int = compute_sum_of_values( rdd_in )
-    return SC.parallelize(rdd_in).map(lambda x: (x[0], x[1], F.round(100*F.isnull(x[1],0)/total) ) )
+    total_counts_for_the_four.append( total )
 
-def total_weight_of_list( words: list, joined_weights: DataFrame ) -> DataFrame:
+    return SC.parallelize(rdd_in).map(lambda x: (x[0], x[1], 0))
+    #F.round(100*x[1]/total)))
+
+def total_weight_of_list( words: list, joined_weights: DataFrame ) -> list:
     # WORD LIST TO DF
-    words_df = SPARK.createDataFrame(words).columns( WORD_COLUMN_NAME )
+    words_df = SPARK.createDataFrame(words, StringType()).toDF( WORD_COLUMN_NAME )
+    #joined_weights = joined_weights.fillna(0)
 
     # INNER JOIN DFs
-    words_df.join( joined_weights, on=WORD_COLUMN_NAME, how="inner")
+    words_df = words_df.join( joined_weights, on=WORD_COLUMN_NAME, how="inner")
 
-    print( list( words_df.join ) )
     # COMPUTE TOTAL COUNTS AND WEIGHTS FOR EACH "PROFILE"
+    words_df = words_df.agg(F.sum("count_0"), F.sum("count_1"), F.sum("count_2"), F.sum("count_3")).collect()
 
-    return joined_weights
+    return [ 100*words_df[0][i]/total_counts_for_the_four[i] for i in range(4) ]
 
 def convert_to_words( lines: list ) -> RDD:
     words: RDD = into_words( u_lines )
     return remove_stop_words( words )
 
 if __name__ == '__main__':
-    """
     # READ TEXT FROM DOC FILES AND CONVERT TO TEXT
     text: str    = read_all_profiles()
 
     # CONVERT TEXT INTO A LIST OF UNIQUE LINES
     u_lines: RDD = into_unique_lines( text )
+
+    '''
+    with open( "profile-lines.txt", "w" ) as file:
+        for i in u_lines.collect():
+            file.write(i)
+            file.write('\n')
+    quit()
+    '''
 
     # CONVERT TEXT INTO A LIST OF WORDS (WITH STOP WORDS REMOVED)
     word_rdd: RDD = convert_to_words( u_lines )
@@ -161,9 +178,8 @@ if __name__ == '__main__':
 
     # WRITE CSV TO DISK
     write_weighted_rdd( weighted_rdd, FULL_WEIGHTED_OUTPUT_FILENAME )
-"""
-    join_df: DataFrame = None
 
+    join_df: DataFrame = None
     filenum:int = 0
     for f in THE_CHOSEN_FOUR:
         # READ TEXT FROM DOC FILES AND CONVERT TO TEXT
@@ -201,6 +217,7 @@ if __name__ == '__main__':
 
         filenum += 1
 
-    join_df: DataFrame = write_joined_df( join_df, JOINED_OUTPUT_FILENAME )
+    join_df = write_joined_df( join_df, JOINED_OUTPUT_FILENAME )
 
-    print( total_weight_of_list( TOOL_LIST, join_df ) )
+    for i in total_weight_of_list(TOOL_LIST, join_df ):
+        print(i)
