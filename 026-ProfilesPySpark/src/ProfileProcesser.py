@@ -1,4 +1,4 @@
-import os
+import os 
 import re
 import textract
 
@@ -132,8 +132,7 @@ def calculate_weights( rdd_in: RDD ) -> RDD:
     total: int = compute_sum_of_values( rdd_in )
     total_counts_for_the_four.append( total )
 
-    return SC.parallelize(rdd_in).map(lambda x: (x[0], x[1], 0))
-    #F.round(100*x[1]/total)))
+    return SC.parallelize(rdd_in).map(lambda x: (x[0], x[1], round(100*x[1]/total)))
 
 def total_weight_of_list( words: list, joined_weights: DataFrame ) -> list:
     # WORD LIST TO DF

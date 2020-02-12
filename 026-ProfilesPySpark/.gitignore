@@ -6,3 +6,4 @@ venv/
 *txt/
 **/_SUCCESS
 **/*bak
+results/
