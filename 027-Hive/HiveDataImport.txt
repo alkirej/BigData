@@ -1,0 +1,29 @@
+FILE LIST:
+==========
+-rw-rw-r-- 1 1005 1005 4825 Feb 14 15:01 allData.hql
+-rw-rw-r-- 1 1005 1005  651 Feb 14 15:01 genre.hql
+-rw-rw-r-- 1 1005 1005  760 Feb 14 14:55 data.hql
+-rw-rw-r-- 1 1005 1005 1922 Feb 14 14:53 movie.hql
+-rwxr-xr-x 1 1005 1005  356 Feb 14 14:51 consolidate.sh
+-rw-rw-r-- 1 1005 1005  786 Feb 14 14:47 user.hql
+-rw-rw-r-- 1 1005 1005  617 Feb 14 14:47 occupation.hql
+-rw-rw-r-- 1 1005 1005  535 Feb 13 22:54 convert-date.awk
+
+
+# CONVERT DATE FORMAT OF DATES IN u.item FROM dd-Mmm-YYYY to YYYY-mm-dd
+awk -f convert-date.awk ../u.item > ../new.item
+
+# CREATE HQL TO IMPORT DATA FROM DISK FILES INTO HIVE FOR EACH TABLE
+# NOTE THESE SCRIPTS LOAD THE DATA INTO A TEMP TABLE (IN TEXT/FOW FORMAT)
+# AND THEN CONVERT IT INTO PARQUET FORMAT BY SELECTING THE DATA AND 
+# INSERTING IT INTO ANOTHER MORE PERMANENT TABLE
+#
+# TABLES: data,     movie,    usr,     occupation,    genre
+# FILES:  data.hql, movie.hql user.hql occupation.hql genre.hql
+
+# TEST HQL SCRIPTS UNTIL THE WORK IN TEST ENVORNMENT
+# CONSOLIDATE SCRIPTS INTO A SINGLE SCRIPT AND ADD CREATE DATABASE COMMAND
+./consolidate.sh > allData.hql
+
+# EXECUTE THE COMPLETE SCRIPT ON HIVE TO LOAD ALL DATA
+hive -hiveconf hive.execution.engine=mr -f allData.hql
