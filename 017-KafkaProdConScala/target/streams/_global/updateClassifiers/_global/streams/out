@@ -1,3 +1,4 @@
 [debug] "not up to date. inChanged = true, force = false
-[debug] Updating ProjectRef(uri("file:/home/jeff/git/BigData/017-new/"), "root-017-new")...
-[debug] Done updating ProjectRef(uri("file:/home/jeff/git/BigData/017-new/"), "root-017-new")
+[debug] Updating ProjectRef(uri("file:/home/jeff/git/BigData/017-KafkaProdConScala/"), "root-017-kafkaprodconscala")...
+[debug] Done updating ProjectRef(uri("file:/home/jeff/git/BigData/017-KafkaProdConScala/"), "root-017-kafkaprodconscala")
+[warn] There may be incompatibilities among your library dependencies; run 'evicted' to see detailed eviction warnings.

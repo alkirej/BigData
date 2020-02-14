@@ -20,12 +20,7 @@
       <state>
         <projects_view>
           <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="017-new" type="f1a62948:ProjectNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </tree_state>
         </projects_view>
@@ -50,6 +45,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -90,7 +86,7 @@
           <value>
             <list>
               <ExternalProjectPojo>
-                <option name="name" value="root-017-new [file:/home/jeff/git/BigData/017-new/]" />
+                <option name="name" value="root-017-kafkaprodconscala [file:/home/jeff/git/BigData/017-KafkaProdConScala/]" />
                 <option name="path" value="$PROJECT_DIR$" />
               </ExternalProjectPojo>
               <ExternalProjectPojo>
@@ -104,14 +100,8 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="3162283374492" />
-        <entry key="$PROJECT_DIR$/build.sbt" value="1116135409" />
+        <entry key="$PROJECT_DIR$/build.sbt" value="2021347361" />
         <entry key="$PROJECT_DIR$/project/build.properties" value="1244562550" />
-      </map>
-    </option>
-    <option name="projectSyncType">
-      <map>
-        <entry key="$PROJECT_DIR$/../017-KafkaProdConScala" value="PREVIEW" />
       </map>
     </option>
   </component>
@@ -130,38 +120,38 @@
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="416" y="154" width="524" height="484" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.27.1366.741@0.27.1366.741" timestamp="1581141323412" />
-    <state width="1320" height="255" key="GridCell.Tab.0.bottom" timestamp="1581148326910">
+    <state width="1320" height="219" key="GridCell.Tab.0.bottom" timestamp="1581713120797">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="255" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1581148326910" />
-    <state width="1320" height="255" key="GridCell.Tab.0.center" timestamp="1581148326910">
+    <state width="1320" height="219" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1581713120797" />
+    <state width="1320" height="219" key="GridCell.Tab.0.center" timestamp="1581713120796">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="255" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1581148326910" />
-    <state width="1320" height="255" key="GridCell.Tab.0.left" timestamp="1581148326910">
+    <state width="1320" height="219" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1581713120796" />
+    <state width="1320" height="219" key="GridCell.Tab.0.left" timestamp="1581713120796">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="255" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1581148326910" />
-    <state width="1320" height="255" key="GridCell.Tab.0.right" timestamp="1581148326910">
+    <state width="1320" height="219" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1581713120796" />
+    <state width="1320" height="219" key="GridCell.Tab.0.right" timestamp="1581713120796">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="255" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1581148326910" />
-    <state width="1320" height="219" key="GridCell.Tab.1.bottom" timestamp="1581147678866">
+    <state width="1320" height="219" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1581713120796" />
+    <state width="1320" height="219" key="GridCell.Tab.1.bottom" timestamp="1581713120798">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="219" key="GridCell.Tab.1.bottom/0.27.1366.741@0.27.1366.741" timestamp="1581147678866" />
-    <state width="1320" height="219" key="GridCell.Tab.1.center" timestamp="1581147678866">
+    <state width="1320" height="219" key="GridCell.Tab.1.bottom/0.27.1366.741@0.27.1366.741" timestamp="1581713120798" />
+    <state width="1320" height="219" key="GridCell.Tab.1.center" timestamp="1581713120797">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="219" key="GridCell.Tab.1.center/0.27.1366.741@0.27.1366.741" timestamp="1581147678866" />
-    <state width="1320" height="219" key="GridCell.Tab.1.left" timestamp="1581147678865">
+    <state width="1320" height="219" key="GridCell.Tab.1.center/0.27.1366.741@0.27.1366.741" timestamp="1581713120797" />
+    <state width="1320" height="219" key="GridCell.Tab.1.left" timestamp="1581713120797">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="219" key="GridCell.Tab.1.left/0.27.1366.741@0.27.1366.741" timestamp="1581147678865" />
-    <state width="1320" height="219" key="GridCell.Tab.1.right" timestamp="1581147678866">
+    <state width="1320" height="219" key="GridCell.Tab.1.left/0.27.1366.741@0.27.1366.741" timestamp="1581713120797" />
+    <state width="1320" height="219" key="GridCell.Tab.1.right" timestamp="1581713120797">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="219" key="GridCell.Tab.1.right/0.27.1366.741@0.27.1366.741" timestamp="1581147678866" />
+    <state width="1320" height="219" key="GridCell.Tab.1.right/0.27.1366.741@0.27.1366.741" timestamp="1581713120797" />
     <state x="195" y="27" width="1024" height="741" key="SettingsEditor" timestamp="1581145832108">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
@@ -170,5 +160,9 @@
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="339" y="224" key="com.intellij.ide.util.TipDialog/0.27.1366.741@0.27.1366.741" timestamp="1581146074885" />
+    <state x="0" y="27" width="710" height="741" key="find.popup" timestamp="1581711687995">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="0" y="27" width="710" height="741" key="find.popup/0.27.1366.741@0.27.1366.741" timestamp="1581711687995" />
   </component>
 </project>

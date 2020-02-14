@@ -1,12 +1,16 @@
 package net.alkire.kafka.consumer
 
-import java.util.Arrays
-import java.util.Properties
-
-import org.apache.kafka.common.TopicPartition
 import org.apache.kafka.clients.consumer.{ConsumerRecords, KafkaConsumer}
+import org.apache.kafka.common.TopicPartition
+
+import java.io.{BufferedWriter, File, FileWriter}
+import java.util.{Arrays, Properties}
+
+import sys.process._
+
 
 object ScreenConsumer {
+    
     /**
      * Setup the properties for the kafka connection
      * @return configuration for the kafka connection
@@ -22,19 +26,39 @@ object ScreenConsumer {
         props
     }
 
+    def writeToFile( contents: String ) : String = {
+        val fileName: String = "kafka-scala.output"
+        val file = new File( fileName )
+        val writer = new BufferedWriter(new FileWriter(file))
+        for (line <- contents) {
+            writer.write(line)
+        }
+        writer.close()
+        fileName
+    }
+    
+    def moveFileToHDFS( fileName: String ) : Unit = {
+        val cmd: String = "/opt/hadoop/bin/hdfs dfs -put -f " + fileName + " /data/" + fileName
+        cmd !
+    }
+    
     /**
      * Display the results supplied by the consumer
      * @param kc  the consumer who will give us the results
      */
-    def display_results( kc: KafkaConsumer[String,String] ) = {
-        var results: ConsumerRecords[String,String] = kc.poll(2000)
-
+    def save_results( kc: KafkaConsumer[String,String] ) = {
+        val results: ConsumerRecords[String,String] = kc.poll(2000)
+        var sb: StringBuilder = new StringBuilder()
+        
         val iter = results.iterator()
         while (iter.hasNext) {
             val r = iter.next
-            println( r.value )
+            sb.append(r)
+            sb.append("\n")
         }
 
+        val url: String = writeToFile( sb.toString() )
+        moveFileToHDFS( url )
     }
 
     /**
@@ -53,6 +77,6 @@ object ScreenConsumer {
     }
 
     def main(args: Array[String]): Unit = {
-        display_results( consumer )
+        save_results( consumer )
     }
 }
