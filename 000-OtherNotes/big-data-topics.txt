@@ -18,3 +18,8 @@ BIG DATA TOPICS
         
     Kafka - publisher - subscriber data ingestion
     Airflow
+    Spark
+    PySpark
+    Hive
+    MySQL
+    Derbe
