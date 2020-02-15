@@ -1,11 +1,6 @@
 package net.alkire.sss
 
-import java.io.{BufferedWriter, File, FileWriter, PrintWriter}
-
-import org.apache.commons.codec.StringEncoder
-import org.apache.spark.sql.streaming.{DataStreamReader, StreamingQuery}
 import org.apache.spark.sql.{DataFrame, Dataset, ForeachWriter, Row, SparkSession}
-import org.apache.spark.sql.types.{StringType, StructType}
 
 object SparkStructuredStreaming {
     
