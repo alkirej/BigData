@@ -27,3 +27,4 @@ awk -f convert-date.awk ../u.item > ../new.item
 
 # EXECUTE THE COMPLETE SCRIPT ON HIVE TO LOAD ALL DATA
 hive -hiveconf hive.execution.engine=mr -f allData.hql
+
