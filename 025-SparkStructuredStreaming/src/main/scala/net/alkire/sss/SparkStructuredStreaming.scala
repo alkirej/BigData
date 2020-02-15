@@ -25,16 +25,6 @@ object SparkStructuredStreaming {
                 .load()
                 .selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)")
                 .as("msg")
-    
-        // FOR EACH ITEM RECEIVED, SIMPLY WRITE THE MESSAGE PORTION OF THE KAFKA COMMUNICATION
-        df.writeStream.foreach(
-            new ForeachWriter[Row] {
-                def open(partitionId: Long, version: Long): Boolean = { true }
-                def close(errorOrNull: Throwable): Unit = { }
-            
-                def process(record: Row) = { println( record.getString(1) ) }
-            }
-        )
         
         // SET UP THE WRITE STREAM AND START STREAMING
         df.writeStream
