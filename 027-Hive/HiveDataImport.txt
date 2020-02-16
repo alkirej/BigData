@@ -9,6 +9,8 @@ FILE LIST:
 -rw-rw-r-- 1 1005 1005  617 Feb 14 14:47 occupation.hql
 -rw-rw-r-- 1 1005 1005  535 Feb 13 22:54 convert-date.awk
 
+# NOTE: SCRIPTS ARE LOCATED IN DATA/HQL DIRECTORY
+cd data/hql
 
 # CONVERT DATE FORMAT OF DATES IN u.item FROM dd-Mmm-YYYY to YYYY-mm-dd
 awk -f convert-date.awk ../u.item > ../new.item
