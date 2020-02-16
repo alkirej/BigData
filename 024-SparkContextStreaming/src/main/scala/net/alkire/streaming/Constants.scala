@@ -13,14 +13,15 @@ object Constants {
     
     
     // WARNING: using an ip here causes trouble
-    val ConsumerBrokerName: String = "jeff-laptop:50001"
+    val ConsumerBrokerName: String = "jeff-laptop-apt:50001"
     //val KafkaMachineName = "jeff-laptop"
     
     val KafkaMachineName = "localhost"
     val BrokerPort: Int  = 50001
+    val ZookeeperUrl: String = "jeff-laptop-apt:2181"
     
     val KafkaBrokerAddr: String  = KafkaMachineName + ":" + BrokerPort
-    val TopicName: String        = "GlobalWarming2"
+    val TopicName: String        = "GlobalWarming"
     val CharEncoding: String     = "utf-8"
     val SerializingClass: String = "org.apache.kafka.common.serialization.StringSerializer"
     val DeserializingClass: String = "org.apache.kafka.common.serialization.StringDeserializer"
@@ -29,6 +30,7 @@ object Constants {
     val Offset: String              = "earliest"
     val GroupId: String             = "sample"
 
+    val AppName: String             = "spark-streaming-from-kafka"
 }
 
 

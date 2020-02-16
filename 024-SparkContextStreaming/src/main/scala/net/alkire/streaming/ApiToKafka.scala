@@ -3,7 +3,7 @@ import java.net.{URL, URLConnection}
 import java.util.Properties
 
 import scala.language.postfixOps
-import org.apache.kafka.clients.producer.{Callback, KafkaProducer, ProducerRecord, RecordMetadata}
+import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord}
 
 object ApiToKafka {
     /**
@@ -17,14 +17,14 @@ object ApiToKafka {
         // CONNECT OVER WEB
         val url: URL = new URL( httpUrl )
         val conn: URLConnection = url.openConnection
-        conn.addRequestProperty( "User-Agent", "Mozilla/5.0" );
+        conn.addRequestProperty( "User-Agent", "Mozilla/5.0" )
         
         // STREAM DATA FROM SITE
         val inputStream = conn.getInputStream
         val content = scala.io.Source.fromInputStream( inputStream ).mkString
-        inputStream.close
+        inputStream.close()
 
-        // RETURN THE CONTENT RETREIVED
+        // RETURN THE CONTENT RETRIEVED
         content
     }
     
@@ -57,7 +57,7 @@ object ApiToKafka {
      * Write a message to the kafka borker
      * @param data data to send
      */
-    def writeToKafka( data: String ) = {
+    def writeToKafka( data: String ): Unit = {
         // SETUP FOR MESSAGE SEND
         val producer: KafkaProducer[String,String] = new KafkaProducer[String,String]( kafkaProps )
         val record = message( data )
@@ -65,7 +65,7 @@ object ApiToKafka {
         // SEND MESSAGE AND CLEAN UP
         producer.send(record )
         producer.flush()
-        producer.close
+        producer.close()
     }
     
     /**
