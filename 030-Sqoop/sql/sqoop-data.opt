@@ -1,0 +1,15 @@
+import
+-m
+1
+--as-textfile
+--connect
+jdbc:mysql://sandbox-hdp.hortonworks.com/movies_db
+--username
+maria_dev
+--password
+maria_dev
+--table
+data
+--hive-import
+--hive-database
+movielens_db

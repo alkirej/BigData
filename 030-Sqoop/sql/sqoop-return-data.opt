@@ -1,0 +1,13 @@
+export
+--connect
+jdbc:mysql://sandbox-hdp.hortonworks.com/movies_db
+--username
+maria_dev
+--password
+maria_dev
+--table
+return_data
+--export-dir
+/apps/hive/warehouse/movielens_db.db/data
+--input-fields-terminated-by 
+\001
