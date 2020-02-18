@@ -1,0 +1,66 @@
+######################################
+#       1 - LOAD DATA INTO SQL       #
+######################################
+
+# Connect to mysql as root
+mysql -u root -phortonworks1
+
+# Create maria_dev user
+CREATE USER maria_dev IDENTIFIED BY maria_devs;
+GRANT ALL PRIVILEGES ON *.* TO maria_dev;
+
+commit;
+exit;
+
+# Connect to mysql as maria_dev and create database
+mysql -u maria_dev -pmaria_dev
+CREATE DATABASE movies_db;
+
+# Use the database and load the data
+USE DATABASE movies_db;
+
+# Add this line to /etc/my.cnf under [mysqld]s
+secure-file-priv = ""
+
+# Add data to mysql
+#
+# mysql -h localhost -u maria_dev -pmaria_dev movies_db < user.sql
+# mysql -h localhost -u maria_dev -pmaria_dev movies_db < data.sql
+# mysql -h localhost -u maria_dev -pmaria_dev movies_db < genre.sql
+# mysql -h localhost -u maria_dev -pmaria_dev movies_db < occupation.sql
+# mysql -h localhost -u maria_dev -pmaria_dev movies_db < movie.sql
+
+# Run consolidate.sh (combines all scripts into one)
+./consolidate.sh
+
+# Execute generated SQL
+mysql -h localhost -u maria_dev -pmaria_dev < allData.sql
+
+################################################
+# 2 - MOVE DATA FROM MySQL TO HIVE USING SQOOP #
+################################################
+# Setup sqoop environment by setting the following environment variable
+# and placing it in .bash_profile
+export ACCUMULO_HOME='/usr/hdp/2.6.5.0-292/pig/doc/api/org/apache/pig/backend/hadoop/accumulo'
+
+# Perform simple sanity check
+sqoop-version
+
+# Returns something like this on good days :)
+# Sqoop 1.4.6.2.6.5.0-292
+# git commit id 0933a7c336da72cabb1ddfa5662416a374521b67
+# Compiled by jenkins on Fri May 11 07:59:00 UTC 2018
+
+# CREATE 1 MANAGED TABLE
+sqoop --options-file sqoop-data.opt
+
+# CREATE 4 MANAGED TABLES
+sqoop --options-file sqoop-user.opt
+sqoop --options-file sqoop-genre.opt
+sqoop --options-file sqoop-occupation.opt
+sqoop --options-file sqoop-movie.opt
+
+
+
+hive -hiveconf hive.execution.engine=mr -f create-external-tables.sql 
+
