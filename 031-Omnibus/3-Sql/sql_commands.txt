@@ -1,8 +1,12 @@
--- CROSS JOIN
+-- SETUP (IF NECESSARY)
 mysql -u maria_dev -pmariadev
-create database task31;
-use task31;
+CREATE USER jeff;
+GRANT ALL PRIVILEGES ON *.* TO jeff;
 
+CREATE DATABASE task31;
+USE task31;
+
+-- CROSS JOIN
 create table cross_join( id int, name varchar(20) );
 
 insert into cross_join( 1, "Sally" );
@@ -27,3 +31,36 @@ insert into person (id, name, mom, dad) values ( 7, 'Seth', 2, 1 );
 -- Self join - retreive all children of Eve
 select pa.name as mother, ch.name child from person ch, person pa where pa.id=ch.mom and pa.id=2;
 
+-- SQL WINDOW(ing) FUNCTIONS
+CREATE TABLE sales( year int, month int, product varchar(20), price int );
+INSERT INTO sales (year,month,product,price) VALUES (2015, 6, 'Hadoop', 100);
+INSERT INTO sales (year,month,product,price) VALUES (2014, 8, 'Hadoop', 75);
+INSERT INTO sales (year,month,product,price) VALUES (2018, 12, 'Hadoop', 75);
+INSERT INTO sales(year,month,product,price) VALUES (2015, 6, "ZooKeeper", 5);
+
+-- standard OVER clause
+WITH cte_mo_sales(year,month,product,sales) AS
+    ( SELECT year,month,product,SUM(price) AS sales 
+      FROM sales 
+      GROUP BY year,month,product 
+      ORDER BY year,month
+    )
+SELECT year, 
+       month, 
+       product, 
+       sales, 
+       AVG(sales) OVER (PARTITION BY year,month) AS 'Avg Sales' 
+FROM cte_mo_sales;
+
+-- LAG (previous record) with OVER
+WITH cte_mo_sales(year,month,product,sales) AS 
+  ( SELECT year,month,product,SUM(price) AS sales 
+    FROM sales GROUP BY year,month,product 
+    ORDER BY year,month
+  )  
+SELECT year, month, product, sales, 
+       LAG(product) OVER (PARTITION BY year) AS 'Last Product' 
+FROM cte_mo_sales;
+
+-- LAG  = from last row of query
+-- LEAD = from next row of query
