@@ -6,7 +6,7 @@
 mysql -u root -phortonworks1
 
 # Create maria_dev user
-CREATE USER maria_dev IDENTIFIED BY maria_devs;
+CREATE USER maria_dev IDENTIFIED BY 'maria_dev';
 GRANT ALL PRIVILEGES ON *.* TO maria_dev;
 
 commit;
