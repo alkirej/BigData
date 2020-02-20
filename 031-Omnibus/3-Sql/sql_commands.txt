@@ -1,0 +1,29 @@
+-- CROSS JOIN
+mysql -u maria_dev -pmariadev
+create database task31;
+use task31;
+
+create table cross_join( id int, name varchar(20) );
+
+insert into cross_join( 1, "Sally" );
+insert into cross_join( 2, "Suzy" );
+insert into cross_join( 3, "Billy" );
+insert into cross_join( 4, "John" );
+
+-- Self join AND Cross join (cross join = cartesian product)
+select * from cross_join a, cross_join b;
+
+
+-- SELF JOIN
+create table person ( id int, name varchar(20), mom int, dad int );
+insert into person (id, name ) values ( 1, 'Adam' );
+insert into person (id, name ) values ( 2, 'Eve' );
+insert into person (id, name, mom, dad) values ( 3, 'Cain', 2, 1 );
+insert into person (id, name, mom, dad) values ( 4, 'Abel', 2, 1 );
+insert into person (id, name, mom, dad) values ( 5, 'Bekah', 2, 1 );
+insert into person (id, name, mom, dad) values ( 6, 'Bekah Jr.', 3, 5 );
+insert into person (id, name, mom, dad) values ( 7, 'Seth', 2, 1 );
+
+-- Self join - retreive all children of Eve
+select pa.name as mother, ch.name child from person ch, person pa where pa.id=ch.mom and pa.id=2;
+
