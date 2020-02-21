@@ -1,7 +1,7 @@
 package net.alkire.streaming
 
 object Constants {
-    val ApiKey: String = "b8b97f529595b624466df3fc44981779"
+    val ApiKey: String = "---"
     val JoshuaTreeLocation = "34.1347,-116.3131"
     
     val LocalPath: String = "weather-jt-2.json"
