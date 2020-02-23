@@ -13,7 +13,7 @@ sudo wget https://www.apache.org/dist/cassandra/KEYS | sudo apt-key add -
 echo "Y
 " > Yes.txt
 sudo apt-get update
-sudo apt-get install cassandra
+sudo apt-get install cassandra < Yes.txt
 
 rm Yes.txt
 rm KEYS
