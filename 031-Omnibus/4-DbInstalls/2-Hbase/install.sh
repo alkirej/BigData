@@ -49,3 +49,4 @@ sudo chmod -R 774 hadoop
 echo "
 export PATH=/opt/hbase/bin:\$PATH
 " >> ~/.bash_profile
+
