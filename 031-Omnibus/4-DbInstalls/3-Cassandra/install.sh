@@ -1,6 +1,4 @@
 #!/bin/bash
-# BEFORE INSTALLING HBASE, JAVA MUST BE INSTALLED
-
 # AFTER INSTALL, execute the following command to connect to cassandra server:
 # cqlsh
 
