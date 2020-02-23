@@ -41,7 +41,7 @@ export CLASSPATH=$CLASSPATH:$DERBY_HOME/lib/derby.jar:$DERBY_HOME/lib/derbytools
 echo "
 export HIVE_HOME=$HIVE_HOME
 export DERBY_HOME=/opt/derby
-export PATH=$PATH:$HIVE_HOME/bin:$DERBY_HOME/bin
+export PATH=$HIVE_HOME/bin:$DERBY_HOME/bin:\$PATH
 export CLASSPATH=.:$HADOOP_HOME/lib/*:$HIVE_HOME/lib/*:$DERBY_HOME/lib/derby.jar:$DERBY_HOME/lib/derbytools.jar
 " >> ~/.bash_profile
 

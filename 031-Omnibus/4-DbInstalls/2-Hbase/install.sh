@@ -5,7 +5,7 @@
 ##################################################################
 # DOWNLOAD INSTALL FILES
 cd /opt
-# sudo wget http://apache.cs.utah.edu/hbase/2.2.3/hbase-2.2.3-bin.tar.gz
+sudo wget http://apache.cs.utah.edu/hbase/2.2.3/hbase-2.2.3-bin.tar.gz
 sudo tar xvzf hbase-2.2.3-bin.tar.gz
 sudo chown -R `whoami` hbase-2.2.3
 sudo ln -s hbase-2.2.3 hbase
@@ -46,4 +46,6 @@ cd /home
 sudo chown -R `whoami` hadoop
 sudo chmod -R 774 hadoop
 
-
+echo "
+export PATH=/opt/hbase/bin:\$PATH
+" >> ~/.bash_profile
