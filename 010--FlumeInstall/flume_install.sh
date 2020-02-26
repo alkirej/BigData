@@ -4,7 +4,7 @@
 # create flume directory
 export INSTALL_DIR=/opt/flume
 sudo mkdir -p $INSTALL_DIR
-sudo chown -R hadoop $INSTALL_DIR
+sudo chown -R `whoami` $INSTALL_DIR
 sudo chmod -R 755 $INSTALL_DIR
 
 # download flume
