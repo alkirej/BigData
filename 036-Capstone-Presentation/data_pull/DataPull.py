@@ -51,8 +51,8 @@ def get_games_for( year: int, month: int, day: int ):
     return json.dumps( response.json() )
 
 
-output: str = get_games_for( 2020, 2, 24 )
-file = open(r"output.json","w+")
+output: str = get_games_for( 2020, 2, 26 )
+file = open(r"data/2020-02-26.json","w+")
 file.write(output)
 file.close()
 print( output )
