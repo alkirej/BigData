@@ -54,13 +54,11 @@ echo "
 
 sudo mysql < ~/.temp.sql
 
-# ---------------------- UNDO COMMENT NEXT LINE ----------------
 sudo rm ~/.temp.sql
 
 # STOPPED UPDATES HERE --- 
 echo "
 export HIVE_HOME=$HIVE_HOME
-export DERBY_HOME=/opt/derby
 export PATH=$HIVE_HOME/bin:$DERBY_HOME/bin:\$PATH
 export CLASSPATH=.:$HADOOP_HOME/lib/*:$HIVE_HOME/lib/*
 " >> ~/.bash_profile
@@ -81,7 +79,7 @@ org.jpox.autoStartMechanismMode = checked
 org.jpox.transactionIsolation = read_committed
 javax.jdo.option.DetachAllOnCommit = true
 javax.jdo.option.NontransactionalRead = true
-javax.jdo.option.ConnectionDriverName = org.apache.derby.jdbc.ClientDriver
+javax.jdo.option.ConnectionDriverName = com.mysql.jdbc.Driver
 javax.jdo.option.ConnectionURL = jdbc:mysql://localhost/hive?createDatabaseIfNotExist=true
 javax.jdo.option.ConnectionUserName = ${USER}
 javax.jdo.option.ConnectionPassword = ${PASSWORD}
@@ -92,12 +90,12 @@ echo "
    <property>
       <name>javax.jdo.option.ConnectionURL</name>
       <value>jdbc:mysql://localhost/hive?createDatabaseIfNotExist=true</value>
-      <description>metadata is stored in a Derby server</description>
+      <description>metadata is stored in a mysql server</description>
    </property>
    <property>
       <name>javax.jdo.option.ConnectionDriverName</name>
       <value>com.mysql.jdbc.Driver</value>
-      <description>Derby driver class</description>
+      <description>mysql driver class</description>
    </property>
    <property>
       <name>javax.jdo.option.ConnectionUserName</name>
