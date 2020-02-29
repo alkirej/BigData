@@ -29,9 +29,9 @@ export HADOOP_HOME=$HADOOP_HOME
 
 # DOWNLOAD AND INSTALL JDBS DRIVER FOR MYSQL
 cd $HIVE_HOME/lib
-sudo wget http://www.java2s.com/Code/JarDownload/mysql/mysql-connector-java-commercial-5.1.7-bin.jar.zip
-sudo unzip mysql-connector-java-commercial-5.1.7-bin.jar.zip
-sudo rm mysql-connector-java-commercial-5.1.7-bin.jar.zip
+sudo wget http://www.java2s.com/Code/JarDownload/mysql/mysql-connector-java-5.1.22-bin.jar.zip
+sudo unzip mysql-connector-java-5.1.22-bin.jar.zip
+sudo rm mysql-connector-java-5.1.22-bin.jar.zip
 
 # DOWNLOAD MYSQL AND SETUP FILES
 sudo apt-get update
@@ -107,9 +107,25 @@ echo "
       <value>${PASSWORD}</value>
       <description>password for connecting to db</description>
    </property>
+   <property>
+      <name>javax.jdo.option.ConnectionPassword</name>\
+      <value>${PASSWORD}</value>
+      <description>password for connecting to db</description>
+   </property>
+   <property>
+      <name>hive.metastore.warehouse.dir</name>      
+      <value>hdfs://localhost:50501/user/hive/warehouse</value>
+      <description></description>
+   </property>
+   <property>
+      <name>spark.sql.warehouse.dir</name>      
+      <value>hdfs://localhost:50501/user/hive/warehouse</value>
+      <description></description>
+   </property>
 </configuration>
 " > hive-site.xml
 
+sudo ln -s /opt/hive/conf/hive-site.xml /opt/spark/conf/hive-site.xml
 # CREATE HIVE METASTORE
 echo "Create hive metastore"
 schematool -dbType mysql -initSchema
