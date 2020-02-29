@@ -7,13 +7,19 @@ PASSWORD=jeff
 ##################################################################
 # HADOOP MUST BE RUNNING BEFORE RUNNING THIS INSTALL SCRIPT !!!! #
 ##################################################################
+# DOWNLOAD AND INSTALL JDBS DRIVER FOR MYSQL
+cd $HIVE_HOME/lib
+sudo wget http://www.java2s.com/Code/JarDownload/mysql/mysql-connector-java-commercial-5.1.7-bin.jar.zip
+unzip mysql-connector-java-commercial-5.1.7-bin.jar.zip
+sudo rm mysql-connector-java-commercial-5.1.7-bin.jar.zip
+
 # DOWNLOAD INSTALL FILES FOR HIVE
 cd /opt
-sudo wget http://apache.claz.org/hive/hive-3.1.2/apache-hive-3.1.2-bin.tar.gz
-sudo tar xvf apache-hive-3.1.2-bin.tar.gz
-sudo chown -R `whoami` apache-hive-3.1.2-bin
-sudo ln -s apache-hive-3.1.2-bin hive
-sudo rm apache-hive-3.1.2-bin.tar.gz
+sudo wget http://apache.mirrors.pair.com/hive/stable-2/apache-hive-2.3.6-bin.tar.gz
+sudo tar xvf apache-hive-2.3.6-bin.tar.gz
+sudo chown -R `whoami` apache-hive-2.3.6-bin
+sudo ln -s apache-hive-2.3.6-bin hive
+sudo rm apache-hive-2.3.6-bin.tar.gz
 
 # SETUP HIVE ENVIRONMENT
 cd ~
@@ -30,46 +36,41 @@ export HADOOP_HOME=$HADOOP_HOME
 
 # DOWNLOAD MYSQL AND SETUP FILES
 sudo apt-get update
-sudo apt-get install mysql-server
+sudo apt-get --yes install mysql-server mysql-client
 
 # START MYSQL (NOW & AND DURING BOOT SEQUENCE)
 sudo systemctl start mysql
 sudo systemctl enable mysql
-
-# SETUP MYSQL ENVIRONMENT
-sudo echo "
-bind-address = 0.0.0.0
-" >> /etc/mysql/mysql.conf.d/mysqld.cnf
-
 sudo systemctl restart mysql
 
-sudo <<EOF
-  mysql <<SQL
+echo "
     UPDATE mysql.user SET authentication_string = PASSWORD('root') WHERE User = 'root';
     FLUSH PRIVILEGES;
-    CREATE DATABASE task36; 
+    -- CREATE DATABASE task36;
     INSERT INTO mysql.user (User,Host,authentication_string,ssl_cipher,x509_issuer,x509_subject)
         VALUES('${USER}','localhost',PASSWORD('${PASSWORD}'),'','','');
-    GRANT ALL PRIVILEGES ON task36.* to jeff@localhost;
+    GRANT ALL PRIVILEGES ON *.* to jeff@localhost;
     FLUSH PRIVILEGES;
-  SQL
-EOF
+" > ~/.temp.sql
+
+sudo mysql < ~/.temp.sql
+
+# ---------------------- UNDO COMMENT NEXT LINE ----------------
+sudo rm ~/.temp.sql
 
 # STOPPED UPDATES HERE --- 
 echo "
 export HIVE_HOME=$HIVE_HOME
 export DERBY_HOME=/opt/derby
 export PATH=$HIVE_HOME/bin:$DERBY_HOME/bin:\$PATH
-export CLASSPATH=.:$HADOOP_HOME/lib/*:$HIVE_HOME/lib/*:$DERBY_HOME/lib/derby.jar:$DERBY_HOME/lib/derbytools.jar
+export CLASSPATH=.:$HADOOP_HOME/lib/*:$HIVE_HOME/lib/*
 " >> ~/.bash_profile
 
 
-mkdir -p $DERBY_HOME/data
 cd $HIVE_HOME/conf
 
 echo "
 javax.jdo.PersistenceManagerFactoryClass =
-
 org.jpox.PersistenceManagerFactoryImpl
 org.jpox.autoCreateSchema = false
 org.jpox.validateTables = false
@@ -82,16 +83,16 @@ org.jpox.transactionIsolation = read_committed
 javax.jdo.option.DetachAllOnCommit = true
 javax.jdo.option.NontransactionalRead = true
 javax.jdo.option.ConnectionDriverName = org.apache.derby.jdbc.ClientDriver
-javax.jdo.option.ConnectionURL = jdbc:mysql://localhost:3306/hive?createDatabaseIfNotExist=true
-javax.jdo.option.ConnectionUserName = app
-javax.jdo.option.ConnectionPassword = derby
+javax.jdo.option.ConnectionURL = jdbc:mysql://localhost/hive?createDatabaseIfNotExist=true
+javax.jdo.option.ConnectionUserName = ${USER}
+javax.jdo.option.ConnectionPassword = ${PASSWORD}
 " > jpox.properties
 
 echo "
 <configuration>
    <property>
       <name>javax.jdo.option.ConnectionURL</name>
-      <value>jdbc:mysql://localhost:3306/hive?createDatabaseIfNotExist=true</value>
+      <value>jdbc:mysql://localhost/hive?createDatabaseIfNotExist=true</value>
       <description>metadata is stored in a Derby server</description>
    </property>
    <property>
@@ -101,12 +102,12 @@ echo "
    </property>
    <property>
       <name>javax.jdo.option.ConnectionUserName</name>
-      <value>app</value>
+      <value>${USER}</value>
       <description>user name for connecting to db</description>
    </property>
    <property>
       <name>javax.jdo.option.ConnectionPassword</name>\
-      <value>derby</value>
+      <value>${PASSWORD}</value>
       <description>password for connecting to db</description>
    </property>
 </configuration>
