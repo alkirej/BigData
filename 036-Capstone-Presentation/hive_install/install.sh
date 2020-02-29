@@ -48,7 +48,7 @@ echo "
     -- CREATE DATABASE task36;
     INSERT INTO mysql.user (User,Host,authentication_string,ssl_cipher,x509_issuer,x509_subject)
         VALUES('${USER}','localhost',PASSWORD('${PASSWORD}'),'','','');
-    GRANT ALL PRIVILEGES ON *.* to jeff@localhost;
+    GRANT ALL PRIVILEGES ON *.* to ${USER}@localhost;
     FLUSH PRIVILEGES;
 " > ~/.temp.sql
 
