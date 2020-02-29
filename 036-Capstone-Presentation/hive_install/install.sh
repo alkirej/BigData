@@ -7,12 +7,6 @@ PASSWORD=jeff
 ##################################################################
 # HADOOP MUST BE RUNNING BEFORE RUNNING THIS INSTALL SCRIPT !!!! #
 ##################################################################
-# DOWNLOAD AND INSTALL JDBS DRIVER FOR MYSQL
-cd $HIVE_HOME/lib
-sudo wget http://www.java2s.com/Code/JarDownload/mysql/mysql-connector-java-commercial-5.1.7-bin.jar.zip
-unzip mysql-connector-java-commercial-5.1.7-bin.jar.zip
-sudo rm mysql-connector-java-commercial-5.1.7-bin.jar.zip
-
 # DOWNLOAD INSTALL FILES FOR HIVE
 cd /opt
 sudo wget http://apache.mirrors.pair.com/hive/stable-2/apache-hive-2.3.6-bin.tar.gz
@@ -33,6 +27,11 @@ echo "
 export HADOOP_HOME=$HADOOP_HOME
 " >> hive-env.sh
 
+# DOWNLOAD AND INSTALL JDBS DRIVER FOR MYSQL
+cd $HIVE_HOME/lib
+sudo wget http://www.java2s.com/Code/JarDownload/mysql/mysql-connector-java-commercial-5.1.7-bin.jar.zip
+sudo unzip mysql-connector-java-commercial-5.1.7-bin.jar.zip
+sudo rm mysql-connector-java-commercial-5.1.7-bin.jar.zip
 
 # DOWNLOAD MYSQL AND SETUP FILES
 sudo apt-get update
