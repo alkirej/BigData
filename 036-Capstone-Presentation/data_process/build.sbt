@@ -15,6 +15,7 @@ val HadoopPackage: String = "org.apache.hadoop"
 
 //libraryDependencies += HivePackage % "hive-common" % HiveVer
 //libraryDependencies += HivePackage % "hive-exec"   % HiveVer
+//libraryDependencies += HivePackage   % "hive-metastore" % HiveVer
 
 libraryDependencies += JacksonCorePackage   % "jackson-databind"      % JacksonVer
 libraryDependencies += JacksonCorePackage   % "jackson-core"          % JacksonVer

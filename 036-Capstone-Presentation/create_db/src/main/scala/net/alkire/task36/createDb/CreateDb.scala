@@ -35,16 +35,15 @@ object CreateDb
         setLoggingToError()
 
         // CONNECT TO APPROPRIATE DB
-        spark.sql( "SHOW DATABASES" ).show
-        sys.exit
-        
         spark.sql( Constants.SqlCreateDb )
-        spark.sql( Constants.SqlUseDb ).show()
+        spark.sql( Constants.SqlUseDb )
     
     
         // CREATE NECESSARY TABLES
         spark.sql( Constants.SqlCreateGamesTable ).show()
-        
+        spark.sql( "SHOW DATABASES" ).show
+        spark.sql( "SHOW TABLES" ).show
+    
         spark.stop()
         
     }

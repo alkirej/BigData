@@ -1,8 +1,8 @@
 ----------------------------------------------------------------
-Sat Feb 29 12:40:55 EST 2020:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-0170-9209-699f-000034af4c48 
-on database directory /media/sf_jeff/git/BigData/036-Capstone-Presentation/create_db/metastore_db with class loader org.apache.spark.sql.hive.client.IsolatedClientLoader$$anon$1@3875046c 
-Loaded from file:/tmp/sbt_591fd1d5/target/0abcc71d/d4f190b2/derby-10.12.1.1.jar
+Sat Feb 29 13:46:46 EST 2020:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-0170-9245-b4ce-0000332ecb10 
+on database directory /media/sf_jeff/git/BigData/036-Capstone-Presentation/create_db/metastore_db with class loader org.apache.spark.sql.hive.client.IsolatedClientLoader$$anon$1@2d8fb6d2 
+Loaded from file:/tmp/sbt_329063f3/target/0abcc71d/d4f190b2/derby-10.12.1.1.jar
 java.vendor=Private Build
 java.runtime.version=1.8.0_242-8u242-b08-0ubuntu3~18.04-b08
 user.dir=/media/sf_jeff/git/BigData/036-Capstone-Presentation/create_db
