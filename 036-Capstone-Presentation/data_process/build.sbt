@@ -2,15 +2,32 @@ name := "ProcessData"
 version := "0.1"
 scalaVersion := "2.11.8"
 
-libraryDependencies += "com.fasterxml.jackson.core"   %% "jackson-databind"     % "2.9.8"
-libraryDependencies += "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.9.8"
-libraryDependencies += "com.fasterxml.jackson.core"   %% "jackson-core"         % "2.9.8"
-libraryDependencies += "com.fasterxml.jackson.core"   %% "jackson-annotations"  % "2.9.8"
+val HiveVer: String    = "2.3.6"
+val JacksonVer: String = "2.9.8"
+val SparkVer: String   = "2.4.4"
+val HadoopVer: String  = "2.8.5"
 
-libraryDependencies += "org.apache.spark"  %% "spark-core" % "2.4.4"
-libraryDependencies += "org.apache.spark"  %% "spark-sql"  % "2.4.4"
+val HivePackage: String = "org.apache.hive"
+val JacksonCorePackage: String = "com.fasterxml.jackson.core"
+val JacksonModulePackage: String = "com.fasterxml.jackson.module"
+val SparkPackage: String = "org.apache.spark"
+val HadoopPackage: String = "org.apache.hadoop"
 
-libraryDependencies += "org.apache.hadoop" % "hadoop-common" % "3.2.1"
-libraryDependencies += "org.apache.hadoop" % "hadoop-hdfs"   % "3.2.1"
-libraryDependencies += "org.apache.hadoop" % "hadoop-client" % "3.2.1"
+//libraryDependencies += HivePackage % "hive-common" % HiveVer
+//libraryDependencies += HivePackage % "hive-exec"   % HiveVer
 
+libraryDependencies += JacksonCorePackage   % "jackson-databind"      % JacksonVer
+libraryDependencies += JacksonCorePackage   % "jackson-core"          % JacksonVer
+libraryDependencies += JacksonCorePackage   %  "jackson-annotations"  % JacksonVer
+libraryDependencies += JacksonModulePackage %% "jackson-module-scala" % JacksonVer
+
+
+libraryDependencies += SparkPackage %% "spark-core" % SparkVer
+libraryDependencies += SparkPackage %% "spark-sql"  % SparkVer
+libraryDependencies += SparkPackage %% "spark-hive" % SparkVer
+
+libraryDependencies += HadoopPackage % "hadoop-common" % HadoopVer
+libraryDependencies += HadoopPackage % "hadoop-hdfs"   % HadoopVer
+libraryDependencies += HadoopPackage % "hadoop-client" % HadoopVer
+
+// libraryDependencies += "org.pentaho" % "pentaho-aggdesigner-algorithm" % "5.1.5-jhyde"

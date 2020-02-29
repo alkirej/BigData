@@ -8,7 +8,8 @@ import org.apache.spark.sql.functions.{col,expr}
 
 case class Record( birth_date: String, first_name: String, last_name: String, email: String, gender: String )
 
-object CodeTest
+//object CodeTest
+class CodeTest
 {
     def clean( allData: String ): String =
     {

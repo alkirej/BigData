@@ -7,6 +7,8 @@ import org.apache.hadoop.fs.{FileSystem, Path}
 
 object Constants
 {
+    val LoggerName: String   = "org"
+
     // CREATE SPARK SESSION
     val Master: String        = "local[*]"
     val AppName: String       = "capstone"
@@ -30,4 +32,7 @@ object Constants
     val JsonGamesLabel: String = "api.games"
     
     val DotAll: String       = ".*"
+    
+    val DatabaseName: String  = "capstone"
+    val TablenameGame: String = "game"
 }
