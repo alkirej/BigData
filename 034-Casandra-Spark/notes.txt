@@ -1,0 +1,49 @@
+# install cassandra-driver in pycharm terminal
+
+pip install cassandra-driver
+
+# https://www.codementor.io/@sheena/installing-cassandra-spark-linux-debian-ubuntu-14-du107vbhx
+
+# to start and stop cassandra
+sudo service cassandra stop
+sudo service cassandra start
+
+# Check on cassandra cluster
+nodetool status
+
+# Start cql shell
+cqlsh
+
+# create test table for later use
+CREATE TABLE test ( key INT PRIMARY KEY, value TEXT );
+INSERT INTO test ( key, value ) VALUES ( 1, 'one' );
+INSERT INTO test ( key, value ) VALUES ( 2, 'two');
+INSERT INTO test ( key, value ) VALUES ( 3, 'three' );
+INSERT INTO test ( key, value ) VALUES ( 4, 'four' );
+INSERT INTO test ( key, value ) VALUES ( 5, 'five' );
+
+# create tables with createtable.cql file
+cqlsh < createTable.cql
+
+# obtain code for spark - cassandra connecter from
+git clone https://github.com/datastax/spark-cassandra-connector.git
+
+# compile 
+cd spark-cassandra-connector
+git checkout v2.4.2
+./sbt/sbt assembly
+# note a couple of exceptions show up early, but they are only warnings, ok to continue
+
+# test in spark shell (path for jar may be different)
+spark-shell --jars ~/spark-cassandra-connector-assembly-2.4.2.jar
+
+# execute these lines in scala shell
+# Note: I has set up a test table in csqlsh previously.
+sc.stop
+import com.datastax.spark.connector._, org.apache.spark.SparkContext, org.apache.spark.SparkContext._, org.apache.spark.SparkConf
+val conf = new SparkConf(true).set("spark.cassandra.connection.host", "localhost")
+val sc = new SparkContext(conf)
+val test_spark_rdd = sc.cassandraTable("task34", "test")
+test_spark_rdd.take(5)
+
+# if we like the result, we can start moving on to the next thing
