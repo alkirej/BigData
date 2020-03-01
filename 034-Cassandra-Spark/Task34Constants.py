@@ -11,8 +11,8 @@ class Task34Constants:
     # MACHINE_DEPENDANT = ""
     MACHINE_DEPENDANT = "main/"
 
-    CSV_FILE_URL  = "file:///home/jeff/" + MACHINE_DEPENDANT + "git/BigData/034-Casandra-Spark/" + CSV_FILE_NAME
-    JSON_FILE_URL = "file:///home/jeff/" + MACHINE_DEPENDANT + "git/BigData/034-Casandra-Spark/" + JSON_FILE_NAME
+    CSV_FILE_URL  = "file:///home/jeff/" + MACHINE_DEPENDANT + "git/BigData/034-Cassandra-Spark/" + CSV_FILE_NAME
+    JSON_FILE_URL = "file:///home/jeff/" + MACHINE_DEPENDANT + "git/BigData/034-Cassandra-Spark/" + JSON_FILE_NAME
 
     # CFG_KEY_CASSANDRA_HOST = "spark.cassandra.connection.host"
     # CASSANDRA_HOST = "localhost"

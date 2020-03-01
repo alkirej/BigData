@@ -1,25 +1,5 @@
-{
-    "fruit": "Orange",
-    "size":  "Large",
-    "color": "Orange"
-}
-{
-    "fruit": "Apple",
-    "size": "Large",
-    "color": "Red"
-}
-{
-    "fruit": "Grape",
-    "size": "Small",
-    "color": "Green"
-}
-{
-    "fruit": "Watermelon",
-    "size": "Humongus",
-    "color": "Green"
-}
-{
-    "fruit": "Strawberry",
-    "size": "Small",
-    "color": "Red"
-}
+{ "fruit": "Orange", "size":  "Large", "color": "Orange" } 
+{ "fruit": "Apple", "size":  "Large", "color": "Red" }
+{ "fruit": "Grape", "size":  "Small", "color": "Green" }
+{ "fruit": "Watermelon", "size":  "Humongus", "color": "Green" }
+{ "fruit": "Strawberry", "size":  "Small", "color": "Red" }
