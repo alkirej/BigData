@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:fn="http://www.w3.org/2005/xpath-functions" version="2.0">
+	<channel>
+		<title>FOX Sports Digital</title>
+		<link>http://api.foxsports.com/v1/rss?tag=nba</link>
+		<atom:link href="http://dallas.example.com/rss.xml" rel="self" type="application/rss+xml" />
+		<description>FOX Sports Content Feed</description>
+		<image>
+			<title>FOX Sports Digital</title>
+			<url>
+				http://www.foxsports.com/wp-content/themes/foxsports/assets/images/60x60.png
+			</url>
+			<link>
+				http://api.foxsports.com/v1/rss?tag=nba
+			</link>
+		</image>
+		<pubDate>Mon, 02 Mar 2020 01:05:03 +0000</pubDate>		
+		<ttl>180</ttl>
+		<language>en-us</language>
+					<item>
+				<title>
+					<![CDATA[Lakers' Davis, Caruso out against Pelicans]]>
+				</title>
+				<link>
+					https://www.foxsports.com/nba/story/lakers-davis-caruso-out-against-pelicans-030120
+				</link>
+				<guid>
+					https://www.foxsports.com/nba/story/lakers-davis-caruso-out-against-pelicans-030120
+				</guid>
+				<category>nba</category>
+				<description>
+					<![CDATA[The Lakers have ruled out forward Anthony Davis and guard Alex Caruso against the New Orleans Pelicans]]>
+				</description>
+				 				<pubDate>Mon, 02 Mar 2020 00:47:06 +0000</pubDate>
+									<enclosure url="https://b.fssta.com/uploads/2020/03/85836c45b85e44f2b0a5f0b32812198f.vresize.335.220.high.0.jpg" length="1" type="image/jpeg"/>
+							</item>
+					<item>
+				<title>
+					<![CDATA[Antetokounmpo has 41 points, 20 rebounds in Bucks' win]]>
+				</title>
+				<link>
+					https://www.foxsports.com/nba/story/antetokounmpo-has-41-points-20-rebounds-in-bucks-win-030120
+				</link>
+				<guid>
+					https://www.foxsports.com/nba/story/antetokounmpo-has-41-points-20-rebounds-in-bucks-win-030120
+				</guid>
+				<category>nba</category>
+				<description>
+					<![CDATA[Antetokounmpo has 41 points, 20 rebounds in Bucks' win]]>
+				</description>
+				 				<pubDate>Sun, 01 Mar 2020 23:33:59 +0000</pubDate>
+									<enclosure url="https://b.fssta.com/uploads/2020/03/4e66a03d727748b29da0e4c6aeeb90bd-1.vresize.335.220.high.0.jpg" length="1" type="image/jpeg"/>
+							</item>
+					<item>
+				<title>
+					<![CDATA[Leonard scores 30, Clippers beat 76ers to win 4th straight]]>
+				</title>
+				<link>
+					https://www.foxsports.com/nba/story/leonard-scores-30-clippers-beat-76ers-to-win-4th-straight-030120
+				</link>
+				<guid>
+					https://www.foxsports.com/nba/story/leonard-scores-30-clippers-beat-76ers-to-win-4th-straight-030120
+				</guid>
+				<category>nba</category>
+				<description>
+					<![CDATA[Leonard scores 30, Clippers beat 76ers to win 4th straight]]>
+				</description>
+				 				<pubDate>Sun, 01 Mar 2020 23:24:19 +0000</pubDate>
+									<enclosure url="https://b.fssta.com/uploads/2020/03/3f1add93a37f47a0b87bf8875c84b0c2.vresize.335.220.high.0.jpg" length="1" type="image/jpeg"/>
+							</item>
+					<item>
+				<title>
+					<![CDATA[Porzingis scores 38; Mavs beat Wolves 111-91 without Doncic]]>
+				</title>
+				<link>
+					https://www.foxsports.com/nba/story/porzingis-scores-38-mavs-beat-wolves-111-91-without-doncic-030120
+				</link>
+				<guid>
+					https://www.foxsports.com/nba/story/porzingis-scores-38-mavs-beat-wolves-111-91-without-doncic-030120
+				</guid>
+				<category>nba</category>
+				<description>
+					<![CDATA[Porzingis scores 38; Mavs beat Wolves 111-91 without Doncic]]>
+				</description>
+				 				<pubDate>Sun, 01 Mar 2020 23:00:37 +0000</pubDate>
+									<enclosure url="https://b.fssta.com/uploads/2020/03/383f870742ea4d34be35e63ea5c6d724.vresize.335.220.high.0.jpg" length="1" type="image/jpeg"/>
+							</item>
+					<item>
+				<title>
+					<![CDATA[Antetokounmpo's 41 points lift Bucks past Hornets 93-85]]>
+				</title>
+				<link>
+					https://www.foxsports.com/nba/story/antetokounmpo-s-41-points-lift-bucks-past-hornets-93-85-030120
+				</link>
+				<guid>
+					https://www.foxsports.com/nba/story/antetokounmpo-s-41-points-lift-bucks-past-hornets-93-85-030120
+				</guid>
+				<category>nba</category>
+				<description>
+					<![CDATA[Giannis Antetokounmpo had 41 points, 20 rebounds and six assists, and the Milwaukee Bucks beat the Charlotte Hornets 93-85 for their sixth straight win]]>
+				</description>
+				 				<pubDate>Sun, 01 Mar 2020 20:43:17 +0000</pubDate>
+									<enclosure url="https://b.fssta.com/uploads/2020/03/4e66a03d727748b29da0e4c6aeeb90bd.vresize.335.220.high.0.jpg" length="1" type="image/jpeg"/>
+							</item>
+					<item>
+				<title>
+					<![CDATA[Doncic to miss Sunday's game at Minnesota with thumb sprain]]>
+				</title>
+				<link>
+					https://www.foxsports.com/nba/story/doncic-to-miss-sunday-s-game-at-minnesota-with-thumb-sprain-030120
+				</link>
+				<guid>
+					https://www.foxsports.com/nba/story/doncic-to-miss-sunday-s-game-at-minnesota-with-thumb-sprain-030120
+				</guid>
+				<category>nba</category>
+				<description>
+					<![CDATA[Doncic to miss Sunday's game at Minnesota with thumb sprain]]>
+				</description>
+				 				<pubDate>Sun, 01 Mar 2020 19:47:26 +0000</pubDate>
+									<enclosure url="https://b.fssta.com/uploads/2020/03/09fb207c849f4aa0a86e7f234f9586bf.vresize.335.220.high.0.jpg" length="1" type="image/jpeg"/>
+							</item>
+					<item>
+				<title>
+					<![CDATA[The Russell Westbrook – Chris Paul trade is panning out perfectly for the Rockets]]>
+				</title>
+				<link>
+					https://www.foxsports.com/nba/story/houston-rockets-russell-westbrook-james-harden-chris-paul-030120
+				</link>
+				<guid>
+					https://www.foxsports.com/nba/story/houston-rockets-russell-westbrook-james-harden-chris-paul-030120
+				</guid>
+				<category>nba</category>
+				<description>
+					<![CDATA[There was debate at the beginning of the season as to which team won the blockbuster Houston-Oklahoma City trade this offseason. The debate has ended.]]>
+				</description>
+				 				<pubDate>Sun, 01 Mar 2020 17:41:56 +0000</pubDate>
+									<enclosure url="https://b.fssta.com/uploads/2020/03/gettyimages-1209591395.vresize.335.220.high.0.jpg" length="1" type="image/jpeg"/>
+							</item>
+					<item>
+				<title>
+					<![CDATA[NBA Calendar]]>
+				</title>
+				<link>
+					https://www.foxsports.com/nba/story/nba-calendar-030120
+				</link>
+				<guid>
+					https://www.foxsports.com/nba/story/nba-calendar-030120
+				</guid>
+				<category>nba</category>
+				<description>
+					<![CDATA[NBA Calendar]]>
+				</description>
+				 				<pubDate>Sun, 01 Mar 2020 14:31:36 +0000</pubDate>
+							</item>
+					<item>
+				<title>
+					<![CDATA[Indiana faces San Antonio on 3-game win streak]]>
+				</title>
+				<link>
+					https://www.foxsports.com/nba/story/indiana-faces-san-antonio-on-3-game-win-streak-030120
+				</link>
+				<guid>
+					https://www.foxsports.com/nba/story/indiana-faces-san-antonio-on-3-game-win-streak-030120
+				</guid>
+				<category>nba</category>
+				<description>
+					<![CDATA[Indiana is looking to keep its three-game win streak alive when the Pacers take on San Antonio]]>
+				</description>
+				 				<pubDate>Sun, 01 Mar 2020 08:05:00 +0000</pubDate>
+							</item>
+					<item>
+				<title>
+					<![CDATA[Washington faces Golden State after Beal's 42-point game]]>
+				</title>
+				<link>
+					https://www.foxsports.com/nba/story/washington-faces-golden-state-after-beal-s-42-point-game-030120
+				</link>
+				<guid>
+					https://www.foxsports.com/nba/story/washington-faces-golden-state-after-beal-s-42-point-game-030120
+				</guid>
+				<category>nba</category>
+				<description>
+					<![CDATA[Washington visits the Golden State Warriors after Bradley Beal scored 42 points in the Wizards' 129-119 loss to the Jazz]]>
+				</description>
+				 				<pubDate>Sun, 01 Mar 2020 08:05:00 +0000</pubDate>
+							</item>
+			</channel>
+</rss>

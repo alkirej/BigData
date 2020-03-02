@@ -31,4 +31,4 @@ libraryDependencies += HadoopPackage % "hadoop-common" % HadoopVer
 libraryDependencies += HadoopPackage % "hadoop-hdfs"   % HadoopVer
 libraryDependencies += HadoopPackage % "hadoop-client" % HadoopVer
 
-// libraryDependencies += "org.pentaho" % "pentaho-aggdesigner-algorithm" % "5.1.5-jhyde"
+libraryDependencies += "com.databricks" %% "spark-xml" % "0.9.0"
