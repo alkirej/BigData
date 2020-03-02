@@ -61,7 +61,7 @@ def get_yesterdays_games():
 
 def save_yesterdays_games_to_disk( file_contents: str ):
     yes: datetime = datetime.datetime.today() - datetime.timedelta(days=1)
-    filename: str = build_date_api_call( Constants.GAME_DATA_DIR, yes.year, yes.month, yes.day )
+    filename: str = build_date_api_call( Constants.GAME_DATA_DIR, yes.year, yes.month, yes.day ) + ".json"
     file = open( filename, "w+" )
     file.write(file_contents)
     file.close()
@@ -76,7 +76,7 @@ def save_rss_to_disk( info: str, url: str, idx: int ):
     filename: str = build_date_api_call( Constants.RSS_DATA_DIR, yes.year, yes.month, yes.day ) +\
                                     "_" + str(idx) +\
                                     ".rss"
-    
+
     file = open( filename, "w+" )
     file.write( info )
     file.close()
@@ -89,15 +89,11 @@ for url in Constants.RSS_URLS:
     count += 1
     text: str = read_rss_url( url )
     save_rss_to_disk( text, url, count )
-    print( text )
-    print( "\n" )
 
 # GET DATA FOR YESTERDAY'S GAMES
 print( " -- Game Data  -- " )
-"""
 output: str = get_yesterdays_games()
 save_yesterdays_games_to_disk(output)
-"""
 
 # READ FROM RSS FEEDS
 print( " --- Complete --- " )
