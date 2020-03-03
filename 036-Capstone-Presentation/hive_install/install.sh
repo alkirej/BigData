@@ -80,7 +80,7 @@ org.jpox.transactionIsolation = read_committed
 javax.jdo.option.DetachAllOnCommit = true
 javax.jdo.option.NontransactionalRead = true
 javax.jdo.option.ConnectionDriverName = com.mysql.jdbc.Driver
-javax.jdo.option.ConnectionURL = jdbc:mysql://localhost/hive?createDatabaseIfNotExist=true
+javax.jdo.option.ConnectionURL = jdbc:mysql://localhost/metastore?createDatabaseIfNotExist=true
 javax.jdo.option.ConnectionUserName = ${USER}
 javax.jdo.option.ConnectionPassword = ${PASSWORD}
 " > jpox.properties
@@ -89,7 +89,7 @@ echo "
 <configuration>
    <property>
       <name>javax.jdo.option.ConnectionURL</name>
-      <value>jdbc:mysql://localhost/hive?createDatabaseIfNotExist=true</value>
+      <value>jdbc:mysql://localhost/metastore?createDatabaseIfNotExist=true</value>
       <description>metadata is stored in a mysql server</description>
    </property>
    <property>
@@ -103,12 +103,12 @@ echo "
       <description>user name for connecting to db</description>
    </property>
    <property>
-      <name>javax.jdo.option.ConnectionPassword</name>\
+      <name>javax.jdo.option.ConnectionPassword</name>
       <value>${PASSWORD}</value>
       <description>password for connecting to db</description>
    </property>
    <property>
-      <name>javax.jdo.option.ConnectionPassword</name>\
+      <name>javax.jdo.option.ConnectionPassword</name>
       <value>${PASSWORD}</value>
       <description>password for connecting to db</description>
    </property>
@@ -122,6 +122,18 @@ echo "
       <value>hdfs://localhost:50501/user/hive/warehouse</value>
       <description></description>
    </property>
+   <property>
+      <name>datanucleus.fixedDatastore</name>
+      <value>true</value>
+   </property>
+   <property>
+      <name>datanucleus.autoCreateTables</name>
+      <value>True</value>
+   </property>
+   <property>
+      <name>hive.metastore.schema.verification</name>
+      <value>false</value>
+   </property>
 </configuration>
 " > hive-site.xml
 
@@ -130,3 +142,4 @@ sudo ln -s /opt/hive/conf/hive-site.xml /opt/spark/conf/hive-site.xml
 echo "Create hive metastore"
 schematool -dbType mysql -initSchema
 
+sudo ln -s /opt/hive/lib/mysql-connector-java-5.1.22-bin.jar /opt/spark/jars/mysql-connector-java-5.1.22-bin.jar

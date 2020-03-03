@@ -9,6 +9,17 @@ import scala.util.{Failure, Success, Try}
 
 object ProcessData
 {
+    def createDb( implicit spark: SparkSession ): Unit =
+    {
+        // CONNECT TO APPROPRIATE DB
+        spark.sql( Constants.SqlCreateDb )
+        spark.sql( Constants.SqlUseDb )
+    
+        // CREATE NECESSARY TABLES
+        spark.sql( Constants.SqlCreateGamesTable )
+        spark.sql( Constants.SqlCreateRssTable )
+    }
+
     def showData(): Unit =
     {
         ShowData.showData
@@ -68,12 +79,9 @@ object ProcessData
     
     def processRssFile( f: Path )( implicit spark: SparkSession ): Unit =
     {
-        println( f.getName )
         HadoopFileUtils.readTextFile( f ) match
         {
             case Success( text: String ) => {
-                println( "Processing:" )
-
                 // Read file
                 val feed: NodeSeq = XML.loadString( text ) \\ Constants.RssItemLabel
                 val newData: Seq[NewsArticle] = for ( i <- feed ) yield buildArticleXml( i )
@@ -91,7 +99,6 @@ object ProcessData
     {
         Logger.getLogger(Constants.LoggerName).setLevel(Level.WARN)
         System.setSecurityManager(null)
-showData() // !!! remove
    
         // BUILD A SPARK SESSION
         implicit val spark: SparkSession = SparkSession.builder
@@ -102,14 +109,11 @@ showData() // !!! remove
                                     .config( "hive.metastore.warehouse.dir", "hdfs://localhost:50501/user/hive/warehouse" )
                                     .getOrCreate()
         
-        
-        // CONNECT TO APPROPRIATE DB
-        // spark.sql( Constants.SqlCreateDb )
-        spark.sql( Constants.SqlUseDb )
+        // SETUP THE DB IF NEEDED
+        // createDb // !!! comment out most of the time (unless a new db is desired)
     
-        // CREATE NECESSARY TABLES
-        // spark.sql( Constants.SqlCreateGamesTable )
-        // spark.sql( Constants.SqlCreateRssTable )
+        // CONNECT TO APPROPRIATE DB
+        spark.sql( Constants.SqlUseDb )
     
         // FIND AND PROCESS FILES IN THE DATA DIRECTORY AND THEN MOVE TO BACKUP LOCATION
         val files: Array[Path] = HadoopFileUtils.getFilesInDir( Constants.DataDir )

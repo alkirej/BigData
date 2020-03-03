@@ -10,7 +10,7 @@ object HadoopFileUtils
     {
         if ( Constants.Hdfs.getFileStatus( dir ).isDirectory )
         {
-            val files = Constants.Hdfs.listStatus( dir, new EmptyFileFilter )
+            val files = Constants.Hdfs.listStatus( dir, new TempFileFilter() )
             files.map( f => f.getPath )
         } else
         {

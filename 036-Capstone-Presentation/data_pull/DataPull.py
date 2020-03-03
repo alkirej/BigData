@@ -82,8 +82,6 @@ def save_rss_to_disk( info: str, url: str, idx: int ):
     file.close()
 
 
-print( " ---- Begin  ---- " )
-print( " -- RSS Feeds  -- " )
 count: int = 0
 for url in Constants.RSS_URLS:
     count += 1
@@ -91,9 +89,7 @@ for url in Constants.RSS_URLS:
     save_rss_to_disk( text, url, count )
 
 # GET DATA FOR YESTERDAY'S GAMES
-print( " -- Game Data  -- " )
 output: str = get_yesterdays_games()
 save_yesterdays_games_to_disk(output)
 
 # READ FROM RSS FEEDS
-print( " --- Complete --- " )
