@@ -27,3 +27,6 @@ rm /home/jeff/main/git/BigData/036-Capstone-Presentation/move_data/rss_data/*
 
 cp /home/jeff/main/git/BigData/036-Capstone-Presentation/move_data/backup/data/* /home/jeff/main/git/BigData/036-Capstone-Presentation/move_data/data/
 cp /home/jeff/main/git/BigData/036-Capstone-Presentation/move_data/backup/rss_data/* /home/jeff/main/git/BigData/036-Capstone-Presentation/move_data/rss_data/
+
+cd ../createdb
+./create_db.sh
