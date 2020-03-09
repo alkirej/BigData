@@ -1,0 +1,3 @@
+# executed this from terminal when increase/decrease sound gave
+# dummy sound message. (This restored sound.)
+sudo alsa force-reload
