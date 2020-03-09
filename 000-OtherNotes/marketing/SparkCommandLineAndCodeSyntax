@@ -1,0 +1,48 @@
+=============================================================================
+COMMAND LINE AND CODE SYNTAX
+=============================================================================
+Options for master command line argument for
+
+--master yarn-cluster
+         yarn-client
+         mesos://<masterhost>:<port>  (5050 = default port)
+         mesos://zk://<zkhost>:<port> (2181 = default port)
+
+(Need to start Mesos dispatcher for mesos masters)
+
+-------------
+SPARK SESSION
+-------------
+spark = SparkSession.builder()
+                    .appName( "----" )
+                    .master( "-----" )
+                    .getOrCreate
+sc = spark.sparkContext
+
+-------------
+SPARK CONTEXT
+-------------
+sc = SparkContext()
+
+---------------
+SPARK STREAMING
+---------------
+conf = new SparkConf().setAppName( "-----" )
+                      .setMaster( "----" )
+ssc = new StreamingContext( conf, Seconds(3) )  3=batch time
+
+
+--------------------------
+SPARK STRUCTURED STREAMING
+--------------------------
+spark = SparkSession.builder
+                    .appName( ... )
+                    .master( ... )
+                    .getOrCreate()
+df = spark.readStream
+          .format( ... )  <example: kafka>
+          .option( "spark.sql.streaming.continuous.executorPollInterval"
+          .load
+df.writeStream
+  .start()
+  .awaitTermination()

@@ -1,0 +1,22 @@
+=====================================================================
+HBASE ARCHITECTURE
+=====================================================================
+1-HMaster  - lightweight process. assigns regions to region servers
+                       to keep a BALANCED LOAD
+    A- MANAGES and monitors HADOOP CLUSTER
+    B- TABLE ADMINISTRATION ( create / update / drop )
+    C- FAILOVER
+    D- DDL -- & Any Schema Changes
+
+2-Region Server - worker nodes here. Does read, update, delete for clients
+    A- Has a Block Cache (for reading) READ CACHE
+    B- Memory Store WRITE CACHE (one for each column family)
+    C- WRITE AHEAD LOG (W.A.L.) - stores new unpersisted data
+    D- HFile - storage file stores key-value pairs (K,V)
+
+3-ZooKeeper - Distributed coordination service for region assignments
+    A- Establish client communication with region servers
+    B- Tracks server failure and network partitions
+    C- Maintains configuration information
+    D- provides ephemeral nodes (representing region servers)
+

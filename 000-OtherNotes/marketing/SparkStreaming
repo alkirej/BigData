@@ -1,4 +1,46 @@
 =============================================================================
 SPARK STREAMING
 =============================================================================
+Spark Streaming = RDDs
+Spark Structured Streaming = DataFrames & DataSets
+
+Streaming Data
+- treated as unbounded(unending) table
+- processed as received
+
+           -----------       batches       ---------        batches
+INPUT     |   SPARK   |       - - -       |  SPARK  |       - - - -
+--------> |           | ---> | | | | ---> |         | ---> | | | | |
+STREAM    | STREAMING |       - - -       |  ENGINE |       - - - - 
+           -----------       of input      ---------      of processed
+                                                              data
+
+--------------------
+Structured Streaming
+--------------------
+- Still POLLS after a given duration, but is CLOSER to "TRUE STREAMING"
+- Has NO BATCHES
+    - received data is appended to continuously flowing data
+- Each row is processed and the result is updated into an "unbounded
+        result table
+
+----------------
+RDD vs DATAFRAME
+----------------
+1-Spark Streaming      = DStreaming / API
+        DStreams use RDDs
+2-Structured Streaming = DataFrames & DataSets
+        DataFrames are more optimized for performance and ease of use
+3-Event Time           = 
+        Spark Streaming      - only time Spark received the event
+        Structured Streaming - Can process data on the basis of the time the
+                                   event occurred.
+4-Spark Streaming & Spark Structured Streaming
+        Both have CHECKPOINTS
+5-Spark Structured Streaming has applied 2 conditions to aid recovery
+        A-source must be replayable
+        B-sinks must support IDEMPOTENT OPERATIONS to support reprocessing
+
+
+
 

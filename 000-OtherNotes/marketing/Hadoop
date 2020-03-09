@@ -1,0 +1,10 @@
+==========================================================================
+HADOOP
+==========================================================================
+Hadoop Block Sizes
+------------------
+version 1 =  64 MB
+version 2 = 128 MB
+version 3 = 128 MB
+------------------
+Note: the last block in a file is generally smaller that the rest.
