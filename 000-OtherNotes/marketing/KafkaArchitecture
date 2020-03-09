@@ -1,0 +1,109 @@
+=============================================================================
+KAFKA ARCHITECTURE
+=============================================================================
+    data-flair.training/blogs/kafka-architecture
+
+--------------------------------
+Kafka Diagram 1
+--------------------------------
+                  PRODUCERS
+                App  App  App
+                  |   |   |          STREAM
+CONNECTORS       \|/ \|/ \|/       PROCESSORS
+                 =.===.===.=          
+   Db --------> |   Kafka   | <-----> App
+   Db <-------- |  Cluster  | <-----> App
+                 =^===^===^=
+                 /|\ /|\ /|\
+                  |   |   |
+                App  App  App
+                  CONSUMERS
+--------------------------------
+Kafka APIS
+--------------------------------
+There are 4 Kafka APIs
+1-Producer
+    Allows an app to publish a stream of records to one or more Kafka topics
+2-Consumer
+    Allows an app to subscribe to one or more topics and process its records
+3-Streams
+    Consumes a Kafka input stream and produces an output stream
+    - transforms the input stream into an output stream
+4-Connector
+    Helps build and run reusable producers & consumers
+    Example: RDBMS connector may capture changes to a given table
+ 
+--------------------------------
+Kafka Diagram 2
+--------------------------------
+                         Kafka Cluster              Consumer Group
+ ============             ============== pull msg  ================
+|            | push msg  |    Broker 1<-+---------| |  Consumer 1  |
+| Producer 1-+-----------+->  Broker 2  |         | |  Consumer 2  |
+|            |           |    Broker 3  |         | |  Consumer 3  |
+| Producer 2-+-----------+-> Zookeeper<-+---------+>|  Consumer 4  |
+|            | get broker ==============   update  ================
+ ============      id                      offsets
+
+--------------------------------
+Kafka Components
+--------------------------------
+A-BROKER
+    Brokers are STATELESS
+    Zookeeper keeps and necessary state
+B-ZOOKEEPER
+    manages and coordinates Kafka clusters
+    updates producers & consumers about new and failed brokers
+C-PRODUCERS
+    push data to brokers
+    don't wait for acknowledgements from brokers
+D-CONSUMERS
+    keep track of how many messages have been consumed
+        (stateless producers cannot do it w/out keeping state)
+E-TOPICS
+    logical channel to which producers publish messages & consumers 
+        consume them.
+    1-defines a particular stream of data
+    2-certain msg types are published to certain topics
+    3-first the producer writes a message and later a consumer consumes it
+    4-topics are identifiec by name
+        topic names MUST BE unique
+    5-there is no limit to the # of topics
+    6-once data is published, it CANNOT BE CHANGED
+
+--------------------------------
+Kafka Diagram 3
+--------------------------------
+                                 offsets
+                             -----------------
+  Topic -      Partition 0   0|1|2|3 ....... N   No key?
+  has any      Partition 1   0|1|2|3 ....... M   Msg assigned
+  number of    Partition 2   0|1|2 ......... O   to RANDOM
+  partitions   Partition 3   0|1 ........... X   PARTITION
+                             -----------------
+                              lower offset =
+                                older msg
+                             -----------------
+                             Offsets increment
+                               separately for 
+                               each partition
+--------------------------------
+Kafka Partitions
+--------------------------------
+TOPICS ARE
+A-SPLIT INTO PARTITIONS
+B-REPLICATED ACROSS PARTITIONS
+
+1-No guarantees are made as to which partition will receive any message
+2-Except, all messages with the same key will go to the same partition
+3-Messages in each partition are dispatched in the order they were received
+4-Messages are stored in order within a partition
+5-In each partition, messages get an incremental insreasing id called
+    an offset.
+6-OFFSETS ARE ONLY MEANINGFUL WITHIN A PARTITION
+7-There is no limit to the number of partitions within a topic
+
+--------------------------------
+Topic Replications
+--------------------------------
+
