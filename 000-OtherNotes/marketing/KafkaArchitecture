@@ -104,6 +104,45 @@ B-REPLICATED ACROSS PARTITIONS
 7-There is no limit to the number of partitions within a topic
 
 --------------------------------
-Topic Replications
+Kafka Diagram 4
 --------------------------------
+   ----------       ----------       ----------   
+  | BROKER 1 |     | BROKER 2 |     | BROKER 1 |   
+   ----------       ----------       ----------
+  | TOPIC  A-+--   | TOPIC  A-+-----+>TOPIC  A | 
+  | PART   0 |  |  | PART   1 |     | PART   1 | 
+   ----------   |   ----------       ----------  
+  |  leader  |  |  |  leader  |     | replica  |
+   ----------   |   ----------       ----------
+  | TOPIC  B |   --+>TOPIC  A |    -+-TOPIC  B |
+  | PART   1<+-    | PART   0 |   | | PART   1 |
+   ----------  |    ----------    |  ----------
+  | replica  | |   | replica  |   | |  leader  |
+   ----------  |    ----------    |  ----------
+               |                  |
+                ------------------
+
+--------------------------------
+Topic Replication Factor
+--------------------------------
+1-Replication is at PARTITION LEVEL ONLY
+2-Only 1 broker can be the leader for a partition at any time
+3-Non-leader nodes will have an ISR (in-sink replica)
+4-The replication factor cannot exceed the number of brokers
+
+
+--------------------------------
+Consumer Groups
+--------------------------------
+1-May contain multiple consumer processes
+2-Each group shares its group-id
+3-Exactly one member of the consumer group reads data from a given
+    partition
+4-If there are multiple consumer groups, each group may have a member
+    reading from the same partition
+5-If the number of consumers in the group exceeds the number of partitions,
+    then some members of the consumer group will be idle (and waiting
+    for someone to become available)
+
+
 

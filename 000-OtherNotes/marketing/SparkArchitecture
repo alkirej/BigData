@@ -1,0 +1,128 @@
+=============================================================================
+SPARK ARCHITECTURE
+=============================================================================
+
+To Cover: Modes
+
+Spark Features
+--------------
+1-SPEED      - up to 100x faster than MapReduce
+2-CACHING    - powerful disk caching and disk persistance
+3-DEPLOYMENT - deployable through Mesos, Hadoop via YARN, or Spark cluster mgr
+4-REALTIME   - in memory computations and low latency
+5-POLYGLOT   - high level APIs for Java, Scala, Python, and R
+6-SCALABLE   - 
+
+QCR
+(Q)uick    - Fast - Speed (10-100x faster than MapReduce)
+(C)aching
+(R)ealtime - "Realtime" low latency and quick due to in memory computations
+
+DoLS
+(D)eployment
+(L)anguages (many)   <PolyGlot>
+(S)calable
+
+-------------------------------
+Spark Layered Architecture
+-------------------------------
+Abstractions
+RDD - DataFrame - DataSet  (Resilient Distributed Dataset)
+DAG - Directed Acyclic Graph
+
+Driver Node                                 ------------ 
+ ---------          ---------    --------->|  Executor  |  
+|  Spark  |------->| Cluster |--|           ------------
+| Context |        | Manager |  |           WORKER NODES
+ ---------          ---------   |           ------------
+                                 --------->|  Executor  |
+                                            ------------
+
+A-SPARK CORE - base Spark engine. Responsible for MEMORY MANAGEMENT, FAULT 
+                   RECOVERY, SCHEDULING, DISTRIBUTING, and MONITORING jobs
+B-SPARK STREAMING - processes real time streaming data. Allows high throughput 
+                        and fault tolerant stream processing.
+C-SPARK SQL  - use SQL or HQL queries on spark data objects
+D-GRAPH X    - handles graphs and graph-parallel computations. Extends RDDs
+                   with Resilient Distributed Property Group (directed
+                   multigraph with properties on vertices and edges)
+E-MLLIB      - Machine Learning Library (used with RDDs)
+F-SPARK R    - R package with distributed DataFrames
+
+-----------------------------------
+RDD - Resilient Distributed Dataset
+-----------------------------------
+(R)esilient     - fault tolerant
+                - rebuildable on failure
+(D)istributed   - uses multiple nodes
+(D)ataset       - collection of partitioned data with values
+
+RDD = a layer of abstraction over the distributed collection
+    = split based upon the key
+    = Immutable after creation
+
+Spark handles distribution - not our code
+
+---------------------------
+Transformations and Actions
+---------------------------
+Transformation = operations
+Actions = apply computations and
+              return data back to the driver
+
+  
+                                           -------> WORKER NODE
+                                          |           task | cache
+MASTER NODE ------->  CLUSTER MANAGER ----|	
+                                          |         WORKER NODE
+                                           ------->   task | cache
+
+---------------------------
+Spark Context
+---------------------------
+SparkContext = gateway to Spark functionality
+SC works with the cluster manager
+Worker Nodes = slave nodes
+Tasks are excecuted on the worker nodes
+More workers = more partitions = shorter task time
+
+
+             ===================SPARK CONTEXT=====================
+Client -----|----> Server -------> User Code --------> DAG -------|-------> Output
+             =====================================================
+
+Steps:
+------
+1-Client submits job
+2-Driver turns user code into a DAG
+3-DAG is optimized
+4-DAG converted into physical execution play by splitting
+    it into tasks and orders the tasks by stage
+5-Cluster Manager launches executors in worker nodes to do the
+    driver's biding.
+6-Driver sends tasks to the nodes (taking data location into account)
+7-Driver monitors the executors for completion and to ensure they
+    continue running.
+
+----------------
+Cluster Managers
+----------------
+1-YARN  = scheduler and application manager
+2-MESOS = uses master / slave architecture
+3-STAND ALONE = simple FIFO scheduler
+
+
+-------------------
+Broadcast Variables
+-------------------
+Allow read only variables to be cached on each server to reduce
+    "shipment" time of tasks
+Should not be changed
+
+-----------
+Accumulator
+-----------
+Similar to MapReduce counters
+Shared variables used in counters and aggregators like sum
+Can be changed
+

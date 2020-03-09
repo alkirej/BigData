@@ -1,0 +1,60 @@
+=============================================================================
+ZOOKEEPER ARCHITECTURE
+=============================================================================
+    data-flair.training/blogs/zookeeper-leader-election
+
+---------------------------
+ZooKeeper Election
+---------------------------
+A ZooKeeper election is when the server ensemble chooses a new leader
+1-The main purpose of a topic leader is to ORDER CLIENT REQUESTS 
+    THAT CHANGE THE ZOOKEEPER STATE
+2-ZooKeeper state commands include create, setData, delete
+3-Processors are either in LEADER or FOLLOWER state
+
+----------------------------
+ZooKeeper Election Process
+----------------------------
+A-zNodes represent a proposal by a client
+B-the LEADER is the client with the smallest sequence # on its zNode
+
+Steps:
+------
+1-All nodes create a sequential/ephemeral zNode
+2-ZooKeeper appends a sequence number (10 digits in length) to
+    the zNode
+3-The node with the smallest sequence number becomes the LEADER
+4-All other nodes become follower nodes
+5-Each follower node "follows" (aka: "watches") the process with
+    the next lowest sequence #.
+6-If the LEADER process fails, its zNode is removed.
+7-The processes follower node is notified of the failure
+8-The follower node of the leader ensures there is not a zNode with
+    a smaller number. It becomes leader of no smaller zNode is found
+    or it makes the other zNode entry the leader
+9-All other followers update their leader node with the new leader
+
+----------------------------
+ZooKeeper Terms
+----------------------------
+A-SESSIONS - facilitates FIFO communications with clients
+B-WATCHES  - allows client to get zookeeper notifications about the cluster
+C-ZNODES   - nodes in a zookeeper tree
+D-NAMESERVICE       - maps a name to information
+E-LOCKING  - uses mutexes
+F-SYNCHRONIZATION   -
+G-CONFIG MANAGEMENT - zookeeper can store and manage the configuration of 
+                          our distributed system
+H-LEADER ELECTION   - see above
+I-ACCESS CONTROL (ACLs)
+
+----------------------------
+ZooKeeper Components
+----------------------------
+WRITE
+READ
+REPLICATED DATABASE
+LEADER
+FOLLOWER
+REQUEST PROCESSOR
+ATOMIC BROADCASTS
