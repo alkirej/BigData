@@ -1,0 +1,142 @@
+===========================
+= SQL AGGREGATE FUNCTIONS =
+===========================
+* Aggregate functions summarize data from multiple rows into a single 
+result row. For example, the following SUM() function returns the total 
+sales of all employees in the recorded years:
+	SELECT SUM(sale) FROM sales; 
+		Sum(sale)
+		1500.00
+
+* The GROUP BY clause allows you to apply aggregate functions to a subset 
+of rows. For example, you may want to calculate the total sales by fiscal 
+years:
+	SELECT fiscal_year, SUM(sale) FROM sales GROUP BY fiscal_year;  
+		fiscal_year	SUM(sale)
+		2016		450.00
+		2017		400.00
+		2018		650.00
+
+===========================
+= SQL WINDOWING FUNCTIONS =
+===========================
+* MySQL has supported window functions since version 8.0. The window functions
+allow you to solve query problems in new, easier ways, and with better 
+performance.
+
+* Like aggregate functions with the GROUP BY clause, window functions also 
+operate on a subset of rows but:
+	*** *** THEY DO NOT REDUCE THE NUMBER OF ROWS RETURNED BY THE QUERY *** ***
+
+	SELECT fiscal_year, sales_employee, sale, 
+		SUM(sale) OVER (PARTITION BY fiscal_year) total_sales
+		FROM sales;
+	
+	---------------------------------------------------
+	fiscal_year	sales_employee	sale	total_sales
+	-----------	--------------	----	-----------
+	2016		Alice		150	450
+	2016		Bob		100	450
+	2016		John		200	450
+	----		----		----	----
+	2017		Alice		100	400
+	2017		Bob		150	400
+	2017		John		150	400
+	----		----		----	----
+	2018		Alice		200	650
+	2018		Bob		200	650
+	2018		John		250	650
+	----------------------------------------------------
+
+* In this example, the SUM() function works as a 
+	*** WINDOW FUNCTION WHICH OPERATES ON A SET OF ROWS *** 
+	*** DEFINED BY THE CONTENTS OF THE OVER CLAUSE      ***. 
+    A set of rows to which the SUM() function applies is referred to as 
+        a window.
+
+* Window functions are performed on the result set *** AFTER *** all JOIN, 
+WHERE, GROUP BY, and HAVING clauses and before the ORDER BY, LIMIT and 
+SELECT DISTINCT.
+
+* Window function syntax
+    fn_name(expression) 
+        OVER ( [partition_clause]
+               [order_by_clause ]
+               [frame_clause    ]
+              )
+    * () after OVER required. Even for OVER ()
+    * partition_clause - breaks up rows into chunks (aka: partitions)
+        PARTITION BY <expr>{, <expr...}
+
+    * order_by_clause  - specifies the sort order of the rows within the 
+                         partition
+        ORDER BY <expr> [ASC|DESC]{, <expr>...}
+
+    * frame_clause --> <<<   frame_unit {<frame_start>|<frame_between>}   >>>
+        a frame is defined with respect to the current row (allowing the frame
+        to move within its partition)
+
+        frame_unit  =  ROW or RANGE                    =========================
+            ROW:   offset from current row             =       PARTITION       =
+            RANGE: difference in value                 ===================^=====
+						       =                 /|\  UNBOUNDED
+        frame_start = (Related to the PARTITION)       =                  |   PRECEEDING
+            UNBOUNDED PRECEEDING:          N PRECEDING ===^============== | ====
+            N PRECEDING:                               = /|\ N ROWS       |    =
+            CURRENT ROW:                               =  |               |    =
+                                                      <------ Current Row ------>
+        frame_between =   BETWEEN frame_boundary_1     =  |               |    =
+                          AND frame_boundary_2         =  |               |    =
+            frame_boundary_X can be:                   = \|/ M ROWS       |    =
+                UNBOUNDEC PRECEEDING:      M FOLLOWING ===.============== | ====
+                N PRECEDING:                           =                  |    =
+                CURRENT ROW:                           =                 \|/  UNBOUNDED
+                                                       ===================.===FOLLOWING
+                UNBOUNDED FOLLOWING:
+                N FOLLOWING:
+
+        Examples:
+            SELECT o.OrderYear,	o.OrderMonth, o.TotalDue,
+                SUM(t.TotalDue) OVER 
+                    (ORDER BY o.OrderYear, o.OrderMonth 
+                         RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+                    ) AS 'RunningTotal'
+            FROM Orders o
+
+            SELECT o.OrderYear,	o.OrderMonth, o.TotalDue,
+                SUM(t.TotalDue) OVER 
+                    (ORDER BY o.OrderYear, o.OrderMonth 
+                        ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+                    ) AS 'RunningTotal'
+            FROM Orders o
+
+MySQL Window Function List:
+    CUME_DIST             Calculates the cumulative distribution of a value 
+                              in a set of values.
+    DENSE_RANK            Assigns a rank to every row within its partition 
+                              based on the ORDER BY clause. It assigns the 
+                              same rank to the rows with equal values. If 
+                              two or more rows have the same rank, then there 
+                              will be no gaps in the sequence of ranked values.
+    FIRST_VALUE           Returns the value of the specified expression with 
+                              respect to the first row in the window frame.
+    LAG                   Returns the value of the Nth row before the current 
+                              row in a partition. It returns NULL if no 
+                              preceding row exists.
+    LAST_VALUE            Returns the value of the specified expression with 
+                              respect to the last row in the window frame.
+    LEAD                  Returns the value of the Nth row after the current 
+                              row in a partition. It returns NULL if no 
+                              subsequent row exists.
+    NTH_VALUE             Returns value of argument from Nth row of the window 
+                              frame
+    NTILE                 Distributes the rows for each window partition into 
+                              a specified number of ranked groups.
+    PERCENT_RANK          Calculates the percentile rank of a row in a 
+                              partition or result set
+    RANK                  Similar to the DENSE_RANK() function except that there 
+                              are gaps in the sequence of ranked values when two 
+                              or more rows have the same rank.
+    ROW_NUMBER            Assigns a sequential integer to every row within its 
+                              partition
+
