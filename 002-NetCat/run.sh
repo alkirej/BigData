@@ -1,3 +1,4 @@
-nohup /home/jeff/BigData/002-NetCat/listener 
-nuhup /home/jeff/BigData/002-NetCat/producer
-wait
+/home/jeff/git/BigData/002-NetCat/listener &
+/home/jeff/git/BigData/002-NetCat/producer
+
+wait 

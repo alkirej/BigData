@@ -1,0 +1,43 @@
+=============================
+Task 
+=============================
+This assignment is to:
+
+=============================
+Files and Directories
+=============================
+run.sh - executes the task
+
+=============================
+Getting Started
+=============================
+To execute the netcat (nc) test, do the following
+
+1-Start 2 virtual machines (if necessary)
+2-Open a terminal in the first machine (Client 1) and determine its ip address
+  (ip addr)
+3-execute ./listener
+
+4-Open a terminal in the second machine (Client 2)
+5-Edit the port file and update the PRODUCER_ID variable to indicate the proper
+  ip address of the machine
+6-Execute producer on the second machine
+
+7-Return to the first machine and cd to ~/output
+8-Execute ls -l and check the timestamp on the netcat.output file
+9-cat the netcat.output file and ensure it is the same as the message file
+  on the second machine.
+
+=============================
+Prerequisites
+=============================
+The following tools will need to be installed to complete this task:
+    OpenSSH
+
+=============================
+Installing
+=============================
+No special installation process is required for this task. Ensure the 
+prerequisites are installed and execute the run.sh script.
+
+

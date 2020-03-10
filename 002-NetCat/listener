@@ -1,4 +1,4 @@
-source /home/jeff/BigData/002-NetCat/port
+source /home/jeff/git/BigData/002-NetCat/port
 echo start listener ...
-netcat -N -l $PORT_NUM > /home/jeff/output/netcat.output
-echo output stored at /home/jeff/output/netcat.output
+netcat -N -l $PORT_NUM > /home/jeff/git/BigData/002-NetCat/netcat.output
+echo output stored at /home/jeff/git/BigData/002-NetCat/netcat.output
