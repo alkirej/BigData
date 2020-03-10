@@ -12,8 +12,8 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="sbt: org.scala-lang:scala-library:2.11.8:jar" level="project" />
-    <orderEntry type="library" name="sbt: org.mongodb.spark:mongo-spark-connector_2.11:2.1.0:jar" level="project" />
-    <orderEntry type="library" name="sbt: org.mongodb:mongo-java-driver:3.4.2:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.mongodb.spark:mongo-spark-connector_2.11:2.4.1:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.mongodb:mongo-java-driver:3.11.0-rc0:jar" level="project" />
     <orderEntry type="library" name="sbt: aopalliance:aopalliance:1.0:jar" level="project" />
     <orderEntry type="library" name="sbt: com.101tec:zkclient:0.3:jar" level="project" />
     <orderEntry type="library" name="sbt: com.carrotsearch:hppc:0.7.2:jar" level="project" />
@@ -191,5 +191,8 @@
         </SOURCES>
       </library>
     </orderEntry>
+    <orderEntry type="library" name="sbt: org.mongodb:bson:3.8.2:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.mongodb:mongodb-driver:3.8.2:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.mongodb:mongodb-driver-core:3.8.2:jar" level="project" />
   </component>
 </module>
