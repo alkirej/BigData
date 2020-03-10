@@ -1,12 +1,22 @@
 =============================
-Task 
+Task 002 -
 =============================
 This assignment is to:
 
 =============================
 Files and Directories
 =============================
-run.sh - executes the task
+port          - environment variables for the port and host address for the producer
+                    and consumer to connect.
+message       - the text to send from the producer to the client
+producer      - script to generate a netcat message
+listener      - script to listen for the generated netcat message
+run.sh        - a script to start a listener and then produce a message
+                    to be received 
+netcat.output - the results of the run.sh script
+README        - this file
+
+run.sh - executes the single machine test of the task
 
 =============================
 Getting Started
@@ -17,7 +27,6 @@ To execute the netcat (nc) test, do the following
 2-Open a terminal in the first machine (Client 1) and determine its ip address
   (ip addr)
 3-execute ./listener
-
 4-Open a terminal in the second machine (Client 2)
 5-Edit the port file and update the PRODUCER_ID variable to indicate the proper
   ip address of the machine
