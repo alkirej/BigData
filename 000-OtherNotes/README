@@ -1,28 +1,29 @@
 =============================
-Task 
+Task 000 - Notes
 =============================
 This assignment is to:
+    This is not an actual assignment, but notes on a host of 
+    topics I have made along the way.
 
 =============================
 Files and Directories
 =============================
-run.sh - executes the task
+CodeTests/             Answers to coding challengs I or my teammates took.
+Coding/                Notes on coding, syntax, etc.
+Hadoop/                Notes on HDFS, Yarn, MapReduce, Etc.
+StudyNotesSoft/        Notes on non-technical aspects of interviewing
+StudyNotesTechnical/   Notes on technical topics to be covered in interviews
+Ubuntu/                Ubuntu, unix, and related topics
 
 =============================
 Getting Started
 =============================
-To execute this task, execute the run.sh script as follows:
-cd to the xxx-xxxxxx directory:
-    ./run.sh
+Read the notes
 
 =============================
 Prerequisites
 =============================
-The following tools will need to be installed to complete this task:
-    Hadoop
-    Java 8
-    Python 3
-    Scala 2.11.8
+Not Applicable
 
 =============================
 Installing
