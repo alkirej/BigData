@@ -1,0 +1,106 @@
+=============================
+Task 003 - Skills Test
+=============================
+This assignment is to complete 5 small skills "challenges":
+    1a- Create a list, 
+           fill list with 30 random numbers
+    1b- Create method that returns the name, and id of the
+           Instance of the object.
+    2 - Given an unsorted integer array,
+           find the smallest missing positive integer.
+           - Example 1: Input: [1,2,0] => 3
+           - Example 2: Input: [3,4,-1,1] => 2 
+    3 - what is the difference between `yield` and `return`
+    4 - Remove duplicates
+            weekdays = [‘sun’, ’mon’, ’tue’, ‘sun’, ’mon’, ’tue’,
+                        ’wed’, ’thu’, ’fri’, ’wed’, ’thu’, ’fri’,
+                        ’sat’
+                       ]
+    5 - Sql 
+            Create a table for object you created above
+            Insert into that table (1 record)
+            Read all data from the table
+            Delete the table
+
+=============================
+Files and Directories
+=============================
+q1.py     - python code to answer items 1a and 1b above
+q2.py     - python code to answer item 2 above
+q3.py     - python code to answer item 3 above
+q4.py     - python code to answer item 4 above
+q5.sh     - shell script to execute sql from q5.sql
+q5.sql    - SQL for question 5
+run.sh    - shell script to execute each of the 5 question
+installMySQL.sh - script to install mysql if needed
+config.sh - script to configure mysql after installation
+README    - this file
+
+=============================
+Getting Started
+=============================
+To execute this task, execute the run.sh script as follows:
+    ./run.sh
+
+=============================
+Prerequisites
+=============================
+The following tools will need to be installed to complete this task:
+    Python 3
+
+=============================
+Installing
+=============================
+No special installation process is required for this task. Ensure the 
+prerequisites are installed and execute the run.sh script.
+
+=============================
+Results
+=============================
+Upon completion, the script should return the following results:
+
+[32, 90, 100, 15, 97, 5, 51, 34, 50, 16, 14, 6, 71, 47, 87, 13, 59, 100, 18, 56, 81, 56, 51, 17, 25, 9, 43, 87, 82, 10]
+
+42 Bald Monkey
+6
+First 25 numbers in the Fibonacci sequence:
+1
+1
+2
+3
+5
+8
+13
+21
+34
+55
+89
+144
+233
+377
+610
+987
+1597
+2584
+4181
+6765
+10946
+17711
+28657
+46368
+75025
+
+The next 5 numbers in the Fibonacci sequence:
+121393
+196418
+317811
+514229
+832040
+
+Unique List:
+['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']
+day_id	day_name
+1	sun
+
+
+
