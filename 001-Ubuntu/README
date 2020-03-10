@@ -54,30 +54,17 @@ scripts/
 =============================
 Getting Started
 =============================
-To execute this task, execute the run.sh script as follows:
-cd to the xxx-xxxxxx directory:
-    ./run.sh
+cd to the scripts directory and
+execute the scripts there.
 
 =============================
 Prerequisites
 =============================
-The following tools will need to be installed to complete this task:
-    Hadoop
-    Java 8
-    Python 3
-    Scala 2.11.8
+None.
 
 =============================
 Installing
 =============================
-No special installation process is required for this task. Ensure the 
-prerequisites are installed and execute the run.sh script.
+This tasks is installing other items and does not need to be installed 
+itself.
 
-=============================
-Results
-=============================
-Upon completion, the script should return the following results:
-
-
-
-See the results directory for further details (if available)
