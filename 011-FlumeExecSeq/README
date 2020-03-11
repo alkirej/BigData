@@ -1,0 +1,17 @@
+=============================
+Task 011 - Use Flume another source
+=============================
+This assignment is to:
+    Read from another source
+    Write to hdfs
+
+=============================
+Files and Directories
+=============================
+run_seq.sh  - use a sequence file as a source
+run_exec.sh - use a tail command as a source
+seq.conf  - configuration for use with a sequence file
+exec.conf - configuration for use with a executed program
+README    - this file
+
+
