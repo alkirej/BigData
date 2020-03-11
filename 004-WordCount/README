@@ -1,0 +1,79 @@
+=============================
+Task - 004 - Word Count in Java and Python
+=============================
+This assignment is to:
+    read shakespeare text file
+    count each word
+    return the word and it's count
+    Store in csv file, with header word and count 
+
+=============================
+Files and Directories
+=============================
+scala/  - directory with Scala code. Ignore for this assignment.
+          See Task 008 for Scala version of this assignment
+python/ - Directory with Python version of assignment 
+java/   - Directory with Java version of assignment
+shakespeare-hamlet.txt - text file to process. Shakespeare's Hamlet
+README  - this file
+
+-----------------
+python DIRECTORY:
+-----------------
+WordCount.py         - python code to do a word count on the text file
+wordcount_python.csv - output of code execution
+run.sh               - shell script to execute python script
+
+---------------
+java DIRECTORY:
+---------------
+WordCount.java     - java code to do a word count on the text file
+wordcount_java.csv - output of the code execution
+compile            - script to compile the java class
+execute            - script to execute (run) the java class
+run.sh             - script to compile and then run the java code
+
+=============================
+Getting Started
+=============================
+To execute this task, execute the run.sh script as follows:
+cd to the python or java directory:
+    ./run.sh
+
+=============================
+Prerequisites
+=============================
+The following tools will need to be installed to complete this task:
+    Java 8
+    Python 3
+
+=============================
+Installing
+=============================
+No special installation process is required for this task. Ensure the 
+prerequisites are installed and execute the run.sh script.
+
+=============================
+Results
+=============================
+The results for the python portion are stored in the .../004.../python
+directory in a file called wordcount_python.csv
+
+The results for the java portion are stored in the .../004.../java
+directory in a file called wordcount_java.csv
+
+Both file look somethin like this when successfully executed:
+	word,count
+	prepare,3
+	oathes,1
+	hamlet,100
+	spoke,2
+	primall,1
+	pittie,2
+	hall,1
+	minerall,1
+	reeles,1
+	guards,1
+	iuyce,1
+	clambring,1
+

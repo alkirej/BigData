@@ -114,7 +114,7 @@ public class WordCount
           sb.append( "word,count\n" );
           wordCounts.forEach( (k,v) -> sb.append( k + "," + v + "\n" ) );
 
-          Files.write( Paths.get("/home/jeff/output/wordcount_java.csv"), sb.toString().getBytes() );
+          Files.write( Paths.get("/home/jeff/git/BigData/004-WordCount/java/wordcount_java.csv"), sb.toString().getBytes() );
       } catch (IOException ioe )
       {
           System.out.println( "File Error:" );

@@ -1,1 +1,2 @@
+CLASSPATH=/home/jeff/git/BigData/004-WordCount/java
 javac -d $CLASSPATH WordCount.java
