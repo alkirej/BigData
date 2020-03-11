@@ -6,6 +6,7 @@ export LOG=/home/hadoop/install.log
 # update the hadoop user environment
 cd /home/hadoop
 
+# update user's .bashrc script to include now environment vars
 echo "
 export HADOOP_HOME=/opt/hadoop
 export PATH=\$HADOOP_HOME/bin:\$HADOOP_HOME/sbin:$PATH

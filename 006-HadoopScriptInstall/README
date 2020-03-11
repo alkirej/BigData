@@ -1,0 +1,52 @@
+=====================================
+Task 006 - Hadoop Install from Script
+=====================================
+This assignment is to Automate the installation of the following:
+    Automate Hadoop installation 
+    Java
+    Hadoop
+    Kafka
+    Sbt
+    openssh client & server
+    Scala
+    Python3
+    git
+    netcat
+    Airflow
+    Spark
+    set pyspark to use python3
+    Start hdfs, and kafka
+
+Note: this project was originally to install hadoop using a script.
+    The comments below reflect that. The full project was completed
+    as a group and can be found in BigDataGroupProjects task 2.
+
+=============================
+Files and Directories
+=============================
+hadoop_install.sh - The script to automate the installation of hadoop.
+SETUP  - most of the tasks I performed before begin the installation script
+README - this file
+
+=============================
+Getting Started
+=============================
+To execute this task, execute the hadoop_install.sh script as follows:
+cd to the 006-HadoopScriptInstall directory:
+    ./hadoop_install.sh
+
+=============================
+Prerequisites
+=============================
+The following tools will need to be installed to complete this task:
+    Java 8
+    OpenSSH
+    
+=============================
+Results
+=============================
+Upon completion hadoop should exist and function. You should be able to
+execute the following:
+    start-dfs.sh
+    start-yarn.sh
+    hdfs dfs ....
