@@ -16,4 +16,4 @@
 # mysql -u jeff -pjeff
 # CREATE DATABASE skilltest
 
-mysql -u jeff -pjeff project003 < /home/jeff/BigData/009-SkillsTestInScala/q5.sql
+mysql -u jeff project003 < /home/jeff/git/BigData/009-SkillsTestInScala/q5.sql

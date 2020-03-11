@@ -1,0 +1,104 @@
+=============================
+Task 
+=============================
+This assignment is to:
+    1a- Create a list and fill it with 30 random numbers
+    1b- Create method that returns the name, and id of the instance 
+	of the object.
+    2 - Given an unsorted integer array, find the smallest missing 
+	positive integer.
+	- Example 1: Input: [1,2,0] => 3
+	- Example 2: Input: [3,4,-1,1] => 2 
+
+    3 - what is the difference between `yield` and `return`
+    4 - Remove duplicates from weekdays = [ ‘sun’,’mon’,’tue’, 
+					    ‘sun’,’mon’,’tue’,
+					    ’wed’,’thu’,’fri’,
+					    ’wed’,’thu’,’fri’,
+					    ’sat’
+					  ]
+
+    5 - Sql 
+	Create a table for object you created above
+	Insert into that table (1 record)
+	Read all data from the table
+	Delete the table
+
+=============================
+Files and Directories
+=============================
+q1-random.scala       - scala code for question 1a & 1b
+q2-missingNum.scala   - scala code for question 2
+q3-yieldReturn.scala  - scala code for question 3
+q4-removeDup.scala    - scala code for question 4
+q5.sql     - Sql for question 5
+q5-sql.sh  - Shell script to execute sql commands from q5.sql
+README     - THIS FILE
+run.sh     - Executes the code for questions 1 - 5.
+
+=============================
+Getting Started
+=============================
+To execute this task, execute the run.sh script as follows:
+cd to the 009-SkillsTestInScala directory:
+    ./run.sh
+
+=============================
+Prerequisites
+=============================
+The following tools will need to be installed to complete this task:
+    Java 8
+    Python 3
+    Scala 2.11.8
+
+=============================
+Installing
+=============================
+No special installation process is required for this task. Ensure the 
+prerequisites are installed and execute the run.sh script.
+
+=============================
+Results
+=============================
+... GENERATE A LIST WITH 30 NUMBERS ...
+
+List(55, 68, 45, 53, 39, 70, 94, 63, 77, 94, 66, 14, 47, 56, 82, 5, 69, 33, 76, 97, 36, 41, 78, 82, 93, 20, 11, 20, 35, 23)
+
+Anna Alkire 101
+
+... FIND THE LOWEST POSITIVE MISSING INTEGER FROM A LIST ...
+11
+
+
+... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ...
+... IN SCALA YIELD ADDS A RESULT TO A FOR CONSTRUCT         ...
+... WHILE RETURN RETURNS (POSSIBLY) A VALUE FROM A FUNCTION ...
+... OR METHOD                                               ...
+... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ...
+... SHOW THE DIFFERENCE BETWEEN YIELD AND RETURN            ...
+... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ...
+Return sample: call a function and print the result:
+   THIS IS FUN!!!
+
+Now, call a function that uses a for loop to build a
+list using yield and returns the resulting list.
+Print the returned list: 
+Vector(20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72, 76, 80, 84, 88, 92, 96, 100)
+
+
+... FIND THE LOWEST POSITIVE MISSING INTEGER FROM A LIST ...
+/home/jeff/git/BigData/009-SkillsTestInScala/q4-removeDup.scala:1: warning: Script has a main object but statement is disallowed
+**
+^
+/home/jeff/git/BigData/009-SkillsTestInScala/q4-removeDup.scala:2: error: ';' expected but 'class' found.
+ * This class / singleton object is to complete
+        ^
+one warning found
+one error found
+
+
+... SQL ASSIGNMENT - NO DIFFERENCE BETWEEN THIS AND PREVIOUS ...
+... EXAMPLE BECAUSE IT SQL AND NOT PYTHON ...
+day_id	day_name
+1	sun
+

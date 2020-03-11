@@ -1,5 +1,9 @@
 import scala.util.Random
 
+/**
+ * This class is for the completion of Big Data Bootcamp task 9 question 1.
+ */
+
 object qOneRandom {
     val person = (  "Anna Alkire", 12 )
     
@@ -25,7 +29,11 @@ object qOneRandom {
         // val rv: List[Int] = for ( i <- 1 to max )  yield Random.nextInt(max)
         return rv
     }
-    
+
+    /**
+     * Main executable entry point.
+     * @param  args - command line arguments (ignored)
+     */    
     def main( args: Array[String] ): Unit = {
         // call randum number generator method
         val rnList = randomGen( 30 )
