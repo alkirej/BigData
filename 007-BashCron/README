@@ -1,0 +1,18 @@
+=============================
+Task 7 - Automate a previous task
+=============================
+This assignment is to:
+    Write a bash file to run task-3 or task-4 every hr for 3 hrs
+
+=============================
+Files and Directories
+=============================
+CronJob.notes - How to setup the cron table instructions
+README        - this file
+
+=============================
+Getting Started
+=============================
+To setup this taks, follow the instructions in the CronJob.notes file
+
+
