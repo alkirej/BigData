@@ -1,0 +1,54 @@
+=============================
+Task 010 - Use Flume with Netcat
+=============================
+This assignment is to:
+    Read from netcat or file or directory
+    Write to file
+
+=============================
+Files and Directories
+=============================
+run_spool.sh       - script to run
+run_nc.sh          - script to run
+run_nc_producer.sh - script to produce
+
+spool.conf         - configure flume to monitor a spooling directory
+netcat.conf        - configure flume to monitor a port (to receive a netcat message)
+
+158 .....          - these files are the results of the messages sent to the sink
+                     (aka: directory) by flume.
+
+message            - the text of the message to send
+README             - this file
+
+=============================
+Getting Started
+=============================
+To execute the netcat solution as follows:
+    cd to the 010-FlumeNetcat directory:
+        ./run_nc.sh
+    open a 2nd terminal and execute:
+        ./run_nc_producer.sh
+
+To execute the spool solution as follows:
+    cd to the 010-FlumeNetcat directory:
+        ./run_spool.sh
+    then copy or move a text file into the spool directory
+
+=============================
+Prerequisites
+=============================
+The following tools will need to be installed to complete this task:
+    Java 8
+
+=============================
+Installing
+=============================
+No special installation process is required for this task. Ensure the 
+prerequisites are installed and execute the run.sh script.
+
+=============================
+Results
+=============================
+Upon completion of the script a file will be added to the
+010-FlumeNetcat directory with the file/message.
