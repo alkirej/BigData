@@ -1,0 +1,27 @@
+=============================
+Task 005 - Study various tasks
+=============================
+This assignment is to study:
+    CAP theorem
+    Learn git    https://www.tutorialspoint.com/git/index.htm
+    Learn python https://www.tutorialspoint.com/python3/index.htm
+    Learn sql    https://www.tutorialspoint.com/sql/index.htm
+    Ssh          https://www.hostinger.com/tutorials/ssh-tutorial-how-does-ssh-work
+    Learn Scala  https://www.tutorialspoint.com/scala/index.htm
+    Learn Java   Optional https://www.tutorialspoint.com/java/index.htm (edited) 
+
+=============================
+Files and Directories
+=============================
+0-CAPTheorem   - notes on the CAP theorem
+1-github.notes - notes on github
+2-Python.notes - notes on python
+3-SQL.notes    - notes on SQL
+4-SSH.notes    - notes on SSH
+5-scala.notes  - notes on Scala
+6-java.notes   - notes on Java (empty file)
+7-sbt.notes    - notes on SBT
+README         - this file
+
+Note: Java.notes is empty. No notes were taken. The assignment was 
+optional and I was already familiar with the language.
