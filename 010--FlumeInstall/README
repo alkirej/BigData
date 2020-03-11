@@ -1,0 +1,27 @@
+=============================
+Task Flume Install Script
+=============================
+This assignment is to:
+    Create a script to install Flume
+
+=============================
+Files and Directories
+=============================
+flume_install.sh - download and install flume
+README           - this file
+
+=============================
+Prerequisites
+=============================
+The following tools will need to be installed to complete this task:
+    Hadoop
+    Java 8
+    Python 3
+    Scala 2.11.8
+
+=============================
+Installing
+=============================
+No special installation process is required for this task. Ensure the 
+prerequisites are installed and execute the run.sh script.
+
