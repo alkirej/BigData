@@ -1,0 +1,41 @@
+1.    List your top three technology skills and how would you rate your level of expertise on a scale of 1-10.
+
+Database usage: including creating and using schemas and queries.  I have used a wide variety of relational as well as non-relational database products including SQL Server, MySQL, Hive, Ingres, HBase, Cassandra, and Oracle. Rating: 8
+	
+Coding: I have used many programming languages over the years including C/C++, Java, Python, Scala, JavaScript, awk. Rating: 7.5
+
+Trouble Shooting: I enjoy finding and fixing bugs in code and a myriad of other situations. Rating 9
+
+		
+
+2. Describe your top three contributions to the successful projects/products you were on. (Examples are product metrics, team productivity, performance, innovation, new tools, etc.)
+
+Mentored a young person who was able to improve his interpersonal and technical skills.  He recently acheived a senior position and is passing on his knowledge to less senior team members.
+
+Was able to improve performance of critical section of code by 75% by tuning the database, updating the object architecture, and prioritizing performance in the code.
+
+As the lead support technician, I created technical support documents and training allowing us to close 10% more issues with one-third of the staff.
+
+
+
+3. What is the most challenging technical problem you have ever solved for which you earned recognition?
+		
+There was a team within our organization that was having trouble with the product they were using. I was asked to consult with the team. The application would work as expected for 6 to 8 hours at which time it would begin to slow down until it became unusable about an hour later.
+
+I was eventually sent to the site and was able to uncover the fact that the slowdown was related to the way a process was forking its subprocesses. To avoid orphaned processes, the process would fork a child and then a grandchild process. This worked fine under most circumstances, but on one machine, the process would copy the entire contents of the parent process into memory before executing the desired program. This meant that a process using 3GB of data was now taking 9GB when the system only had 8GB of memory.
+
+With this information in hand, the architecture of the application was reworked to send a message to a separate small process to start new processes.
+
+
+
+4. What did you learn most recently and how are you applying it in your day-to-day work? 
+
+I am learning functional programming concepts and using this knowledge to write better code with less bugs and easier to support.
+   
+ 
+5. While exploring new opportunities, what kind of future 
+opportunities/challenges will excite you?
+
+While every opportunity and challenge is different and must be	evaluated on its own merits, there are two things that always must be considered.  The first is the opportunity to learn something new. I especially love to learn.  For instance, I read 43 books in the last 12 months. The second thing is meeting new people. I enjoying meeting new people and find nothing better than helping someone else make strides in becomming the person they desire to be.
+
+
