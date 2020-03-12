@@ -1,0 +1,8 @@
+* VARIABLE NAMES *
+
+- A valid variable name consists of letters, numbers and the dot (.) or underline (_) characters. The variable name must start with either a letter or a dot that is not immediately followed by a number. In other words, names such as 55weight and .55weight are not valid, whereas .weight is valid.
+
+- We cannot name a variable with any special keywords like if, then, else, or any others that are reserved by the language as part of its built-in functionality. Thus, something like if <- 5 will give you an error.
+
+- R is case sensitive, so the variables Height and height are not the same!
+
