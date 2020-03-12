@@ -1,0 +1,59 @@
+* Common Table Expressions (CTEs), often simply called WITH clauses, are essentially just named subqueries
+
+
+* Unlike SQL subqueries, CTEs can be recursive, allowing the traversal of hierarchical models of enormous depth.
+
+
+* What is a Common Table Expression? You can think of it as a temporary set of rows that you define on your own and then use in the same query. In principle, CTEs are similar to subqueries.
+
+
+* In the MOST BASIC VERSION, you need to give your CTE some_name and define it within the parentheses. 
+
+    WITH some_name AS (your_cte)
+      SELECT ... 
+      FROM some_name
+
+
+* We will refer to the CTE part as the inner query and the part after it as the outer query. Note that you need to define your CTE first, i.e. before the SELECT clause of the outer query.
+
+
+* there is an alternative CTE syntax where we define the columns explicitly:
+
+WITH some_name (cte_columns) AS ( your_cte )
+  SELECT ... 
+  FROM some_name
+
+In other words, we now have two pairs of parentheses. First, we provide the names of columns that our CTE will have. Second, we define the actual CTE based on the columns we provided.
+
+
+* You can actually have as many CTEs in a single query as you need. Each of them should be separated with a comma, and the WITH keyword should only appear once, at the beginning.
+
+WITH some_name1 AS ( your_CTE1 ),
+some_name2 AS ( you_CTE2 ),
+...
+SELECT ...
+
+Do remember that WITH appears only once, at the beginning. The other CTEs are separated with commas. DO NOT put a comma after the last CTE.
+
+
+* Introducing multiple CTEs usually makes sense when they refer to each other. 
+
+
+* 
+
+
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+
