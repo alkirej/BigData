@@ -1,0 +1,158 @@
+Scala 
+---------------------------------------------------
+1) What is the super class of all classes in Scala?
+---------------------------------------------------
+Any
+is the super class of all Scala classes. In other words, all classes are descended from Any.  It is similar to the Object class in Java, but it also included the primitive types.
+ 
+
+---------------------------------------------------
+2) Why do we use Tuples in Scala?
+---------------------------------------------------
+Tuples are used in scala to store a collection of data of different types. We may desire to return an error code and error message from a certain method. The tuple allows ups to group these items together without creating a new class.
+ 
+
+---------------------------------------------------
+3) What are different Collection data types in Scala?
+---------------------------------------------------
+The most common data collection types in Scala are:
+    Lists, which contain an ordered selection of objects of a similar type
+    Sets,  which does not retain item order, but does prevent duplicates 
+    Arrays, which are an indexed collection of items. They are also mutable.
+    Maps, which allow obtaining the contents of the elements in the collection using a key other than the numeric place of the item in the list. 
+    Tuples, which allow items of different types to be stored together in the same collection.
+
+
+
+
+Spark 
+---------------------------------------------------
+1) Is Spark faster than Map-Reduce and why?
+---------------------------------------------------
+Spark emphasis the use of memory over more intensive disk I/O. Spark also spends resources on optimizing the work it does using directed acyclic graphs. This reduces disk and network I/O.
+ 
+
+---------------------------------------------------
+2) What are actions and transformations?
+---------------------------------------------------
+Spark transformations take in one data object (such as an RDD or DataFrame) and return another that represents a new, "transformed" set of data.  These transformations take advantage of lazy instantiation waiting to execute until an action is performed.  This waiting allows Spark to minimize the execution time of the transformation work.
+
+Spark actions are operations that return something other than a data object (RDD, DataFrame, DataSet). The action is performed, the previously defined transformations are performed by the Spark engine at the time the action is called.
+ 
+
+---------------------------------------------------
+3) What is the difference between cache() and persist() methods:
+---------------------------------------------------
+In Spark, cache() uses the default storage level (usually MEMORY) while persist allows you to specify the stoarge level to use.
+
+ 
+
+---------------------------------------------------
+4) What is Lazy evaluation in Spark
+---------------------------------------------------
+Lazy evaluation is the idea that transformations of data objects are not executed immediately. Instead, they are not executed until an action is performed. At that time, the execution of several transformations can be handled together by the Spark engine allowing it to improve performance.
+ 
+
+---------------------------------------------------
+5) Spark executors are calculated based on the number of cores available in cluster?
+---------------------------------------------------
+When configuring Spark, we need to be balanced.  If we give too large a memory block to any one executor, it can end up causing delays when the JVM does garbage cleanup.  On the other hand, if we give an executor too few resources, it is unable to take advantage of performance optimizations that come from executing sequential tasks in the same executor.
+ 
+
+Data Modelling 
+---------------------------------------------------
+1) What are SCD Type 2 Tables?
+---------------------------------------------------
+Type 2 Slowly Changing Dimension tables are tables within a data warehouse that keep all previous data states. When a value is changed in the dimension table, the previous state is retained and a new record is added to the table. This allow viewing historical data possible.
+
+ 
+
+---------------------------------------------------
+2) What are SCD Type 1 Tables?
+---------------------------------------------------
+Type 1 Slowly Changing Dimension tables are tables within a data warehouse that keep only the current data. If the data in the dimension table is updated, the new data overwrites the previous data and the previous data is lost.
+ 
+
+---------------------------------------------------
+3) What are factless fact tables?
+---------------------------------------------------
+A fact table without a fact is called a factless fact table. They contain the keys to access the dimension tables, but no additional information about the fact.
+ 
+
+---------------------------------------------------
+4) What is a conﬁrmed Dimension?
+---------------------------------------------------
+A conformed dimension is a dimension that can provide the same content to more than one fact table.  Once data is placed into a conformed table, it does not change.
+ 
+
+Hive 
+---------------------------------------------------
+1) What are different types of Tables in Hive?
+---------------------------------------------------
+Hive used managed tables and external tables.
+
+---------------------------------------------------
+2) Difference between Managed & External tables?
+---------------------------------------------------
+When a managed table is dropped in HQL, the data is removed from storage. The data stored in external tables, on the other hand, remains.  Also, Hive decides where the managed tables are stored, but the user defines where external tables are stored. 
+ 
+
+---------------------------------------------------
+3)What is a partition in Hive?
+---------------------------------------------------
+A Hive partition is a part of a Hive table. The table is split into sections based on one or more column values and divided into a certain number of partitions. These partitions make parallel processing of the data in the table easier leading to shorter query times.
+ 
+
+---------------------------------------------------
+4) What query do you use to get list of all databases in Hive
+---------------------------------------------------
+show databases;
+will show all of the databases defined in the hive datastore.
+
+
+
+Sqoop
+---------------------------------------------------
+1) What is the importance of — the split-by clause in running parallel import tasks in sqoop?
+---------------------------------------------------
+
+ 
+
+---------------------------------------------------
+2)How can you import only a subset of rows from a table?
+---------------------------------------------------
+
+ 
+
+Python
+---------------------------------------------------
+1) Python - Dynamically typed or static typed?
+---------------------------------------------------
+
+ 
+
+---------------------------------------------------
+2) Is range a generator in python?
+---------------------------------------------------
+
+ 
+
+---------------------------------------------------
+3)  [] is [], [] == []
+---------------------------------------------------
+
+ 
+
+---------------------------------------------------
+4) Difference  between list and tuple
+---------------------------------------------------
+
+ 
+
+---------------------------------------------------
+5) Is string an  iterable in python?
+---------------------------------------------------
+
+ 
+
+Write a python program to return the nearest possible index for the given element in the sorted list(asc).

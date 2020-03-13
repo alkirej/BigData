@@ -1,0 +1,40 @@
+-- CURRYING--
+
+* In mathematics and computer science, is the technique of translating the evaluation of a function that takes multiple arguments into evaluating a sequence of functions, each with a single argument. For example, a function that takes two arguments, one from X and one from Y, and produces outputs in Z, by currying is translated into a function that takes a single argument from X and produces as outputs functions from Y to Z.
+
+* BEFORE f(x,y) -> z
+  AFTER  f(x) ->  ( f(y) -> z )
+
+* In functional programming languages, and many others, it provides a way of automatically managing how arguments are passed to functions and exceptions. 
+
+*     A curried function takes multiple arguments, one at a time.
+
+Each time an argument is passed to it, it returns a new function that accepts the next argument. It does this until all arguments have been passed where it then returns the final output.
+
+const curried = arg1 => arg2 => arg3 => { ... };
+
+-------------------------------------------------
+Now here are some important things to understand.
+-------------------------------------------------
+1. A curried function that has ONLY HAD SOME of its arguments passed, is incomplete and called a PARTIAL APPLICATION.
+2. When you pass the second argument, it has access to the previous argument(s) and the current internal state of the curried function.
+
+-------
+Example
+-------
+// when we only pass some of the args, we get a partial application
+const partialApplication = curried(1)(2);// we can finish our curried function by passing remaining args
+const finalResult = partialApplication(3);// this is also the equivalent of
+const alsoFinalResult = curried(1)(2)(3);
+
+
+* Pitfalls with currying
+1. Currying isn’t widely understood by all developers.
+	Developers unfamiliar with the technique will have a harder time working with code that uses currying. It can cause also confusion because the syntax can be harder to read than traditional functions.
+
+2. It’s easy to abuse
+	There is nothing stopping you from currying every function in your codebase. Developers may use currying when there may be simpler composition techniques that would also get the job done.
+	A - Do you need to compose re-usable partial applications?
+	B - Do you need to ensure your functions will only have a single argument?
+If you answered no to both these questions, you may not need currying.
+

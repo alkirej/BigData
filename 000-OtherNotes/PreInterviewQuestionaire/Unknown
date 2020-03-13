@@ -1,0 +1,25 @@
+----------------------------------------------------------------------------------
+What is the use of Currying and how could it be incorporated into Data Processing?
+----------------------------------------------------------------------------------
+Currying is the translation of a function that takes more than one parameter into a group of functions. Each of these functions accepts a single parameter and when executed in order produce the same result as the original function.
+
+We can use currying to improve our code in many modern programming languages. For instance, we can create a function that when partially applied can be used similar to an abstract class making it easier to implement behaviors such as creating multiple sorts over the same set of data.
+
+----------------------------------------------------------------------------------
+How do you expose Parquet Files for Querying?
+----------------------------------------------------------------------------------
+One can use hive external tables or another database system or spark (via the read.parquet(...) method) to query data stored in parquet files.
+
+----------------------------------------------------------------------------------
+How do you build a real-time ingestion data pipeline, explain it with a use case.
+----------------------------------------------------------------------------------
+We could use a Kafka cluster with consumer group(s), and Spark structured streaming to retrieve and process the data after which Spark could store in the appropriate hdfs or database location.
+
+One situation where this could make sense is with a delivery truck that gathers and retains information for the myriad of sensors and other data gathering methods. This would include things like the air pressure, fuel economy, location, and a myriad of other pieces of data about the truck. 
+
+The data could be gathered and buffered by the Kafka cluster. The data would be received by Spark through its structured streaming api. Spark could then transform the data into the format expected by the backend for permanent storage at which point it could be further processed later or used for reporting.
+
+------------------------------------------------------------------------------------------
+What’s the difference between DataFrames and DataSets. Which one would you prefer and why.
+------------------------------------------------------------------------------------------
+The difference between DataFrames and DataSets is that DataSets are strictly typed while DataFrames are not. There is also a different set of methods available on DataSets than on DataFrames. When possible, I prefer DataFrames because if I have an error in my code, I would much prefer a compile time error that explains where the error is to one at runtime.
