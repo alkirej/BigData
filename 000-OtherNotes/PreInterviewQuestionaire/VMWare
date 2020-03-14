@@ -115,44 +115,184 @@ Sqoop
 ---------------------------------------------------
 1) What is the importance of — the split-by clause in running parallel import tasks in sqoop?
 ---------------------------------------------------
-
+The --split-by parameter in sqoop is used to define the column to use when dividing the data into partitions. By default, this data will be split into 4 groups (because 4 is the default number of mappers) and it will be split evenly.  It is important to choose a column that is evenly distributed across the values in the column or one mapper may end up doing nearly all of the work.
  
 
 ---------------------------------------------------
 2)How can you import only a subset of rows from a table?
 ---------------------------------------------------
-
+In sqoop, we can use the --where flag followed by SQL WHERE clause such as:
+  --where "last_name='smith'"
  
 
 Python
 ---------------------------------------------------
 1) Python - Dynamically typed or static typed?
 ---------------------------------------------------
-
+Python is dynamically typed. Your variables can be assigned values of any type even if that type is different than it was before.
  
 
 ---------------------------------------------------
 2) Is range a generator in python?
 ---------------------------------------------------
-
- 
+In Python 2, range(...) creates an in-memory list while xrange(...) crates a generator.
+In Python 3, range creates a generator and xrange has been removed.
 
 ---------------------------------------------------
 3)  [] is [], [] == []
 ---------------------------------------------------
-
+In python, using == checks 2 objects for equality. 2 lists are considered equal if the have the same members in the same order. The is operator checks for a different kind of equality. It determines if the 2 variables reference the same data (the same location in memory).
  
 
 ---------------------------------------------------
 4) Difference  between list and tuple
 ---------------------------------------------------
-
+A tuple contains immutable data while a list contains mutable data. While the contents of the tuple itself cannot change, the contents of the contents can. If for example my tuple contains a list. The object will always be a list, but the contents of the list may be changed (e.g. using the list's append() method).
  
 
 ---------------------------------------------------
 5) Is string an  iterable in python?
 ---------------------------------------------------
+Yes. A python string is a collection of characters. The following code:
 
+for i in "hello":
+    print( i )
  
+will produce the following output:
+h
+e
+l
+l
+o
 
 Write a python program to return the nearest possible index for the given element in the sorted list(asc).
+
+I am uncertain of the exact meaning of the problem statement. So, I have two similar sets of code for each of the two explanations I see as possible.  The first will return the index of the item before the location the item would be added to the list.
+
+The second returns the index of the item closest to the target value.
+
+=========================================================================
+First Possibility - index before item would be added to list
+=========================================================================
+"""
+Author: Jeffery Alkire
+Date:   March 13, 2020
+
+Function to take a list of numbers and return the index the the highest
+value that is still lower than the target value
+"""
+
+# create and sort a list as a test case
+sample_list: list = [    5, 813, 54982,   3, 34,       5, 236,  263,
+                      2346,  26,    43,   3, 45,      76,   7,   23,
+                         4,  54,     6, 267,  7,       4,   3,    1,
+                        45,  34,     5,   7,  2, 2343234, 234, 2345
+                    ]
+sample_list.sort()
+
+def find_closest_index( list_to_search: list, value_to_find: int ) -> int:
+    """
+    Find the index in list of the number closest to the given value
+
+    :param list_to_search: a list of integers to search through
+    :param value_to_find:  number to search for in the list
+    :return: the INDEX of the element preceding the point we woud enter this item
+                in the list. (-1 means add at the front of the list)
+    """
+    list_len = len( list_to_search )
+
+    # search through list one item at a time.
+    # binary tree search doesn't reduce BigO of operation on a linked list
+    #    it will be BigO(n) either way
+    for i in range( list_len ):
+        current:int  = list_to_search[i]
+
+        # loop until we find a value higher than the target
+        if current > value_to_find:
+            return i-1
+
+    # out of loop means that no item in the list is greater than the target.
+    # We will return the last item.
+    return list_len
+
+
+if __name__ == '__main__':
+    index_of_closest: int = find_closest_index( sample_list, 55000 )
+    print( sample_list ) # uncomment to see complete list for verification
+    print( index_of_closest )
+
+=========================================================================
+Second Entry - index of item closest in value to the given target
+=========================================================================
+"""
+Author: Jeffery Alkire
+Date:   March 13, 2020
+
+Function to take a list of numbers and return the index of the item in the
+list that is closest to the target value.
+"""
+
+# create and sort a list as a test case
+sample_list: list = [    5, 813, 54982,   3, 34,       5, 236,  263,
+                      2346,  26,    43,   3, 45,      76,   7,   23,
+                         4,  54,     6, 267,  7,       4,   3,    1,
+                        45,  34,     5,   7,  2, 2343234, 234, 2345
+                    ]
+sample_list.sort()
+
+def find_closest_number( target: int, num_1: int, num_2: int ) -> int:
+    """
+    Function to find which number is closer to the target.
+
+    :param target: the number we want to be closest to
+    :param num_1:  the first of two numbers to check for closness
+    :param num_2:  the second number to check for closness
+    :return:       either num_1 or num_2 - whichever is closer (ties go to num_1)
+    """
+    # compute the 2 differences
+    diff_below = abs(target-num_1)
+    diff_above = abs(target-num_2)
+
+    # return the value of the closer number
+    if diff_below > diff_above:
+        return num_2
+    else:
+        return num_1
+
+def find_closest_index( list_to_search: list, value_to_find: int ) -> int:
+    """
+    Find the index in list of the number closest to the given value
+
+    :param list_to_search: a list of integers to search through
+    :param value_to_find:  number to search for in the list
+    :return: the INDEX of the number closest to the value_to_find in the list
+    """
+    list_len = len( list_to_search )
+    last: int = list_to_search[0]
+
+    # search through list one item at a time.
+    # binary tree search doesn't reduce BigO of operation on a linked list
+    #    it will be BigO(n) either way
+    for i in range( 1, list_len ):
+        current:int  = list_to_search[i]
+
+        # loop until we find a value higher than the target
+        if current > value_to_find:
+            closest: int  = find_closest_number( value_to_find, last, current )
+            # determine if the current or last item is closer and return the index
+            if ( last == closest ):
+                return i-1
+            else:
+                return i
+        last = current
+
+    # out of loop means that no item in the list is greater than the target.
+    # We will return the last item.
+    return list_len
+
+
+if __name__ == '__main__':
+    index_of_closest: int = find_closest_index( sample_list, 55000 )
+    print( sample_list ) # uncomment to see complete list for verification
+    print( index_of_closest )
+
