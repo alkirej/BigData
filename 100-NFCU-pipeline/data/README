@@ -1,0 +1,5 @@
+CHICAGO AND LOS ANGELES data is to large to store in a single file in
+github.  So, I split the file into pieces.
+
+To put the pieces back together, execute the combine.sh script in
+this directory.
