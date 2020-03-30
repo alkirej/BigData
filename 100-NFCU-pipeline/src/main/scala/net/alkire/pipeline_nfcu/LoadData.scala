@@ -1,6 +1,6 @@
 package net.alkire.pipeline_nfcu
 import org.apache.log4j.{Level, Logger}
-import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.{SparkSession, DataFrame}
 
 /** Load restaurant violation data from .csv files. */
 object LoadData {
@@ -15,6 +15,30 @@ object LoadData {
             .appName(Constant.AppName)
             .getOrCreate()
     }
+    def buildFileName( city: Int ): String = {
+        val returnVal: StringBuilder = new StringBuilder()
+        returnVal.append( Constant.DataDir )
+        returnVal.append( "/" )
+        returnVal.append( Constant.FilePrefix )
+        returnVal.append( Constant.FileMainName(city) )
+        returnVal.append( Constant.FileSuffix )
+
+        returnVal.toString
+    }
+
+    def loadCsvFileFor( city: Int )(implicit spark: SparkSession): DataFrame = {
+        val fn = buildFileName(city)
+
+        val df = spark.read
+                      .format("org.apache.spark.csv")
+                      .option("header", "true") //first line in file has headers
+                      .option("multiline", "true")
+                      .csv(s"file://${fn}")
+        // val df = spark.sql(s"SELECT * FROM csv.`file://${fn}`")
+        df.show()
+
+        df
+    }
 
     /**
      * Main code entry point for LoadData object
@@ -27,5 +51,7 @@ object LoadData {
 
         // BUILD A SPARK SESSION
         val spark: SparkSession = createSparkSession
+
+        loadCsvFileFor( Constant.FnIdxAnchorage )( spark )
     } // main
 }
