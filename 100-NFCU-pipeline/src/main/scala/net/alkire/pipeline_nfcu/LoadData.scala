@@ -27,6 +27,9 @@ object LoadData {
     }
 
     def loadCsvFileFor( city: Int )(implicit spark: SparkSession): DataFrame = {
+        assert( city>=0)
+        assert( city<Constant.FileMainName.length
+        )
         val fn = buildFileName(city)
 
         val df = spark.read
@@ -34,10 +37,16 @@ object LoadData {
                       .option("header", "true") //first line in file has headers
                       .option("multiline", "true")
                       .csv(s"file://${fn}")
-        // val df = spark.sql(s"SELECT * FROM csv.`file://${fn}`")
-        df.show()
+        df.createOrReplaceTempView( Constant.TempViewName )
 
-        df
+        if ( "" == Constant.SqlByCity(city))
+        {
+            println
+            print( df.printSchema )
+            null
+        } else {
+            spark.sqlContext.sql(Constant.SqlByCity(city)).sort()
+        }
     }
 
     /**
@@ -52,6 +61,16 @@ object LoadData {
         // BUILD A SPARK SESSION
         val spark: SparkSession = createSparkSession
 
-        loadCsvFileFor( Constant.FnIdxAnchorage )( spark )
+        for ( idx <- 0 to Constant.FileMainName.length-1 )
+        {
+            print( Constant.FileMainName(idx) )
+            val df: DataFrame = loadCsvFileFor( idx )( spark )
+            if ( df != null ) {
+                print( " - " )
+                println( df.count() )
+                df.sample( 0.01d ).show(5)
+            }
+            println
+        }
     } // main
 }
