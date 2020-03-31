@@ -1,11 +1,13 @@
 package net.alkire.pipeline_nfcu
 
+import java.util.Properties
+
 object Constant {
     // Spark Session instantiation constants
     val Master:  String = "local[*]"
-    val AppName: String = "nfcu-pipeline"
+    val AppName: String = "pipeline"
 
-    // .csv file name constnats
+    // .csv file name constants
     val DataDir:    String = "/home/jeff/git/BigData/100-NFCU-pipeline/data"
     val FilePrefix: String = "health-violations-"
     val FileSuffix: String = ".csv"
@@ -144,5 +146,20 @@ object Constant {
     val FnIdxAnchorage  = 5
     val FnIdxLosAngeles = 6
     val FnIdxChicago    = 7
+
+
+    // JDBC Connection properties
+    val JdbcDriverClass = "com.teradata.jdbc.TeraDriver"
+    val JdbcHost  = "192.168.0.121"
+    val JdbcDb    = "task100"
+    val JdbcUser  = "dbc"
+    val JdbcPw    = "dbc"
+    val JdbcDbTbl = "task100.health_visit"
+
+    val JdbcUrl = s"jdbc:teradata://${JdbcHost}/${JdbcDb}"
+
+    val ConnProps = new Properties
+    ConnProps.put("user", s"${JdbcUser}")
+    ConnProps.put("password", s"${JdbcPw}")
 
 }
