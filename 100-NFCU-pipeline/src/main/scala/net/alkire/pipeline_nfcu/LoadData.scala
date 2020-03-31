@@ -84,12 +84,12 @@ object LoadData {
         Logger.getLogger("org").setLevel(Level.ERROR)
 
         // BUILD A SPARK SESSION
-        val spark: SparkSession = createSparkSession
+        implicit val spark: SparkSession = createSparkSession
 
         for ( idx <- 0 to Constant.FileMainName.length-1 )
         {
             print( Constant.FileMainName(idx) )
-            val df: DataFrame = loadCsvFileFor( idx )( spark )
+            val df: DataFrame = loadCsvFileFor( idx )
             if ( df != null )
             {
                 print( " - " )

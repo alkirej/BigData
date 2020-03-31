@@ -8,3 +8,5 @@ libraryDependencies += "org.apache.spark"  %% "spark-streaming" % "2.4.4"
 
 // Added terajdbc4.jar to classpath.
 // Not available as a maven dependency
+
+unmanagedJars in Compile := (file("/home/jeff/git/BigData/100-NFCU-pipeline/jdbc-driver/") ** "*.jar").classpath
