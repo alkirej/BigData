@@ -15,7 +15,7 @@ object LoadData {
     def createSparkSession: SparkSession =
     {
         SparkSession.builder
-            .master(Constant.Master)
+            // .master(Constant.Master)
             .appName(Constant.AppName)
             .getOrCreate()
     }
@@ -100,7 +100,7 @@ object LoadData {
                     println( s"${Constant.JdbcDbTbl} does not exist to drop")
                 }
             }
-            case e =>
+            case e: Throwable =>
             {
                 e.printStackTrace
                 sys.exit
