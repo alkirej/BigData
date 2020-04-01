@@ -15,7 +15,7 @@ object LoadData {
     def createSparkSession: SparkSession =
     {
         SparkSession.builder
-            // .master(Constant.Master)
+            .master(Constant.Master)
             .appName(Constant.AppName)
             .getOrCreate()
     }
@@ -118,8 +118,7 @@ object LoadData {
     def appendVisitData( df: DataFrame ): Unit =
     {
         assert( Constant.ColumnNames.length == df.columns.length )
-
-        df.write.mode("append" ).jdbc( Constant.JdbcUrl, Constant.JdbcDbTbl, Constant.ConnProps )
+        df.write.option( "driver", Constant.JdbcDriverClass ).mode("append" ).jdbc( Constant.JdbcUrl, Constant.JdbcDbTbl, Constant.ConnProps )
     }
 
     /**
@@ -134,7 +133,6 @@ object LoadData {
 
         // BUILD A SPARK SESSION
         implicit val spark: SparkSession = createSparkSession
-
         prepareHealthVisitTable
 
         for ( idx <- 0 to Constant.FileMainName.length-1 )
@@ -144,17 +142,15 @@ object LoadData {
             if ( df != null )
             {
                 print( s" - ${df.count()}" )
-                // println( df.count() )
                 appendVisitData( df )
             }
             println
         }
 
-        Class.forName( Constant.JdbcDriverClass )
         println( " ======================== " )
         println( " === NEW READ ATTEMPT ===" )
         println( " ======================== " )
-        val df = spark.sqlContext.read.jdbc( Constant.JdbcUrl, Constant.JdbcDbTbl, Constant.ConnProps )
+        val df = spark.sqlContext.read.option("driver",Constant.JdbcDriverClass).jdbc( Constant.JdbcUrl, Constant.JdbcDbTbl, Constant.ConnProps )
         df.show()
         println( " ======================== " )
     } // main

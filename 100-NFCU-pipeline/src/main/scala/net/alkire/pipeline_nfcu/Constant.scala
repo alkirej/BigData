@@ -156,7 +156,8 @@ object Constant {
     val JdbcPw    = "dbc"
     val JdbcDbTbl = "task100.health_visit"
 
-    val JdbcUrl = s"jdbc:teradata://${JdbcHost}/${JdbcDb}"
+    // val JdbcUrl = s"jdbc:teradata://${JdbcHost}/${JdbcDb}"
+    val JdbcUrl = s"jdbc:teradata://${JdbcHost}"
 
     val ConnProps = new Properties
     ConnProps.put("user", s"${JdbcUser}")
