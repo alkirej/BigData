@@ -162,4 +162,24 @@ object Constant {
     ConnProps.put("user", s"${JdbcUser}")
     ConnProps.put("password", s"${JdbcPw}")
 
+    // SQL to drop and create table
+    val SqlDropTable: String = s"DROP TABLE ${JdbcDbTbl}"
+
+    val SqlCreateTable: String =
+        s"""CREATE MULTISET TABLE ${JdbcDbTbl}
+           | ( ${ColumnNames(0)} VARCHAR(80),
+           |   ${ColumnNames(1)} VARCHAR(20),
+           |   ${ColumnNames(2)} VARCHAR(5),
+           |   ${ColumnNames(3)} VARCHAR(200),
+           |   ${ColumnNames(4)} VARCHAR(80),
+           |   ${ColumnNames(5)} VARCHAR(20),
+           |   ${ColumnNames(6)} VARCHAR(10),
+           |   ${ColumnNames(7)} VARCHAR(200),
+           |   ${ColumnNames(8)} VARCHAR(80),
+           |   ${ColumnNames(9)} VARCHAR(200)
+           | )
+        """.stripMargin
+
+    // Exception Error Code(s)
+    val SqlTableDoesNotExist: Int = 3807
 }

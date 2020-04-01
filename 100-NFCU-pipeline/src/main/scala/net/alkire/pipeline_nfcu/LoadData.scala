@@ -1,5 +1,7 @@
 package net.alkire.pipeline_nfcu
 
+import java.sql.{Connection, DriverManager, SQLException, Statement}
+
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.sql.{DataFrame, SparkSession}
 
@@ -26,6 +28,9 @@ object LoadData {
      */
     def buildFileName( city: Int ): String =
     {
+        assert( city >= 0 )
+        assert( city < Constant.FileMainName.length )
+
         val returnVal: StringBuilder = new StringBuilder()
         returnVal.append( Constant.DataDir )
         returnVal.append( "/" )
@@ -46,11 +51,11 @@ object LoadData {
     {
         assert( city>=0 )
         assert( city<Constant.FileMainName.length )
+        assert( null != spark )
 
         val fn = buildFileName(city)
 
         val df = spark.read
-                      // .format("org.apache.spark.csv" )
                       .option("header", "true") //first line in file has headers
                       .option("multiline", "true")
                       .csv(s"file://${fn}")
@@ -66,6 +71,50 @@ object LoadData {
         }
     }
 
+    /**
+     * Drop (if necessary) and recreate the health_visit table
+     */
+    def prepareHealthVisitTable: Unit =
+    {
+        Class.forName( Constant.JdbcDriverClass )
+        println( "Teradata JDBC driver loaded" )
+
+        val jdbcConn: Connection = DriverManager.getConnection( Constant.JdbcUrl, Constant.ConnProps )
+        println( "Connection established with Teradata" )
+
+        val jdbcStmt: Statement = jdbcConn.createStatement
+        try
+        {
+            println( Constant.SqlDropTable )
+            jdbcStmt.execute( Constant.SqlDropTable )
+        } catch
+        {
+            case e: SQLException =>
+            {
+                if ( e.getErrorCode != Constant.SqlTableDoesNotExist )
+                {
+                    e.printStackTrace
+                    sys.exit
+                } else
+                {
+                    println( s"${Constant.JdbcDbTbl} does not exist to drop")
+                }
+            }
+            case e =>
+            {
+                e.printStackTrace
+                sys.exit
+            }
+        }
+        println( Constant.SqlCreateTable )
+        jdbcStmt.execute( Constant.SqlCreateTable )
+    }
+
+    /**
+     * Add contents of dataframe to the health_visit table in Teradata
+     *
+     * @param df  records to add to table
+     */
     def appendVisitData( df: DataFrame ): Unit =
     {
         assert( Constant.ColumnNames.length == df.columns.length )
@@ -86,16 +135,16 @@ object LoadData {
         // BUILD A SPARK SESSION
         implicit val spark: SparkSession = createSparkSession
 
+        prepareHealthVisitTable
+
         for ( idx <- 0 to Constant.FileMainName.length-1 )
         {
             print( Constant.FileMainName(idx) )
             val df: DataFrame = loadCsvFileFor( idx )
             if ( df != null )
             {
-                print( " - " )
-                println( df.count() )
-                df.sample( 0.01d ).show(5)
-
+                print( s" - ${df.count()}" )
+                // println( df.count() )
                 appendVisitData( df )
             }
             println
