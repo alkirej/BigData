@@ -147,11 +147,13 @@ object LoadData {
             println
         }
 
+/*
         println( " ======================== " )
         println( " === NEW READ ATTEMPT ===" )
         println( " ======================== " )
         val df = spark.sqlContext.read.option("driver",Constant.JdbcDriverClass).jdbc( Constant.JdbcUrl, Constant.JdbcDbTbl, Constant.ConnProps )
         df.show()
         println( " ======================== " )
+ */
     } // main
 }
