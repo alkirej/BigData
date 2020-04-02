@@ -1,0 +1,13 @@
+export
+--connect
+jdbc:mysql://localhost/sqooptest
+--username
+jeff
+--password
+jeff
+--table
+health_visit
+--export-dir
+/user/hive/warehouse/task101.db/health_visit
+--input-fields-terminated-by 
+\001

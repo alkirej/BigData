@@ -1,0 +1,11 @@
+import
+-m
+1
+--connect
+jdbc:mysql://localhost/sqooptest
+--username
+jeff
+--password
+jeff
+--table
+st_1
