@@ -2,7 +2,8 @@ package net.alkire.task101
 
 import java.sql.{Connection, DriverManager, SQLException, Statement}
 
-import org.apache.log4j.{Level, Logger}
+import org.apache.log4j.spi.Configurator
+import org.apache.log4j.{Level, LogManager, Logger}
 import org.apache.spark.sql.{DataFrame, SparkSession}
 
 /** Load restaurant violation data from .csv files. */
@@ -84,35 +85,8 @@ object LoadDataEm {
      * Drop (if necessary) and recreate the health_visit table
      */
     def prepareHealthVisitTable( implicit spark: SparkSession ): Unit = {
-        spark.sql( s"DROP DATABASE IF EXISTS ${Constant.JdbcDb}" )
-        spark.sql( s"CREATE DATABASE ${Constant.JdbcDb}" )
         spark.sql( s"USE ${Constant.JdbcDb}")
-        spark.sql( Constant.SqlCreateTable )
-        return
-
-        val jdbcConn: Connection = DriverManager.getConnection(Constant.JdbcUrl, Constant.ConnProps)
-        println("Connection established with Teradata")
-
-        val jdbcStmt: Statement = jdbcConn.createStatement
-        try {
-            println(Constant.SqlDropTable)
-            jdbcStmt.execute(Constant.SqlDropTable)
-        } catch {
-            case e: SQLException => {
-                if (e.getErrorCode != Constant.SqlTableDoesNotExist) {
-                    e.printStackTrace
-                    sys.exit
-                } else {
-                    println(s"${Constant.JdbcDbTbl} does not exist to drop")
-                }
-            }
-            case e: Throwable => {
-                e.printStackTrace
-                sys.exit
-            }
-        }
-        println(Constant.SqlCreateTable)
-        jdbcStmt.execute(Constant.SqlCreateTable)
+        spark.sql( Constant.SqlDropTable )
     }
 
     /**
@@ -122,7 +96,7 @@ object LoadDataEm {
      */
     def appendVisitData(df: DataFrame): Unit = {
         assert(Constant.ColumnNames.length == df.columns.length)
-        df.write.option("driver", Constant.JdbcDriverClass).mode("append").jdbc(Constant.JdbcUrl, Constant.JdbcDbTbl, Constant.ConnProps)
+        df.write.mode("append").saveAsTable( Constant.JdbcDbTbl )
     }
 
     /**
@@ -131,9 +105,6 @@ object LoadDataEm {
      * @param args command line
      */
     def main(args: Array[String]): Unit = {
-        // Crank logging down to a dull roar.
-        Logger.getLogger("org").setLevel(Level.ERROR)
-
         // BUILD A SPARK SESSION
         implicit val spark: SparkSession = createSparkSession
         prepareHealthVisitTable
@@ -147,14 +118,5 @@ object LoadDataEm {
             }
             println
         }
-
-        /*
-                println( " ======================== " )
-                println( " === NEW READ ATTEMPT ===" )
-                println( " ======================== " )
-                val df = spark.sqlContext.read.option("driver",Constant.JdbcDriverClass).jdbc( Constant.JdbcUrl, Constant.JdbcDbTbl, Constant.ConnProps )
-                df.show()
-                println( " ======================== " )
-         */
     } // main
 } // class
