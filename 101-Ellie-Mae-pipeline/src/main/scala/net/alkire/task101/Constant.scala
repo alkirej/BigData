@@ -38,6 +38,8 @@ object Constant {
                                             "inspection_violation"
                                           )
 
+    val AddressColumn = ColumnNames(3)
+
     // Sql to build similar data for all cities despite different starting schemas.
     val SqlByCity: Array[String] = Array(
         // LOUISVILLE, KENTUCKY
@@ -150,37 +152,28 @@ object Constant {
 
 
     // JDBC Connection properties
-    val JdbcDriverClass = "com.teradata.jdbc.TeraDriver"
-    val JdbcHost = "192.168.0.121"
-    val JdbcDb = "task101"
-    val JdbcUser = "dbc"
-    val JdbcPw = "dbc"
+    val JdbcDb   = "task101"
     val JdbcDbTbl = "health_visit"
-
-    val JdbcUrl = s"jdbc:teradata://${JdbcHost}"
-
-    val ConnProps = new Properties
-    ConnProps.put("user", s"${JdbcUser}")
-    ConnProps.put("password", s"${JdbcPw}")
+    val JdbcDbTblCsv = "health_visit_csv"
 
     // SQL to drop and create table
     val SqlDropTable: String = s"DROP TABLE IF EXISTS ${JdbcDbTbl}"
+    val SqlDropTableCsv: String = s"DROP TABLE IF EXISTS ${JdbcDbTblCsv}"
 
-    val SqlCreateTable: String =
-        s"""CREATE TABLE ${JdbcDbTbl}
-           | ( ${ColumnNames(0)} VARCHAR(80),
-           |   ${ColumnNames(1)} VARCHAR(20),
-           |   ${ColumnNames(2)} VARCHAR(5),
-           |   ${ColumnNames(3)} VARCHAR(200),
-           |   ${ColumnNames(4)} VARCHAR(80),
-           |   ${ColumnNames(5)} VARCHAR(20),
-           |   ${ColumnNames(6)} VARCHAR(10),
-           |   ${ColumnNames(7)} VARCHAR(200),
-           |   ${ColumnNames(8)} VARCHAR(80),
-           |   ${ColumnNames(9)} VARCHAR(200)
-           | )
+    val ColumnLength: Array[Int] = Array( 80, 20, 10, 200, 80, 20, 10, 200, 80, 200 )
+
+    val SqlReadTable: String =
+        s"""SELECT
+           |  substr(${ColumnNames(0)},1,${ColumnLength(0)}) as ${ColumnNames(0)},
+           |  substr(${ColumnNames(1)},1,${ColumnLength(1)}) as ${ColumnNames(1)},
+           |  substr(${ColumnNames(2)},1,${ColumnLength(2)}) as ${ColumnNames(2)},
+           |  substr(${ColumnNames(3)},1,${ColumnLength(3)}) as ${ColumnNames(3)},
+           |  substr(${ColumnNames(4)},1,${ColumnLength(4)}) as ${ColumnNames(4)},
+           |  substr(${ColumnNames(5)},1,${ColumnLength(5)}) as ${ColumnNames(5)},
+           |  substr(${ColumnNames(6)},1,${ColumnLength(6)}) as ${ColumnNames(6)},
+           |  substr(${ColumnNames(7)},1,${ColumnLength(7)}) as ${ColumnNames(7)},
+           |  substr(${ColumnNames(8)},1,${ColumnLength(8)}) as ${ColumnNames(8)},
+           |  substr(${ColumnNames(9)},1,${ColumnLength(9)}) as ${ColumnNames(9)}
+           |FROM ${TempViewName}
         """.stripMargin
-
-    // Exception Error Code(s)
-    val SqlTableDoesNotExist: Int = 3807
 }

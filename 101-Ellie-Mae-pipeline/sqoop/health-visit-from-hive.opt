@@ -10,6 +10,10 @@ health_visit
 --hive-home
 /opt/hive
 --export-dir
-/user/hive/warehouse/task101.db/health_visit
+/user/hive/warehouse/task101.db/health_visit_csv
+--input-optionally-enclosed-by
+'\"'
+--input-escaped-by
+'\\'
 --input-fields-terminated-by 
 ,
