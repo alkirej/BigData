@@ -8,7 +8,7 @@ cd /opt
 sudo wget http://apache.cs.utah.edu/hbase/2.2.4/hbase-2.2.4-bin.tar.gz
 sudo tar xvzf hbase-2.2.4-bin.tar.gz
 sudo chown -R `whoami` hbase-2.2.4
-sudo ln -s hbase hbase-2.2.4
+sudo ln -s hbase-2.2.4 hbase
 
 sudo rm hbase-2.2.4-bin.tar.gz
 
