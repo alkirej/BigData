@@ -1,16 +1,16 @@
-#!/bin/sh
+#!/bin/sh -v
 # BEFORE INSTALLING HBASE, JAVA AND HADOOP MUST BE INSTALLED
 ##################################################################
 # HADOOP MUST BE RUNNING BEFORE RUNNING THIS INSTALL SCRIPT !!!! #
 ##################################################################
 # DOWNLOAD INSTALL FILES
 cd /opt
-sudo wget http://apache.cs.utah.edu/hbase/2.2.3/hbase-2.2.3-bin.tar.gz
-sudo tar xvzf hbase-2.2.3-bin.tar.gz
-sudo chown -R `whoami` hbase-2.2.3
-sudo ln -s hbase-2.2.3 hbase
+sudo wget http://apache.cs.utah.edu/hbase/2.2.4/hbase-2.2.4-bin.tar.gz
+sudo tar xvzf hbase-2.2.4-bin.tar.gz
+sudo chown -R `whoami` hbase-2.2.4
+sudo ln -s hbase-2.2.4 hbase
 
-#rm hbase-2.2.3-bin.tar.gz
+rm hbase-2.2.4-bin.tar.gz
 
 cd /opt/hbase/conf
 echo "
