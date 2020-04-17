@@ -1,0 +1,8 @@
+cd ~
+git init
+
+git config --global user.email "jeff@alkire.net"
+git config --global user.name "Big Data Team"
+
+git clone http://github.com/alkirej/BigDataGroupProjects --branch alkirej
+
