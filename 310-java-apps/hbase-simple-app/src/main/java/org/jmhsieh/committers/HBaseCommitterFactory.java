@@ -117,19 +117,26 @@ public class HBaseCommitterFactory {
 
 
   public Iterable<Committer> scanner(String startName, String endName) throws IOException {
-
+System.out.println("1");
     if (startName != null && endName != null && startName.compareTo(endName) > 0) {
+System.out.println("2");
       // swap if not sorted properly.
       String tmp = endName;
+System.out.println("3");
       endName = startName;
+System.out.println("4");
       startName = tmp;
+System.out.println("5");
     }
     Scan s = new Scan(
         (startName == null)? HConstants.EMPTY_START_ROW : Bytes.toBytes(startName),
         (endName == null) ? HConstants.EMPTY_END_ROW: Bytes.toBytes(endName));
+System.out.println("6");
 
     ResultScanner rs = t.getScanner(s);
+System.out.println("7");
     final Iterator<Result> i = rs.iterator();
+System.out.println("8");
     return new Iterable<Committer>() {
 
       @Override

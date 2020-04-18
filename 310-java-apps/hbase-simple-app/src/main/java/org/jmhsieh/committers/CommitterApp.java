@@ -61,8 +61,9 @@ public class CommitterApp extends AbstractHandler {
       return;
     }
 
-
+System.out.println("in to scanner method");
     Iterable<Committer> it = f.scanner(null, null);
+System.out.println("out of scanner method");
     int i = 0;
     for (Committer c : it ) {
       response.getWriter().println("<tr>");
