@@ -1,0 +1,4 @@
+DROP TABLE IF EXISTS label_wide;
+DROP TABLE IF EXISTS label_indexable;
+DROP TABLE IF EXISTS collection;
+DROP TABLE IF EXISTS artifact;
