@@ -63,5 +63,4 @@ while True:
         }
     )
     print('PUTTING RECORD TO KINESIS: \n' + str(record))
-[cloud_user@ip-10-0-0-134 ~]$ 
 
