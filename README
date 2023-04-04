@@ -1,30 +1,9 @@
 =======================
 BIG DATA BOOTCAMP TASKS
 =======================
-This tree contains a directory for each task assigned during the Enhance I.T. 
-BigData bootcamp that I took between Jan and Mar of 2020.  Each directory 
-contains one task.  The directories are numbered and given a very short title 
-aimed at making tasks as easy to find as possible.
+I went through a Big Data bootcamp.  These are the results of the assignments
+I attempted.  There was considerably more work than time to complete it - let
+alone well, so please be kind. 
 
-=======================
-Getting Started
-=======================
-Download (aka: clone) the repository and you should be ready to go.  You may
-want to start with the installation of the hadoop infrastructure you will 
-need in order for the tasks to run properly.  This is available in the
-BigDataGroupProjects repository (task 2).
-
-=======================
-Prerequisites
-=======================
-Each task will require a different set of tools. See each task's README for
-more information
-
-For Example:
-
-=======================
-Installing
-=======================
-This "software" does not require installation. Hadoop and related tools will
-need to be installed on a task by task basis.
-
+I am making these available publically on the off chance that someone else
+will find the information useful.
