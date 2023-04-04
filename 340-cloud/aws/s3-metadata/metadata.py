@@ -4,8 +4,8 @@ import json
 import boto3
 from boto.s3.connection import S3Connection
 
-ec2_key="AKIATTKCERT3ODO7HAWK"
-ec2_secret="VdY+OuxpxNwKfZ1gl8qXBOChd1GvgCzrpnY6HbiV"
+ec2_key="AK--some--AWS--key--"
+ec2_secret="--Your--AWS--secret--password-----------"
 
 amazon_connection = S3Connection(ec2_key, ec2_secret)
 bucket = amazon_connection.get_bucket("em-capsilon-poc")
